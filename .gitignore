@@ -3,3 +3,5 @@
 .RData
 *.Rproj
 .DS_Store
+*.xlsx
+*.csv
