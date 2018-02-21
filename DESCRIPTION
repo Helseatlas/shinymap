@@ -11,4 +11,6 @@ RoxygenNote: 6.0.1
 Imports:
   shiny,
   shinythemes,
-  rsconnect
+  rsconnect,
+  ggplot2,
+  leaflet
