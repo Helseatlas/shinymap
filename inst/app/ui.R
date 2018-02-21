@@ -13,7 +13,7 @@ shinyUI(function(request){
                       sidebarPanel(selectInput(inputId = "kartlag",
                                           label = "Velg et tema:",
                                           choices = c("Personer til fastlege/legevakt", 
-                                                      "Personer på poliklinikk", 
+                                                      "Personer poliklinikk", 
                                                       "Akuttinnlagte personer"))
                       ),
                       mainPanel(tableOutput("kolstabell")

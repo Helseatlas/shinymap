@@ -10,7 +10,7 @@ shinyServer(
     kartlagInput <- reactive({
       switch(input$kartlag,
              "Personer til fastlege/legevakt" = kols$FLLV_pers_Rate,
-             "Personer på poliklinikk" = kols$Poli_Pers_Rate,
+             "Personer poliklinikk" = kols$Poli_Pers_Rate,
              "Akuttinnlagte personer" = kols$Akutt_pers_Rate)
     })
     
