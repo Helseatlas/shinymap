@@ -18,15 +18,5 @@ httr::set_config(httr::use_proxy(url="http://www-proxy.helsenord.no", port=8080)
 ```
 
 
-## For developers
-
-
-Remember to build the documentation page locally before commiting to github:
-
-```
-devtools::document()
-pkgdown::build_site()
-```
-
 
 

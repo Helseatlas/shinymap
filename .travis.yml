@@ -12,7 +12,7 @@ before_install:
   - Rscript -e "if (!require('covr')) install.packages('covr')"
   - Rscript -e "if (!require('roxygen2')) install.packages('roxygen2')"
   - Rscript -e "if (!require('devtools')) install.packages('devtools')"
-  - Rscript -e "if (!require('pkgdown')) devtools::install_github('hadley/pkgdown')"
+  - Rscript -e "if (!require('pkgdown')) devtools::install_github('r-lib/pkgdown')"
 
 script:
   - R CMD build .
@@ -22,3 +22,11 @@ after_success:
 #  - Rscript -e 'covr::codecov()'
   - Rscript -e 'devtools::document()'
   - Rscript -e 'pkgdown::build_site()'
+
+deploy:
+  provider: pages                         # Specify the gh-pages deployment method
+  skip_cleanup: true                      # Don't remove files
+  github_token: $GITHUB_TOKEN             # Set in travis-ci.org dashboard
+  local_dir: docs                         # Deploy the docs folder
+  on:
+    branch: master
