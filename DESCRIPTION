@@ -17,5 +17,6 @@ Imports:
   magrittr,
   dplyr,
   ggthemes,
-  tibble
+  tibble,
+  jsonlite
 Suggests: testthat
