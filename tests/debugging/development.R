@@ -26,21 +26,29 @@ is.data.frame(bo$name)
   # Convert all special characters to "normal" characters if running tests,
   # because the sorting with special characters is system dependent.
   
-  conv_list1 <- list("æ", "ø", "å", "Æ",  "Ø", "Å", ".", "-")
-  conv_list2 <- list("ae","o", "a", "AE", "O", "å", "_", "_")
+  conv_list1 <- list("æ", "ø", "å", "Æ",  "Ø", "Å", '-', "St. ")
+  conv_list2 <- list("ae","o", "a", "AE", "O", "å", "_", "St ")
   
+  test <- bo
   for (i in 1:length(conv_list1)){
 #    test <- data.frame(lapply(bo, function(x) {
 #      gsub(conv_list1[i], conv_list2[i], x)
 #    }))
-    
-    test <- gsub(conv_list1[i], conv_list2[i], bo$name)
+    test <- gsub(conv_list1[i], conv_list2[i], test)
   }
 #}
+data.frame(test)
+data.frame(bo)
+
+data.frame(test,bo)
 
 all.equal(test, bo)
 
 tmp <- readIAjson(json_file = myfile)
+tmp2 <- readIAjson(json_file = myfile, testing = TRUE)
+
+all.equal(tmp, tmp2)
+
 
 ref <- readRDS("tests/testthat/data/dagkir.rds")
 
@@ -51,10 +59,10 @@ all.equal(tmp, ref)
 
 str(tmp$bo)
 
-str(ref$bo)
+str(tmp2$bo)
 
-data.frame(tmp = levels(tmp$bo),
-           ref = levels(ref$bo))
+data.frame(tmp2 = levels(tmp2$bo))
+data.frame(tmp = levels(tmp$bo))
 
 
 
