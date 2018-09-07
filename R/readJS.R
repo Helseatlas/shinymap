@@ -19,6 +19,7 @@ readIAjson <- function(json_file = NULL){
   bo <- data.frame(tbl$features)
   
   # Name of reference is located in json_data$geographies$comparisonFeatures
+  # Not yet used!
   ref <- data.frame(tbl$comparisonFeatures)
   
   # All data
@@ -28,24 +29,30 @@ readIAjson <- function(json_file = NULL){
   if (length(themes$name) != length(themes$indicators)){
     stop("Something fishy in your json file. ")
   }
-  
+
+  # Define an empty data frame
   all_data <- data.frame()
   
   for (i in 1:length(themes$indicators)){
-    # Name, highest level
+    # Names for first level
     level1 <- themes$name[i]
     next_level <- data.frame(themes$indicators[i])
     rates <- data.frame(next_level$values)  %>% tibble::as_data_frame()
     for (j in 1:length(next_level)){
       if (!is.na(next_level$id[j])){
+        # Names for the second level
         level2 <- next_level$name[j]
         level3 <- NULL
+        # Names for the third level, if it exists
         level3 <- try(next_level$date[j])
+        # ID for level 2 (not unique with three levels)
         selection_id <- next_level$id[j]
         if (is.null(level3)){
+          # Only for two-level atlases
           combined <- data.frame(bo$name, level1, level2, selection_id, rates[j]) 
           colnames(combined) <- c("bo", "level1", "level2", "id", "rate")
         } else {
+          # Only for three level atlases
           combined <- data.frame(bo$name, level1, level2, level3, selection_id, rates[j]) 
           colnames(combined) <- c("bo", "level1", "level2", "level3", "id", "rate")
         }
@@ -56,25 +63,4 @@ readIAjson <- function(json_file = NULL){
   
   return(all_data)
   
-}
-
-
-#' Make a plot based on a data frame
-#'
-#' @param fullDataFrame Data to be plotted
-#' @param which_id Which data to plot (with id == which_id)
-#'
-#' @export
-plotVariasjon <- function(fullDataFrame = NULL, which_id = "i0"){
-  
-  # Filter out data by id
-  tmp <- dplyr::filter(fullDataFrame, id == which_id)
-
-  # Reorder from highest to lowest  
-  tmp$bo <- factor(tmp$bo, levels = tmp$bo[order(tmp$rate)])
-
-  # Plotting 
-  ggplot2::ggplot(data = tmp, ggplot2::aes(y=rate, x=bo)) + ggplot2::geom_bar(stat="identity") +
-    ggplot2::coord_flip() +
-    ggthemes::theme_tufte()
 }
