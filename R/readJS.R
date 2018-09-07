@@ -24,9 +24,6 @@ readIAjson <- function(json_file = NULL){
   # All data
   themes <- data.frame(tbl$themes) %>% tibble::as_data_frame()
   
-  # Names, highest level
-  level1 <- themes$name
-  
   # Test that number of highest level is equal the length of themes$indicators
   if (length(themes$name) != length(themes$indicators)){
     stop("Something fishy in your json file. ")
@@ -35,21 +32,23 @@ readIAjson <- function(json_file = NULL){
   all_data <- data.frame()
   
   for (i in 1:length(themes$indicators)){
+    # Name, highest level
     level1 <- themes$name[i]
-    next_level <- data.frame(themes$indicators[i]) %>% tibble::as_data_frame()
+    next_level <- data.frame(themes$indicators[i])
     rates <- data.frame(next_level$values)  %>% tibble::as_data_frame()
     for (j in 1:length(next_level)){
       if (!is.na(next_level$id[j])){
         level2 <- next_level$name[j]
+        level3 <- NULL
+        level3 <- try(next_level$date[j])
         selection_id <- next_level$id[j]
-        combined <- data.frame(bo$name, level1, level2, selection_id, rates[j]) 
-        
-        colnames(combined)[1] <- "bo"
-        colnames(combined)[2] <- "level1"
-        colnames(combined)[3] <- "level2"
-        colnames(combined)[4] <- "id"
-        colnames(combined)[5] <- "rate"
-        
+        if (is.null(level3)){
+          combined <- data.frame(bo$name, level1, level2, selection_id, rates[j]) 
+          colnames(combined) <- c("bo", "level1", "level2", "id", "rate")
+        } else {
+          combined <- data.frame(bo$name, level1, level2, level3, selection_id, rates[j]) 
+          colnames(combined) <- c("bo", "level1", "level2", "level3", "id", "rate")
+        }
         all_data <- rbind(all_data, combined)
       }
     } 

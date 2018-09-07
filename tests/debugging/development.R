@@ -1,17 +1,21 @@
 # Just testing
 
+rm(list=ls())
 
-myfile <- "tests/testthat/data/eldre.js"
+myfile <- "tests/testthat/data/eldre.json"
 
+myfile <- "tests/testthat/data/barn.json"
 
 tmp <- readIAjson(json_file = myfile)
 
-tmp2 <- readRDS("tests/testthat/data/json1")
+ref <- readRDS("tests/testthat/data/json1.rds")
 
-length(tmp2$bo)
+test <- merge(tmp, ref, by = c("bo", "level1", "level2", "id", "rate"))
 
-
+length(test$bo)
 length(tmp$bo)
+
+df.changes(tmp, ref, KEYS = c("bo"))
 
 akershus <- dplyr::filter(tmp, bo == "Førde")
 akershus2 <- dplyr::filter(tmp2, bo == "Førde")
@@ -27,8 +31,6 @@ test2 <- dplyr::all_equal(tmp, tmp2)
 
 
 test3 <- df.changes(tmp2, tmp, KEYS = c("level1"))
-
-test2
 
 test$tMpartial
 
