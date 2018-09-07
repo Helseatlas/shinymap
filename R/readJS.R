@@ -1,6 +1,7 @@
 #' Read json-data from IA
 #'
 #' @param json_file The json file used by IA
+#' @param testing Will convert special characters to non-special characters if set to TRUE
 #'
 #' @return A data frame
 #' @export
