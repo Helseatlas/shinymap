@@ -47,10 +47,11 @@ readIAjson <- function(json_file = NULL, testing = FALSE){
   
   # Define an empty data frame
   all_data <- data.frame()
-  
   for (i in 1:length(themes$indicators)){
     # Names for first level
     level1 <- themes$name[i]
+    prev_level3 <- "qwerty" # To check if level3 is equal to previous level3
+    k = 0
     next_level <- data.frame(themes$indicators[i])
     rates <- data.frame(next_level$values)  %>% tibble::as_data_frame()
     for (j in 1:length(next_level)){
@@ -66,10 +67,14 @@ readIAjson <- function(json_file = NULL, testing = FALSE){
           # Only for two-level atlases
           combined <- data.frame(bo, level1, level2, selection_id, rates[j]) 
           colnames(combined) <- c("bo", "level1", "level2", "id", "rate")
-        } else {
-          # Only for three level atlases
-          combined <- data.frame(bo, level1, level2, level3, selection_id, rates[j]) 
+        } else { # Only for three level atlases
+          if (level3 != prev_level3){ # If level3 is not equal to previous level3
+            k = k + 1
+            id2 <- paste0(selection_id, "j", k)
+          }
+          combined <- data.frame(bo, level1, level2, level3, id2, rates[j]) 
           colnames(combined) <- c("bo", "level1", "level2", "level3", "id", "rate")
+          prev_level3 <- level3
         }
         all_data <- rbind(all_data, combined)
       }
