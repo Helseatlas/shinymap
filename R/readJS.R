@@ -20,15 +20,15 @@ readIAjson <- function(json_file = NULL, testing = FALSE){
   bo <- data.frame(tbl$features)$name
   
   if (testing){
-  # Convert all special characters to "normal" characters if running tests,
-  # because the sorting with special characters is system dependent.
-  
-  conv_list1 <- list("æ", "ø", "å", "Æ",  "Ø", "Å", '-', "St. ")
-  conv_list2 <- list("ae","o", "a", "AE", "O", "å", "_", "St ")
-
-  for (i in 1:length(conv_list1)){
-
-    bo <- gsub(conv_list1[i], conv_list2[i], bo)
+    # Convert all special characters to "normal" characters if running tests,
+    # because the sorting with special characters is system dependent.
+    
+    conv_list1 <- list("æ", "ø", "å", "Æ",  "Ø", "Å", '-', "St. ")
+    conv_list2 <- list("ae","o", "a", "AE", "O", "å", "_", "St ")
+    
+    for (i in 1:length(conv_list1)){
+      
+      bo <- gsub(conv_list1[i], conv_list2[i], bo)
     }
   }
   
@@ -44,7 +44,7 @@ readIAjson <- function(json_file = NULL, testing = FALSE){
   if (length(themes$name) != length(themes$indicators)){
     stop("Something fishy in your json file. ")
   }
-
+  
   # Define an empty data frame
   all_data <- data.frame()
   
