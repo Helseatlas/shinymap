@@ -6,7 +6,7 @@
 #' @export
 #' @importFrom magrittr "%>%"
 #'
-readIAjson <- function(json_file = NULL){
+readIAjson <- function(json_file = NULL, testing = FALSE){
   
   # Read the json file
   # NOTE: The js-file HAS to be converted from UTF-8 BOM to UTF-8 (in notepad++) before this will work!
@@ -16,7 +16,21 @@ readIAjson <- function(json_file = NULL){
   tbl <- tibble::as_data_frame(json_data$geographies)
   
   # Names of areas are located in json_data$geographies$features
-  bo <- data.frame(tbl$features)
+  bo <- data.frame(tbl$features)$name
+  
+  if (testing){
+  # Convert all special characters to "normal" characters if running tests,
+  # because the sorting with special characters is system dependent.
+  
+  conv_list1 <- list("æ", "ø", "å", "Æ",  "Ø", "Å", ".", "-")
+  conv_list2 <- list("ae","o", "a", "AE", "O", "å", "_", "_")
+  
+  for (i in 1:length(conv_list1)){
+
+    bo <- gsub(conv_list1[i], conv_list2[i], bo)
+    }
+  }
+  
   
   # Name of reference is located in json_data$geographies$comparisonFeatures
   # Not yet used!
@@ -49,11 +63,11 @@ readIAjson <- function(json_file = NULL){
         selection_id <- next_level$id[j]
         if (is.null(level3)){
           # Only for two-level atlases
-          combined <- data.frame(bo$name, level1, level2, selection_id, rates[j]) 
+          combined <- data.frame(bo, level1, level2, selection_id, rates[j]) 
           colnames(combined) <- c("bo", "level1", "level2", "id", "rate")
         } else {
           # Only for three level atlases
-          combined <- data.frame(bo$name, level1, level2, level3, selection_id, rates[j]) 
+          combined <- data.frame(bo, level1, level2, level3, selection_id, rates[j]) 
           colnames(combined) <- c("bo", "level1", "level2", "level3", "id", "rate")
         }
         all_data <- rbind(all_data, combined)

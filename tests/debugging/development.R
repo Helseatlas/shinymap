@@ -11,6 +11,35 @@ myfile <- "tests/testthat/data/kols.json"
 myfile <- "tests/testthat/data/dagkir.json"
 
 
+json_data <- jsonlite::fromJSON(myfile)
+
+# make it a tibble data fram
+tbl <- tibble::as_data_frame(json_data$geographies)
+
+# Names of areas are located in json_data$geographies$features
+bo <- data.frame(tbl$features)$name
+
+
+is.data.frame(bo$name)
+
+#if (testing){
+  # Convert all special characters to "normal" characters if running tests,
+  # because the sorting with special characters is system dependent.
+  
+  conv_list1 <- list("æ", "ø", "å", "Æ",  "Ø", "Å", ".", "-")
+  conv_list2 <- list("ae","o", "a", "AE", "O", "å", "_", "_")
+  
+  for (i in 1:length(conv_list1)){
+#    test <- data.frame(lapply(bo, function(x) {
+#      gsub(conv_list1[i], conv_list2[i], x)
+#    }))
+    
+    test <- gsub(conv_list1[i], conv_list2[i], bo$name)
+  }
+#}
+
+all.equal(test, bo)
+
 tmp <- readIAjson(json_file = myfile)
 
 ref <- readRDS("tests/testthat/data/dagkir.rds")
