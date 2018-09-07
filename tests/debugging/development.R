@@ -6,9 +6,28 @@ myfile <- "tests/testthat/data/eldre.json"
 
 myfile <- "tests/testthat/data/barn.json"
 
+myfile <- "tests/testthat/data/kols.json"
+
+myfile <- "tests/testthat/data/dagkir.json"
+
+
 tmp <- readIAjson(json_file = myfile)
 
-ref <- readRDS("tests/testthat/data/json1.rds")
+ref <- readRDS("tests/testthat/data/dagkir.rds")
+
+
+
+all.equal(tmp, ref)
+
+
+str(tmp$bo)
+
+str(ref$bo)
+
+data.frame(tmp = levels(tmp$bo),
+           ref = levels(ref$bo))
+
+
 
 test <- merge(tmp, ref, by = c("bo", "level1", "level2", "id", "rate"))
 
@@ -109,58 +128,3 @@ for (i in 1:length(themes$indicators)){
 
 print(all_data)
 
-
-# From https://codereview.stackexchange.com/questions/94253/identify-changes-between-two-data-frames-explain-deltas-for-x-columns
-
-df.changes <- function(df.old, df.new,
-                       KEYS = c("id"),
-                       VAL = NULL,
-                       retain.columns = NULL) {
-  # input checks
-  stopifnot(KEYS %in% names(df.old),
-            KEYS %in% names(df.new),
-            VAL %in% names(df.old),
-            VAL %in% names(df.new),
-            retain.columns %in% names(df.new),
-            retain.columns %in% names(df.old))
-
-  # add columns to help us track new/old provenance
-  N <- transform(df.new, is = TRUE)
-  O <- transform(df.old, is = TRUE)
-
-  # merge
-  M <- merge(N, O, by = KEYS, all = TRUE, suffixes = c(".new",".old"))
-  M$is.new <- !is.na(M$is.new) # replace NA with FALSE
-  M$is.old <- !is.na(M$is.old) # replace NA with FALSE
-
-  # this will be our output
-  O <- M[KEYS]
-
-  # add rows.changed
-  O$row.changed <- with(M, ifelse(is.old & is.new, "10.Retained",
-                                  ifelse(is.old,          "05. Lost",
-                                         "00. New")))
-  # add data from new
-  original.vars <- setdiff(names(df.new), KEYS)
-  for (var in original.vars)
-    O[[var]] <- M[[paste0(var, ".new")]]
-
-  # modify data for retain.columns
-  for (var in retain.columns)
-    O[[var]] <- ifelse(M$is.new, M[[paste0(var, ".new")]],
-                       M[[paste0(var, ".old")]])
-
-
-  # add comparisons
-  for (var in VAL) {
-    old.var <- paste0(var, ".old")
-    new.var <- paste0(var, ".new")
-    del.var <- paste0(var, ".delta")
-    O[[del.var]] <- M[[new.var]] - M[[old.var]]
-    O[[old.var]] <- M[[old.var]]
-    O[[new.var]] <- M[[new.var]]
-  }
-
-  # reorder rows
-  O[order(O$row.changed), ]
-}
