@@ -17,7 +17,7 @@ readIAjson <- function(json_file = NULL, testing = FALSE){
   tbl <- tibble::as_data_frame(json_data$geographies)
   
   # Names of areas are located in json_data$geographies$features
-  bo <- data.frame(tbl$features)$name
+  area <- data.frame(tbl$features)$name
   
   if (testing){
     # Convert all special characters to "normal" characters if running tests,
@@ -28,7 +28,7 @@ readIAjson <- function(json_file = NULL, testing = FALSE){
     
     for (i in 1:length(conv_list1)){
       
-      bo <- gsub(conv_list1[i], conv_list2[i], bo)
+      area <- gsub(conv_list1[i], conv_list2[i], area)
     }
   }
   
@@ -65,15 +65,15 @@ readIAjson <- function(json_file = NULL, testing = FALSE){
         selection_id <- next_level$id[j]
         if (is.null(level3)){
           # Only for two-level atlases
-          combined <- data.frame(bo, level1, level2, selection_id, rates[j]) 
-          colnames(combined) <- c("bo", "level1", "level2", "id", "rate")
+          combined <- data.frame(area, level1, level2, selection_id, rates[j]) 
+          colnames(combined) <- c("area", "level1", "level2", "id", "rate")
         } else { # Only for three level atlases
           if (level3 != prev_level3){ # If level3 is not equal to previous level3
             k = k + 1
             id2 <- paste0(selection_id, "j", k)
           }
-          combined <- data.frame(bo, level1, level2, level3, id2, rates[j]) 
-          colnames(combined) <- c("bo", "level1", "level2", "level3", "id", "rate")
+          combined <- data.frame(area, level1, level2, level3, id2, rates[j]) 
+          colnames(combined) <- c("area", "level1", "level2", "level3", "id", "rate")
           prev_level3 <- level3
         }
         all_data <- rbind(all_data, combined)
