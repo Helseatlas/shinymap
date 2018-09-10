@@ -53,9 +53,30 @@ readIAjson <- function(json_file = NULL, testing = FALSE){
     prev_level3 <- "qwerty" # To check if level3 is equal to previous level3
     k = 0
     next_level <- data.frame(themes$indicators[i])
+    # Rates to be plotted
     rates <- data.frame(next_level$values)  %>% tibble::as_data_frame()
+    # Rates for Norway etc
+    ref_rates <- data.frame(next_level$comparisonValues)  %>% tibble::as_data_frame()
+    
+    # Extract the numeraters and denominators  
+    extra <- data.frame(next_level$associates)
+    
     for (j in 1:length(next_level)){
       if (!is.na(next_level$id[j])){
+        
+        k <- j - 1
+        if (k == 0){
+          post <- ""
+        } else {
+          post <- paste0(".", k)
+        }
+        numerater <- data.frame(extra[, paste0("values",post)][2])
+        denominator <- data.frame(extra[, paste0("values",post)][1])
+        name_numerater <- extra[, paste0("name",post)][2]
+        name_denominator <- extra[, paste0("name",post)][1]
+        ref_numerater <-  data.frame(extra[, paste0("comparisonValues",post)][2])
+        ref_denominator <- data.frame(extra[, paste0("comparisonValues",post)][1])
+        
         # Names for the second level
         level2 <- next_level$name[j]
         level3 <- NULL
@@ -64,19 +85,24 @@ readIAjson <- function(json_file = NULL, testing = FALSE){
         # ID for level 2 (not unique with three levels)
         selection_id <- next_level$id[j]
         if (is.null(level3)){
+          
           # Only for two-level atlases
-          combined <- data.frame(area, level1, level2, selection_id, rates[j]) 
-          colnames(combined) <- c("area", "level1", "level2", "id", "rate")
+          combined <- data.frame(area, level1, level2, selection_id, rates[j], name_numerater, numerater[j], name_denominator, denominator[j], 0) 
+          colnames(combined) <- c("area", "level1", "level2", "id", "rate", "name_numerater", "numerater", "name_denominator", "denominator", "ref")
+          ref_combined <- data.frame(ref_area, level1, level2, selection_id, ref_rates[j], name_numerater, ref_numerater[j], name_denominator, ref_denominator[j], 1) 
+          colnames(ref_combined) <- c("area", "level1", "level2", "id", "rate", "name_numerater", "numerater", "name_denominator", "denominator", "ref")
         } else { # Only for three level atlases
           if (level3 != prev_level3){ # If level3 is not equal to previous level3
             k = k + 1
             id2 <- paste0(selection_id, "j", k)
           }
-          combined <- data.frame(area, level1, level2, level3, id2, rates[j]) 
-          colnames(combined) <- c("area", "level1", "level2", "level3", "id", "rate")
+          combined <- data.frame(area, level1, level2, level3, id2, rates[j], name_numerater, numerater, name_denominator, denominator, 0) 
+          colnames(combined) <- c("area", "level1", "level2", "level3", "id", "rate", "name_numerater", "numerater", "name_denominator", "denominator", "ref")
+          ref_combined <- data.frame(ref_area, level1, level2, level3, id2, ref_rates[j], name_numerater, ref_numerater, name_denominator, ref_denominator, 1) 
+          colnames(ref_combined) <- c("area", "level1", "level2", "level3", "id", "rate", "name_numerater", "numerater", "name_denominator", "denominator", "ref")
           prev_level3 <- level3
         }
-        all_data <- rbind(all_data, combined)
+        all_data <- rbind(all_data, combined, ref_combined)
       }
     } 
   }
