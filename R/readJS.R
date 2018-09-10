@@ -87,9 +87,9 @@ readIAjson <- function(json_file = NULL, testing = FALSE){
         if (is.null(level3)){
           
           # Only for two-level atlases
-          combined <- data.frame(area, level1, level2, selection_id, rates[j], name_numerater, numerater[j], name_denominator, denominator[j], 0) 
+          combined <- data.frame(area, level1, level2, selection_id, rates[j], name_numerater, numerater, name_denominator, denominator, 0) 
           colnames(combined) <- c("area", "level1", "level2", "id", "rate", "name_numerater", "numerater", "name_denominator", "denominator", "ref")
-          ref_combined <- data.frame(ref_area, level1, level2, selection_id, ref_rates[j], name_numerater, ref_numerater[j], name_denominator, ref_denominator[j], 1) 
+          ref_combined <- data.frame(ref_area, level1, level2, selection_id, ref_rates[j], name_numerater, ref_numerater, name_denominator, ref_denominator, 1) 
           colnames(ref_combined) <- c("area", "level1", "level2", "id", "rate", "name_numerater", "numerater", "name_denominator", "denominator", "ref")
         } else { # Only for three level atlases
           if (level3 != prev_level3){ # If level3 is not equal to previous level3
