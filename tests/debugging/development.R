@@ -95,8 +95,8 @@ devtools::install_github("helseatlas/shinymap", ref = "readIAjson")
 
 
 rm(list=ls())
-json_file <- "tests/testthat/data/dagkir.json"
-
+json_file <- "tests/testthat/data/kols.json"
+testing <- FALSE
 
 # COPY OF readJS.R
 
@@ -134,12 +134,6 @@ if (length(themes$name) != length(themes$indicators)){
   stop("Something fishy in your json file. ")
 }
 
-
-level1 <- themes$name[1]
-next_level <- data.frame(themes$indicators[1])
-href <-  next_level$href
-
-
 # Define an empty data frame
 all_data <- data.frame()
 for (i in 1:length(themes$indicators)){
@@ -153,7 +147,7 @@ for (i in 1:length(themes$indicators)){
   # Rates for Norway etc
   ref_rates <- data.frame(next_level$comparisonValues)  %>% tibble::as_data_frame()
   # Link to fact sheets
-  href <- data.frame(next_level$href)  %>% tibble::as_data_frame()
+  href <- next_level$href
   
   # Extract the numeraters and denominators
   extra <- data.frame(next_level$associates)
@@ -161,6 +155,7 @@ for (i in 1:length(themes$indicators)){
   for (j in 1:length(next_level)){
     if (!is.na(next_level$id[j])){
       
+      # numeraters and denominaters stored in extra$values.1 etc.
       k <- j - 1
       if (k == 0){
         post <- ""
@@ -181,32 +176,93 @@ for (i in 1:length(themes$indicators)){
       level3 <- try(next_level$date[j])
       # ID for level 2 (not unique with three levels)
       selection_id <- next_level$id[j]
-      test <- data.frame(area,level1)
-      test["level2"] <- level2
-      test["rates"] <- rates[j]
-      print(test)
+      combined <- data.frame(area, level1, level2)
+      colnames(combined) <- c("area", "level1", "level2")
+      ref_combined <- data.frame(ref_area, level1, level2)
+      colnames(ref_combined) <- c("area", "level1", "level2")
+      
+      properties <- NULL
+      properties <- try(next_level$properties)
+      metatext <- NULL
+      if (!is.null(properties)){
+        if (length(properties) > 1){
+          for (l in 1:length(properties)){
+            df_properties <- data.frame(properties[l])
+            for (n in 1:length(df_properties$value)){
+              if (df_properties$name[n] == "metatext"){
+                metatext[l] <- try(df_properties[, "value"][n])
+              }
+            } 
+          }
+        } else {
+          df_properties <- data.frame(properties)
+          for (l in 1:(length(df_properties)/2)){
+            m = l - 1
+            if (m == 0){
+              for (n in 1:length(df_properties$value)){
+                if (df_properties$name[n] == "metatext"){
+                  metatext[l] <- try(df_properties[, "value"][n])
+                }
+              } 
+            } else {
+              for (n in 1:length(df_properties$value)){
+                if (df_properties[,paste0("name.", m)][n] == "metatext"){
+                  metatext[l] <- try(df_properties[,paste0("value.", m)][n])
+                }
+              } 
+            }
+            
+          }
+        }
+      }
       if (is.null(level3)){
         
         # Only for two-level atlases
-        combined <- data.frame(area, level1, level2, selection_id, rates[j], name_numerater, numerater, name_denominator, denominator, 0)
-        colnames(combined) <- c("area", "level1", "level2", "id", "rate", "name_numerater", "numerater", "name_denominator", "denominator", "ref")
-        ref_combined <- data.frame(ref_area, level1, level2, selection_id, ref_rates[j], name_numerater, ref_numerater, name_denominator, ref_denominator, 1)
-        colnames(ref_combined) <- c("area", "level1", "level2", "id", "rate", "name_numerater", "numerater", "name_denominator", "denominator", "ref")
-      } else { # Only for three level atlases
+        combined["id"] <- selection_id
+        ref_combined["id"] <- selection_id
+        
+      } else {
         if (level3 != prev_level3){ # If level3 is not equal to previous level3
           k = k + 1
           id2 <- paste0(selection_id, "j", k)
         }
-        combined <- data.frame(area, level1, level2, level3, id2, rates[j], name_numerater, numerater, name_denominator, denominator, 0)
-        colnames(combined) <- c("area", "level1", "level2", "level3", "id", "rate", "name_numerater", "numerater", "name_denominator", "denominator", "ref")
-        ref_combined <- data.frame(ref_area, level1, level2, level3, id2, ref_rates[j], name_numerater, ref_numerater, name_denominator, ref_denominator, 1)
-        colnames(ref_combined) <- c("area", "level1", "level2", "level3", "id", "rate", "name_numerater", "numerater", "name_denominator", "denominator", "ref")
+        combined["level3"] <- level3 
+        ref_combined["level3"] <- level3 
+        combined["id"] <- selection_id
+        ref_combined["id"] <- selection_id
         prev_level3 <- level3
+        
       }
+      combined["rate"] <- rates[j]
+      ref_combined["rate"] <- ref_rates[j]
+      
+      combined["name_numerater"] <- name_numerater
+      ref_combined["name_numerater"] <- name_numerater
+      
+      combined["numerater"] <- numerater
+      ref_combined["numerater"] <- ref_numerater
+      
+      combined["name_denominator"] <- name_denominator
+      ref_combined["name_denominator"] <- name_denominator
+      
+      combined["denominator"] <- denominator
+      ref_combined["denominator"] <- ref_denominator
+      
+      combined["ref"] <- 0 
+      ref_combined["ref"] <- 1
+      
+      combined["href"] <- href[j]
+      ref_combined["href"] <- href[j]
+      
+      if (!is.null(metatext)){
+        combined["metatext"] <- metatext[j]
+        ref_combined["metatext"] <- metatext[j]
+      }
+      
+      
       all_data <- rbind(all_data, combined, ref_combined)
     }
   }
 }
-
 print(all_data)
 

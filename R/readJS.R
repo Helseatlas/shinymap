@@ -64,6 +64,7 @@ readIAjson <- function(json_file = NULL, testing = FALSE){
     for (j in 1:length(next_level)){
       if (!is.na(next_level$id[j])){
         
+        # numeraters and denominaters stored in extra$values.1 etc.
         k <- j - 1
         if (k == 0){
           post <- ""
@@ -89,6 +90,40 @@ readIAjson <- function(json_file = NULL, testing = FALSE){
         ref_combined <- data.frame(ref_area, level1, level2)
         colnames(ref_combined) <- c("area", "level1", "level2")
         
+        properties <- NULL
+        properties <- try(next_level$properties)
+        metatext <- NULL
+        if (!is.null(properties)){
+          if (length(properties) > 1){
+            for (l in 1:length(properties)){
+              df_properties <- data.frame(properties[l])
+              for (n in 1:length(df_properties$value)){
+                if (df_properties$name[n] == "metatext"){
+                  metatext[l] <- try(df_properties[, "value"][n])
+                }
+              } 
+            }
+          } else {
+            df_properties <- data.frame(properties)
+            for (l in 1:(length(df_properties)/2)){
+              m = l - 1
+              if (m == 0){
+                for (n in 1:length(df_properties$value)){
+                  if (df_properties$name[n] == "metatext"){
+                    metatext[l] <- try(df_properties[, "value"][n])
+                  }
+                } 
+              } else {
+                for (n in 1:length(df_properties$value)){
+                  if (df_properties[,paste0("name.", m)][n] == "metatext"){
+                    metatext[l] <- try(df_properties[,paste0("value.", m)][n])
+                  }
+                } 
+              }
+              
+            }
+          }
+        }
         if (is.null(level3)){
           
           # Only for two-level atlases
@@ -108,20 +143,31 @@ readIAjson <- function(json_file = NULL, testing = FALSE){
           
         }
         combined["rate"] <- rates[j]
-        combined["name_numerater"] <- name_numerater
-        combined["numerater"] <- numerater
-        combined["name_denominator"] <- name_denominator
-        combined["denominator"] <- denominator
-        combined["ref"] <- 0 
-        combined["href"] <- href[j]
-        
         ref_combined["rate"] <- ref_rates[j]
+        
+        combined["name_numerater"] <- name_numerater
         ref_combined["name_numerater"] <- name_numerater
+        
+        combined["numerater"] <- numerater
         ref_combined["numerater"] <- ref_numerater
+        
+        combined["name_denominator"] <- name_denominator
         ref_combined["name_denominator"] <- name_denominator
+        
+        combined["denominator"] <- denominator
         ref_combined["denominator"] <- ref_denominator
+        
+        combined["ref"] <- 0 
         ref_combined["ref"] <- 1
+        
+        combined["href"] <- href[j]
         ref_combined["href"] <- href[j]
+        
+        if (!is.null(metatext)){
+          combined["metatext"] <- metatext[j]
+          ref_combined["metatext"] <- metatext[j]
+        }
+        
         
         all_data <- rbind(all_data, combined, ref_combined)
       }
