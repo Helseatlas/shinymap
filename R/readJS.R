@@ -19,6 +19,9 @@ readIAjson <- function(json_file = NULL, testing = FALSE){
   # Names of areas are located in json_data$geographies$features
   area <- data.frame(tbl$features)$name
   
+  # Name of reference is located in json_data$geographies$comparisonFeatures
+  ref_area <- data.frame(tbl$comparisonFeatures)$name
+  
   if (testing){
     # Convert all special characters to "normal" characters if running tests,
     # because the sorting with special characters is system dependent.
@@ -27,15 +30,10 @@ readIAjson <- function(json_file = NULL, testing = FALSE){
     conv_list2 <- list("ae","o", "a", "AE", "O", "å", "_", "St ")
     
     for (i in 1:length(conv_list1)){
-      
       area <- gsub(conv_list1[i], conv_list2[i], area)
+      ref_area <- gsub(conv_list1[i], conv_list2[i], ref_area)
     }
   }
-  
-  
-  # Name of reference is located in json_data$geographies$comparisonFeatures
-  # Not yet used!
-  ref <- data.frame(tbl$comparisonFeatures)
   
   # All data
   themes <- data.frame(tbl$themes) %>% tibble::as_data_frame()
