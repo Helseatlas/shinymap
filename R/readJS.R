@@ -55,6 +55,8 @@ readIAjson <- function(json_file = NULL, testing = FALSE){
     rates <- data.frame(next_level$values)  %>% tibble::as_data_frame()
     # Rates for Norway etc
     ref_rates <- data.frame(next_level$comparisonValues)  %>% tibble::as_data_frame()
+    # Link to fact sheets
+    href <- next_level$href
     
     # Extract the numeraters and denominators
     extra <- data.frame(next_level$associates)
@@ -111,6 +113,7 @@ readIAjson <- function(json_file = NULL, testing = FALSE){
         combined["name_denominator"] <- name_denominator
         combined["denominator"] <- denominator
         combined["ref"] <- 0 
+        combined["href"] <- href[j]
         
         ref_combined["rate"] <- ref_rates[j]
         ref_combined["name_numerater"] <- name_numerater
@@ -118,6 +121,7 @@ readIAjson <- function(json_file = NULL, testing = FALSE){
         ref_combined["name_denominator"] <- name_denominator
         ref_combined["denominator"] <- ref_denominator
         ref_combined["ref"] <- 1
+        ref_combined["href"] <- href[j]
         
         all_data <- rbind(all_data, combined, ref_combined)
       }
