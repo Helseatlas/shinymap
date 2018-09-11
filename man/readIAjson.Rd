@@ -15,5 +15,7 @@ readIAjson(json_file = NULL, testing = FALSE)
 A data frame
 }
 \description{
-Read json-data from IA
+All the data used to produce an Instant Atlas is stored in
+a json file. This function will read such a file and put the
+data into a data frame.
 }
