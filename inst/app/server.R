@@ -1,11 +1,18 @@
-library(shiny)
-library(ggplot2)
-library(leaflet)
-
 shinyServer(
 
   function(input, output) {
     
+    output$pickTheme <- renderUI({
+      selectInput(inputId = "kartlag",
+                  label = "Velg et tema:",
+                  choices = c("Personer til fastlege/legevakt", 
+                              "Personer poliklinikk", 
+                              "Akuttinnlagte personer"))
+    })
+    
+    output$makeTable <- renderUI({
+      tableOutput("kolstabell")
+    })
     
     kartlagInput <- reactive({
       switch(input$kartlag,
@@ -17,7 +24,35 @@ shinyServer(
     output$kolstabell<-renderTable(
       kartlagInput()
       )
+    
+    output$title <- renderUI({
+      return("Helseatlas kols")
+    })
 
+    output$subtitle1 <- renderUI({
+      return("Velg tema")
+    })
+    
+    output$subtitle2 <- renderUI({
+      return("Plott")
+    })
+    
+    output$titletab1 <- renderUI({
+      return("Kart")
+    })
+    
+    output$titletab2 <- renderUI({
+      return("Histogram")
+    })
+    
+    output$makeMap <- renderUI({
+      leafletOutput("mymap")
+    })
+    
+    output$plotHistogram <- renderUI({
+      plotOutput(outputId = "kolshisto")
+    })
+    
     output$kolshisto <- renderPlot({
       
       kolsdata <- data.frame(bohf=kols$Opptaksomr, kartlag=kartlagInput())

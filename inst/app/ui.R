@@ -1,27 +1,18 @@
-library(shiny)
-library(leaflet)
 
 shinyUI(function(request){
-  navbarPage(title = "",
-             tabPanel("Velg tema", 
-                      sidebarPanel(selectInput(inputId = "kartlag",
-                                          label = "Velg et tema:",
-                                          choices = c("Personer til fastlege/legevakt", 
-                                                      "Personer poliklinikk", 
-                                                      "Akuttinnlagte personer"))
+  navbarPage(title = uiOutput("title"),
+             tabPanel(uiOutput("subtitle1"), 
+                      sidebarPanel(
+                        uiOutput("pickTheme")
                       ),
-                      mainPanel(tableOutput("kolstabell")
+                      mainPanel(
+                        uiOutput("makeTable")
                         
                       )
              ),
-             
-             
-             
-             navbarMenu(title="Plots",
-                         tabPanel("kart", leafletOutput("mymap")),
-                         tabPanel("Kols histogram", plotOutput(outputId = "kolshisto"))
+             navbarMenu(title=uiOutput("subtitle2"),
+                        tabPanel(uiOutput("titletab1"), uiOutput("makeMap")),
+                        tabPanel(uiOutput("titletab2"), uiOutput("plotHistogram"))
              )
-
-            
   )
 })
