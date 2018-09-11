@@ -2,23 +2,73 @@ shinyServer(
   
   function(input, output) {
     
-    output$pickTheme <- renderUI({
-      selectInput(inputId = "kartlag",
-                  label = "Velg et tema:",
-                  choices = c("Personer til fastlege/legevakt", 
-                              "Personer poliklinikk", 
-                              "Akuttinnlagte personer"))
+    if (file.exists("data/data.RData")){
+      minedata <- get(load("data/data.RData"))
+    }
+    
+    if (!exists("minedata")){
+      minedata <- NULL
+    }
+
+    head(minedata$level1)
+
+    level1 <- c(levels(factor(minedata$level1)))
+    
+    level2 <- reactive({
+      tmpdata <- dplyr::filter(minedata, level1 == input$level1)
+      level2 <- c(levels(factor(tmpdata$level2)))
+      return(level2)
     })
+    
+    # level3 <- reactive({
+    #   tmpdata1 <- dplyr::filter(minedata, level1 == input$level1)
+    #   tmpdata2 <- dplyr::filter(tmpdata1, level2 == input$level2)
+    #   level3 <- c(levels(factor(tmpdata2$level3)))
+    #   return(level3)
+    # })
+    
+    output$pickTheme <- renderUI({
+      selectInput(inputId = "level1",
+                  label = "Velg et tema:",
+                  choices = level1,
+                  selected = level1[1])
+    })
+    
+    output$pickTheme2 <- renderUI({
+#      if (exist("level2")){
+        selectInput(inputId = "level2",
+                    label = "Velg et tema:",
+                    choices = level2(),
+                    selected = level2()[1])
+        
+#      }
+    })
+
+#     output$pickTheme3 <- renderUI({
+# #      if (exist("level3")){
+#         selectInput(inputId = "level3",
+#                   label = "Velg et tema:",
+#                   choices = level3(),
+#                   selected = level3()[1])
+# #      }
+#     })
+    
     
     output$makeTable <- renderUI({
       tableOutput("kolstabell")
     })
     
+    
+    
+    uniqueID <- reactive({
+      # Extract the id from the choices of levels made by the user
+      FALSE
+    })
+    
     kartlagInput <- reactive({
-      switch(input$kartlag,
-             "Personer til fastlege/legevakt" = dplyr::filter(kols, id == "i0"),
-             "Personer poliklinikk" = dplyr::filter(kols, id == "i2"),
-             "Akuttinnlagte personer" = dplyr::filter(kols, id == "i4"))
+      # Filter out data according to choices made by user
+      datasett <- dplyr::filter(minedata, level1 == input$level1) %>% dplyr::filter(level2 == input$level2) #%>% dplyr::filter(level3 == "Alle kontakter")
+      return(datasett)
     })
     
     pickedData <- reactive({
@@ -69,7 +119,7 @@ shinyServer(
       # barplot
       ggplot(data=kartlagInput(), aes(x=reorder(area, rate), y=rate)) +
         geom_bar(stat="identity", fill="#95BDE6") + 
-        labs(x = "Opptaksområde", y = input$kartlag) + 
+        labs(x = "Opptaksområde", y = input$level1) + 
 #        theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
         ggplot2::coord_flip() +
         ggthemes::theme_tufte()

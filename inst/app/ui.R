@@ -3,7 +3,9 @@ shinyUI(function(request){
   navbarPage(title = uiOutput("title"),
              tabPanel(uiOutput("subtitle1"), 
                       sidebarPanel(
-                        uiOutput("pickTheme")
+                        uiOutput("pickTheme"),
+                        uiOutput("pickTheme2")
+#                        uiOutput("pickTheme3")
                       ),
                       mainPanel(
                         uiOutput("makeTable")
