@@ -1,5 +1,5 @@
 shinyServer(
-
+  
   function(input, output) {
     
     output$pickTheme <- renderUI({
@@ -16,19 +16,28 @@ shinyServer(
     
     kartlagInput <- reactive({
       switch(input$kartlag,
-             "Personer til fastlege/legevakt" = kols$FLLV_pers_Rate,
-             "Personer poliklinikk" = kols$Poli_Pers_Rate,
-             "Akuttinnlagte personer" = kols$Akutt_pers_Rate)
+             "Personer til fastlege/legevakt" = dplyr::filter(kols, id == "i0"),
+             "Personer poliklinikk" = dplyr::filter(kols, id == "i2"),
+             "Akuttinnlagte personer" = dplyr::filter(kols, id == "i4"))
     })
     
-    output$kolstabell<-renderTable(
-      kartlagInput()
-      )
+    pickedData <- reactive({
+      new_tab <- data.frame(kartlagInput()$area)
+      colnames(new_tab) <- c("Opptaksomr")
+      new_tab["Rate"] <- kartlagInput()$rate
+      new_tab["Antall"] <- kartlagInput()$numerater
+      new_tab["Innbyggere"] <- kartlagInput()$denominator
+      return(new_tab)
+    })
+    
+    output$kolstabell<-renderTable({
+      pickedData()
+    })
     
     output$title <- renderUI({
       return("Helseatlas kols")
     })
-
+    
     output$subtitle1 <- renderUI({
       return("Velg tema")
     })
@@ -55,14 +64,16 @@ shinyServer(
     
     output$kolshisto <- renderPlot({
       
-      kolsdata <- data.frame(bohf=kols$Opptaksomr, kartlag=kartlagInput())
+      kolsdata <- data.frame(bohf=kartlagInput()$area, rate=kartlagInput()$rate)
       
       # barplot
-        ggplot(data=kolsdata, aes(x=reorder(bohf, kartlag), y=kartlag)) +
+      ggplot(data=kartlagInput(), aes(x=reorder(area, rate), y=rate)) +
         geom_bar(stat="identity", fill="#95BDE6") + 
         labs(x = "Opptaksområde", y = input$kartlag) + 
-        theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
-        theme(panel.background = element_blank())
+#        theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
+        ggplot2::coord_flip() +
+        ggthemes::theme_tufte()
+#        theme(panel.background = element_blank())
       
     })
     

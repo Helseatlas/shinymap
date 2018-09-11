@@ -3,6 +3,9 @@
 #'
 #' @export
 launch_application <- function(datasett = NULL){
+  if (is.null(datasett)){
+    datasett <- kols
+  }
   shinydir <- create_appDir(data = datasett)
   shiny::runApp(appDir = shinydir)
 }
@@ -43,11 +46,12 @@ create_appDir <- function(data = NULL){
   # Create main directory
   dir.create(tmpshinydir)
   # Copy the installed version of the shinymap package to the directory
-  file.copy(system.file("application", package = "shinymap"), tmpshinydir, recursive = TRUE)
+  file.copy(system.file("app", package = "shinymap"), tmpshinydir, recursive = TRUE)
   # Create data folder
-  dir.create(paste0(tmpshinydir, "/application/data"))
+  dir.create(paste0(tmpshinydir, "/app/data"))
   # Save the data to a .RData file
-  save(data, file = paste0(tmpshinydir,"/application/data/data.RData"))
+  save(data, file = paste0(tmpshinydir,"/app/data/data.RData"))
   # Return the name of the main directory
-  return(paste0(tmpshinydir, "/application"))
+  return(paste0(tmpshinydir, "/app"))
 }
+

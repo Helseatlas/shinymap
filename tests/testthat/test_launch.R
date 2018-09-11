@@ -1,7 +1,6 @@
-context("Launch app")
+context("Create tmpdir")
 
-test_that("The app can be launched", {
-  expect_equal_to_reference(NULL, "data/launch")
-#  expect_equal_to_reference(launch_application(), "data/launch")
+test_that("The temporary directory can be created", {
+  expect_is(create_appDir(data = NULL), "character")
 }
 )
