@@ -4,13 +4,18 @@
 \alias{plotVariation}
 \title{Make a plot based on a data frame}
 \usage{
-plotVariation(inputData = NULL, xlab = "OpptaksomrÃ¥de",
-  ylab = "Rate", type = "histogram")
+plotVariation(inputData = NULL, xlab = "Opptaksomr", ylab = "Rate",
+  type = "histogram")
 }
 \arguments{
 \item{inputData}{Data to be plotted}
 
-\item{type}{What kind of plot. Default and only choice, at the moment: "histogram"}
+\item{xlab}{Label on x-axis}
+
+\item{ylab}{Label on y-axis}
+
+\item{type}{What kind of plot. Default and only choice, at the moment:
+"histogram"}
 }
 \description{
 Make a plot based on a data frame

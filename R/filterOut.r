@@ -1,7 +1,9 @@
 #' Filter routine
 #'
-#' @param data 
-#' @param filter 
+#' @param datasett Original dataset
+#' @param filter1 level1 filter
+#' @param filter2 level2 filter
+#' @param filter3 level3 filter
 #'
 #' @return datasett
 #' @export

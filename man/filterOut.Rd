@@ -7,9 +7,13 @@
 filterOut(datasett, filter1, filter2, filter3)
 }
 \arguments{
-\item{data}{}
+\item{datasett}{Original dataset}
 
-\item{filter}{}
+\item{filter1}{level1 filter}
+
+\item{filter2}{level2 filter}
+
+\item{filter3}{level3 filter}
 }
 \value{
 datasett
