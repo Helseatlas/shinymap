@@ -1,19 +1,21 @@
 #' Make a plot based on a data frame
 #'
-#' @param fullDataFrame Data to be plotted
-#' @param which_id Which data to plot (with id == which_id)
+#' @param inputData Data to be plotted
+#' @param type What kind of plot. Default and only choice, at the moment: "histogram"
 #'
 #' @export
-plotVariation <- function(fullDataFrame = NULL, which_id = "i0"){
+plotVariation <- function(inputData = NULL, xlab = "Opptaksområde", ylab = "Rate", type = "histogram"){
   
-  # Filter out data by id
-  tmp <- dplyr::filter(fullDataFrame, id == which_id)
-  
-  # Reorder from highest to lowest  
-  tmp$bo <- factor(tmp$bo, levels = tmp$bo[order(tmp$rate)])
-  
-  # Plotting 
-  ggplot2::ggplot(data = tmp, ggplot2::aes(y=rate, x=bo)) + ggplot2::geom_bar(stat="identity") +
-    ggplot2::coord_flip() +
-    ggthemes::theme_tufte()
+  # barplot
+  if (type == "histogram"){
+    ggplot(data=inputData, aes(x=reorder(area, rate), y=rate)) +
+      geom_bar(stat="identity", fill="#95BDE6") + 
+      labs(x = xlab, y = ylab) + 
+      #        theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
+      ggplot2::coord_flip() +
+      ggthemes::theme_tufte()
+    #        theme(panel.background = element_blank())
+  } else {
+    return(NULL)
+  }
 }
