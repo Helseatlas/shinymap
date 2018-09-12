@@ -6,9 +6,12 @@
 #' @export
 plotVariation <- function(inputData = NULL, xlab = "Opptaksområde", ylab = "Rate", type = "histogram"){
   
+  
   # barplot
   if (type == "histogram"){
-    ggplot(data=inputData, aes(x=reorder(area, rate), y=rate)) +
+    inputData$area <- factor(inputData$area, levels = inputData$area[order(inputData$rate)])
+    
+    ggplot(data=inputData, aes(x=area, y=rate)) +# aes(x=reorder(area, rate), y=rate)) +
       geom_bar(stat="identity", fill="#95BDE6") + 
       labs(x = xlab, y = ylab) + 
       #        theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 

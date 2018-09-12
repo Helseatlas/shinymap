@@ -20,11 +20,11 @@ shinyServer(
     })
     
     level3 <- eventReactive(c(input$level1, input$level2), {
+      if(is.null(input$level2)){return()}
       tmpdata1 <- dplyr::filter(minedata, level1 == input$level1)
       tmpdata2 <- dplyr::filter(tmpdata1, level2 == input$level2)
       level3 <- c(levels(factor(tmpdata2$level3)))
       return(level3)
-#      return("Alle kontakter")
     })
     
     output$pickLevel1 <- renderUI({
@@ -58,24 +58,9 @@ shinyServer(
       tableOutput("tabell")
     })
     
-    uniqueID <- reactive({
-      # Extract the id from the choices of levels made by the user
-      FALSE
-    })
-    
     kartlagInput <- reactive({
       
       datasett <- shinymap::filterOut(minedata, input$level1, input$level2, input$level3)
-      
-      
-      #       # Filter out data according to choices made by user
-      #       datasett <- dplyr::filter(minedata, level1 == input$level1)
-      # #      if ("level2" %in% colnames(input)){
-      #         datasett <- try(dplyr::filter(minedata, level2 == input$level2))
-      # #      }
-      # #      if ("level3" %in% colnames(input)){
-      #         datasett <- try(dplyr::filter(minedata, level3 == input$level3))
-      # #      }
       return(datasett)
     })
     
@@ -96,19 +81,15 @@ shinyServer(
       return("Helseatlas kols")
     })
     
-    output$subtitle1 <- renderUI({
-      return("Velg tema")
+    output$titleTable <- renderUI({
+      return("Tabell")
     })
     
-    output$subtitle2 <- renderUI({
-      return("Plott")
-    })
-    
-    output$titletab1 <- renderUI({
+    output$titleMap <- renderUI({
       return("Kart")
     })
     
-    output$titletab2 <- renderUI({
+    output$titleHist <- renderUI({
       return("Histogram")
     })
     
@@ -122,14 +103,7 @@ shinyServer(
     
     output$histogram <- renderPlot({
       
-      # barplot
-      ggplot(data=kartlagInput(), aes(x=reorder(area, rate), y=rate)) +
-        geom_bar(stat="identity", fill="#95BDE6") + 
-        labs(x = "Opptaksområde", y = input$level1) + 
-        #        theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
-        ggplot2::coord_flip() +
-        ggthemes::theme_tufte()
-      #        theme(panel.background = element_blank())
+      shinymap::plotVariation(inputData = kartlagInput(), xlab = "Opptaksområde", ylab = input$level1)
       
     })
     

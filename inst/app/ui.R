@@ -1,20 +1,26 @@
 
 shinyUI(function(request){
-  navbarPage(title = uiOutput("title"),
-             tabPanel(uiOutput("subtitle1"), 
-                      sidebarPanel(
-                        uiOutput("pickLevel1"),
-                        uiOutput("pickLevel2"),
-                        uiOutput("pickLevel3")
-                      ),
-                      mainPanel(
-                        uiOutput("makeTable")
-                        
-                      )
-             ),
-             navbarMenu(title=uiOutput("subtitle2"),
-                        tabPanel(uiOutput("titletab1"), uiOutput("makeMap")),
-                        tabPanel(uiOutput("titletab2"), uiOutput("plotHistogram"))
-             )
+  fluidPage(theme = shinythemes::shinytheme("cerulean"),
+  titlePanel(tags$head(tags$link(rel = "icon", type = "image/png", href = "hn.png"),
+                                  tags$title("Helseatlas"),
+                                  tags$style(type = "text/css", "a{color: #808080;}"), # Link color, and inactive tab color
+                                  tags$style(type = "text/css", "h1{color: #003A8C;}")#, # Title color
+  #                                tags$style(type="text/css", ".container-fluid {  max-width: 1200px;}") # max page width
+   )
+   ),
+  
+    sidebarPanel(
+      uiOutput("pickLevel1"),
+      uiOutput("pickLevel2"),
+      uiOutput("pickLevel3")
+    ),
+    mainPanel(
+      absolutePanel(
+        tabsetPanel(#type = "tabs", id="tab",
+                 tabPanel(uiOutput("titleTable"), uiOutput("makeTable")),
+                 tabPanel(uiOutput("titleMap"), uiOutput("makeMap")),
+                 tabPanel(uiOutput("titleHist"), uiOutput("plotHistogram"))
+    ))
+    )
   )
 })
