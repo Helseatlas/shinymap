@@ -1,5 +1,10 @@
 # Just testing
 
+devtools::install_github("Helseatlas/shinymap", ref = "data_independence")
+shinymap::submit_application(datasett = kols, HNproxy = TRUE, title = "Helseatlas kols", language = "no")
+
+print(ls())
+
 rm(list=ls())
 
 myfile <- "tests/testthat/data/eldre.json"
@@ -25,10 +30,10 @@ is.data.frame(bo$name)
 #if (testing){
   # Convert all special characters to "normal" characters if running tests,
   # because the sorting with special characters is system dependent.
-  
+
   conv_list1 <- list("æ", "ø", "å", "Æ",  "Ø", "Å", '-', "St. ")
   conv_list2 <- list("ae","o", "a", "AE", "O", "å", "_", "St ")
-  
+
   test <- bo
   for (i in 1:length(conv_list1)){
 #    test <- data.frame(lapply(bo, function(x) {
@@ -117,10 +122,10 @@ ref_area <- data.frame(tbl$comparisonFeatures)$name
 if (testing){
   # Convert all special characters to "normal" characters if running tests,
   # because the sorting with special characters is system dependent.
-  
+
   conv_list1 <- list("\u00E5", "\u00F8", "\u00E5", "\u00C6",  "\u00D8", "\u00C5", '-', "St. ")
   conv_list2 <- list("ae","o", "aa", "AE", "O", "AA", "", "St")
-  
+
   for (i in 1:length(conv_list1)){
     area <- gsub(conv_list1[i], conv_list2[i], area)
     ref_area <- gsub(conv_list1[i], conv_list2[i], ref_area)
@@ -130,7 +135,7 @@ if (testing){
 # The rest of the data is located in json_data$geographies$themes
 themes <- data.frame(tbl$themes) %>% tibble::as_data_frame()
 
-# Test that number of highest level names (json_data$geographies$themes$name) 
+# Test that number of highest level names (json_data$geographies$themes$name)
 # is equal the length of the data (json_data$geographies$themes$indicators)
 if (length(themes$name) != length(themes$indicators)){
   stop("Something fishy in your json file. ")
@@ -141,33 +146,33 @@ all_data <- data.frame()
 
 # Loop over level one
 for (i in 1:length(themes$name)){
-  
+
   # Names for first level
   level1 <- themes$name[i]
-  
+
   # Evereything else is stored in next_level
   next_level <- data.frame(themes$indicators[i])
-  
+
   # Rates to be plotted
   rates <- data.frame(next_level$values)  %>% tibble::as_data_frame()
   # Rates for Norway etc
   ref_rates <- data.frame(next_level$comparisonValues)  %>% tibble::as_data_frame()
   # Link to fact sheets
   href <- next_level$href
-  
+
   # Extract the numeraters and denominators
   extra <- data.frame(next_level$associates)
-  
+
   # Dummy definition, to later check if level3 is equal to previous level3
   prev_level3 <- "qwerty"
-  
+
   k = 0
-  
+
   for (j in 1:length(next_level)){
     # Level 2
-    
+
     if (!is.na(next_level$id[j])){
-      
+
       # Names for the second level
       level2 <- next_level$name[j]
       level3 <- NULL
@@ -175,7 +180,7 @@ for (i in 1:length(themes$name)){
       level3 <- try(next_level$date[j])
       # ID for level 2 (not unique with three levels)
       selection_id <- next_level$id[j]
-      
+
       # numeraters and denominaters stored in extra$values.1 etc.
       k <- j - 1
       if (k == 0){
@@ -189,12 +194,12 @@ for (i in 1:length(themes$name)){
       name_denominator <- extra[, paste0("name",post)][1]
       ref_numerater <-  data.frame(extra[, paste0("comparisonValues",post)][2])
       ref_denominator <- data.frame(extra[, paste0("comparisonValues",post)][1])
-      
+
       combined <- data.frame(area, level1, level2)
       colnames(combined) <- c("area", "level1", "level2")
       ref_combined <- data.frame(ref_area, level1, level2)
       colnames(ref_combined) <- c("area", "level1", "level2")
-      
+
       # Extract metatext, if present
       properties <- NULL
       properties <- try(next_level$properties)
@@ -210,7 +215,7 @@ for (i in 1:length(themes$name)){
               if (df_properties$name[n] == "metatext"){
                 metatext[l] <- try(df_properties[, "value"][n])
               }
-            } 
+            }
           }
         } else {
           # If metatext is stored in next_level$properties$value[n], next_level$properties$value.1[n] etc.
@@ -222,64 +227,64 @@ for (i in 1:length(themes$name)){
                 if (df_properties$name[n] == "metatext"){
                   metatext[l] <- try(df_properties[, "value"][n])
                 }
-              } 
+              }
             } else {
               for (n in 1:length(df_properties$value)){
                 if (df_properties[,paste0("name.", m)][n] == "metatext"){
                   metatext[l] <- try(df_properties[,paste0("value.", m)][n])
                 }
-              } 
+              }
             }
-            
+
           }
         }
       }
       if (is.null(level3)){
-        
+
         # Only for two-level atlases
         combined["id"] <- selection_id
         ref_combined["id"] <- selection_id
-        
+
       } else {
         # A new unique identifier has to be defined if it is a three-level atlas
         if (level3 != prev_level3){ # If level3 is not equal to previous level3
           k = k + 1
           id2 <- paste0(selection_id, "j", k)
         }
-        combined["level3"] <- level3 
-        ref_combined["level3"] <- level3 
+        combined["level3"] <- level3
+        ref_combined["level3"] <- level3
         combined["id"] <- id2
         ref_combined["id"] <- id2
         prev_level3 <- level3
-        
+
       }
       combined["rate"] <- rates[j]
       ref_combined["rate"] <- ref_rates[j]
-      
+
       combined["name_numerater"] <- name_numerater
       ref_combined["name_numerater"] <- name_numerater
-      
+
       combined["numerater"] <- numerater
       ref_combined["numerater"] <- ref_numerater
-      
+
       combined["name_denominator"] <- name_denominator
       ref_combined["name_denominator"] <- name_denominator
-      
+
       combined["denominator"] <- denominator
       ref_combined["denominator"] <- ref_denominator
-      
-      combined["ref"] <- 0 
+
+      combined["ref"] <- 0
       ref_combined["ref"] <- 1
-      
+
       combined["href"] <- href[j]
       ref_combined["href"] <- href[j]
-      
+
       if (!is.null(metatext)){
         combined["metatext"] <- metatext[j]
         ref_combined["metatext"] <- metatext[j]
       }
-      
-      
+
+
       all_data <- rbind(all_data, combined, ref_combined)
     }
   }

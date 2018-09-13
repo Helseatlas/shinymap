@@ -4,7 +4,7 @@
 \alias{launch_application}
 \title{Launch the application locally}
 \usage{
-launch_application(datasett = NULL, language = "no", title = "tmp")
+launch_application(datasett = NULL, language = NULL, title = NULL)
 }
 \arguments{
 \item{datasett}{The data set to be loaded into the application}

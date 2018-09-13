@@ -2,14 +2,13 @@ shinyServer(
 
   function(input, output) {
 
-
     if (file.exists("data/data.RData")){
       # load information sent through "launch_application" or "submit_application"
       load("data/data.RData")
     }
 
-    if (!exists("minedata")){
-      minedata <- NULL
+    if (!exists("healthatlas_data")){
+      healthatlas_data <- NULL
     }
 
     if (is.null(language) || !exists("language")){
@@ -18,7 +17,7 @@ shinyServer(
     }
 
     if (is.null(title) || !exists("title")){
-      # Define the altas title, if not defined
+      # Define the atlas title, if not defined
       title <- "Helseatlas"
     }
 
@@ -30,17 +29,17 @@ shinyServer(
       lang = 1
     }
 
-    level1 <- c(levels(factor(minedata$level1)))
+    level1 <- c(levels(factor(healthatlas_data$level1)))
 
     level2 <- eventReactive(input$level1,{
-      tmpdata <- dplyr::filter(minedata, level1 == input$level1)
+      tmpdata <- dplyr::filter(healthatlas_data, level1 == input$level1)
       level2 <- c(levels(factor(tmpdata$level2)))
       return(level2)
     })
 
     level3 <- eventReactive(c(input$level1, input$level2), {
       if(is.null(input$level2)){return()}
-      tmpdata1 <- dplyr::filter(minedata, level1 == input$level1)
+      tmpdata1 <- dplyr::filter(healthatlas_data, level1 == input$level1)
       tmpdata2 <- dplyr::filter(tmpdata1, level2 == input$level2)
       level3 <- c(levels(factor(tmpdata2$level3)))
       return(level3)
@@ -54,7 +53,7 @@ shinyServer(
     })
 
     output$pickLevel2 <- renderUI({
-      if ("level2" %in% colnames(minedata)){
+      if ("level2" %in% colnames(healthatlas_data)){
         selectInput(inputId = "level2",
                     label = c("Velg et tema:", "Pick a subject")[lang],
                     choices = level2(),
@@ -64,7 +63,7 @@ shinyServer(
     })
 
     output$pickLevel3 <- renderUI({
-      if ("level3" %in% colnames(minedata)){
+      if ("level3" %in% colnames(healthatlas_data)){
         selectInput(inputId = "level3",
                     label = c("Velg et tema:", "Pick a subject")[lang],
                     choices = level3(),
@@ -79,7 +78,7 @@ shinyServer(
 
     kartlagInput <- reactive({
 
-      datasett <- shinymap::filterOut(minedata, input$level1, input$level2, input$level3)
+      datasett <- shinymap::filterOut(healthatlas_data, input$level1, input$level2, input$level3)
       return(datasett)
     })
 

@@ -9,9 +9,7 @@ launch_application <- function(datasett = NULL, language = NULL, title = NULL){
   if (is.null(datasett)){
     datasett <- kols
   }
-  language <- language
-  title <- title
-  shinydir <- create_appDir(data = datasett, language = language, title = title)
+  shinydir <- create_appDir(healthatlas_data = datasett, language = language, title = title)
   shiny::runApp(appDir = shinydir)
 }
 
@@ -32,23 +30,23 @@ submit_application <- function(datasett = NULL, name = "experimental", HNproxy =
     options(RCurlOptions = list(proxy = "http://www-proxy.helsenord.no:8080"))
     options(shinyapps.http = "rcurl")
   }
-  language <- language
-  title <- title
-  shinydir <- create_appDir(data = datasett, language = language, title = title)
+  shinydir <- create_appDir(healthatlas_data = datasett, language = language, title = title)
   rsconnect::deployApp(appDir = shinydir, appName = name, account = shiny_account)
 }
 
 #' Create an appDir for shiny::runApp and rsconnect::deployApp
 #'
-#' Create a directory in tempdir() where the installed version of 
+#' Create a directory in tempdir() where the installed version of
 #' shinymap package is copied and the data is saved.
 #' This directory, with its content, will be deployd to or ran by shiny.
-#' 
-#' @param data The data to be saved in the directory, to be used by the app
+#'
+#' @param healthatlas_data The data to be saved in the directory, to be used by the app
+#' @param language The language of the atlas ("en" or "no")
+#' @param title The title of the atlas
 #'
 #' @return The created directory
 #'
-create_appDir <- function(data = NULL, language = NULL, title = NULL){
+create_appDir <- function(healthatlas_data = NULL, language = NULL, title = NULL){
   # Name the directory
   tmpshinydir <- paste0(tempdir(),"/shiny")
   # Delete old content in directory
@@ -60,7 +58,7 @@ create_appDir <- function(data = NULL, language = NULL, title = NULL){
   # Create data folder
   dir.create(paste0(tmpshinydir, "/app/data"))
   # Save the data to a .RData file
-  save(data, language, title, file = paste0(tmpshinydir,"/app/data/data.RData"))
+  save(healthatlas_data, language, title, file = paste0(tmpshinydir,"/app/data/data.RData"))
   # Save other objects to a .RData file
 #  save(language, title, file = paste0(tmpshinydir,"/app/data/data.RData"))
   # Return the name of the main directory

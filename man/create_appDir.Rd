@@ -4,16 +4,20 @@
 \alias{create_appDir}
 \title{Create an appDir for shiny::runApp and rsconnect::deployApp}
 \usage{
-create_appDir(data = NULL)
+create_appDir(healthatlas_data = NULL, language = NULL, title = NULL)
 }
 \arguments{
-\item{data}{The data to be saved in the directory, to be used by the app}
+\item{healthatlas_data}{The data to be saved in the directory, to be used by the app}
+
+\item{language}{The language of the atlas ("en" or "no")}
+
+\item{title}{The title of the atlas}
 }
 \value{
 The created directory
 }
 \description{
-Create a directory in tempdir() where the installed version of 
+Create a directory in tempdir() where the installed version of
 shinymap package is copied and the data is saved.
 This directory, with its content, will be deployd to or ran by shiny.
 }
