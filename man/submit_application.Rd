@@ -5,7 +5,8 @@
 \title{Submit the application to shinyapp.io}
 \usage{
 submit_application(datasett = NULL, name = "experimental",
-  HNproxy = FALSE, shiny_account = "skde")
+  HNproxy = FALSE, shiny_account = "skde", language = "no",
+  title = "tmp")
 }
 \arguments{
 \item{datasett}{The data set file (.RData) to be loaded into the application.
@@ -16,6 +17,10 @@ The absolute path has to be given}
 \item{HNproxy}{If TRUE: deploy app through proxy}
 
 \item{shiny_account}{Which shiny account on shinyapps.io (default = "skde")}
+
+\item{language}{The language of the atlas ("en" or "no")}
+
+\item{title}{The title of the atlas}
 }
 \description{
 Submit the application to shinyapp.io

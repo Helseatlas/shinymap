@@ -3,12 +3,31 @@ shinyServer(
   function(input, output) {
     
     
+    if (file.exists("data/data.RData")){
+      # load information sent through "launch_application" or "submit_application"
+      load("data/data.RData")
+    }
+    
     if (!exists("minedata")){
-      if (file.exists("data/data.RData")){
-        minedata <- get(load("data/data.RData"))
-      } else {
-        minedata <- NULL
-      }
+      minedata <- NULL
+    }
+    
+    if (!exists("language")){
+      # Define language to Norwegian, if not defined
+      language <- "no"
+    }
+    
+    if (!exists("title")){
+      # Define the altas title, if not defined
+      title <- "Helseatlas"
+    }
+    
+    if (language == "no"){
+      lang = 1
+    } else if (language == "en"){
+      lang = 2
+    } else { # default language value
+      lang = 1
     }
     
     level1 <- c(levels(factor(minedata$level1)))
@@ -29,7 +48,7 @@ shinyServer(
     
     output$pickLevel1 <- renderUI({
       selectInput(inputId = "level1",
-                  label = "Velg et tema:",
+                  label = c("Velg et tema:", "Pick a subject")[lang],
                   choices = level1,
                   selected = level1[1])
     })
@@ -37,7 +56,7 @@ shinyServer(
     output$pickLevel2 <- renderUI({
       if ("level2" %in% colnames(minedata)){
         selectInput(inputId = "level2",
-                    label = "Velg et tema:",
+                    label = c("Velg et tema:", "Pick a subject")[lang],
                     choices = level2(),
                     selected = level2()[1])
         
@@ -47,7 +66,7 @@ shinyServer(
     output$pickLevel3 <- renderUI({
       if ("level3" %in% colnames(minedata)){
         selectInput(inputId = "level3",
-                    label = "Velg et tema:",
+                    label = c("Velg et tema:", "Pick a subject")[lang],
                     choices = level3(),
                     selected = level3()[1])
       }
@@ -66,10 +85,10 @@ shinyServer(
     
     pickedData <- reactive({
       new_tab <- data.frame(kartlagInput()$area)
-      colnames(new_tab) <- c("Opptaksomr")
-      new_tab["Rate"] <- kartlagInput()$rate
-      new_tab["Antall"] <- kartlagInput()$numerater
-      new_tab["Innbyggere"] <- kartlagInput()$denominator
+      colnames(new_tab) <- c(c("Opptaksomr", "Area")[lang])
+      new_tab[c("Rate", "Rate")[lang]] <- kartlagInput()$rate
+      new_tab[c("Antall", "Num")[lang]] <- kartlagInput()$numerater
+      new_tab[c("Innbyggere", "Inhab")[lang]] <- kartlagInput()$denominator
       return(new_tab)
     })
     
@@ -78,39 +97,40 @@ shinyServer(
     })
     
     output$title <- renderUI({
-      return("Helseatlas kols")
+      return(HTML(paste0("<h1>", title, "</h1>")))
     })
     
     output$titleTable <- renderUI({
-      return("Tabell")
+      return(c("Tabell","Table")[lang])
     })
     
     output$titleMap <- renderUI({
-      return("Kart")
+      return(c("Kart", "Map")[lang])
     })
     
     output$titleHist <- renderUI({
-      return("Histogram")
+      return(c("Histogram", "Histogram")[lang])
     })
     
     output$makeMap <- renderUI({
-      leaflet::leafletOutput("mymap")
+      # Make a leaflet map
+      leaflet::leafletOutput("leafletmap")
     })
     
     output$plotHistogram <- renderUI({
-      plotOutput(outputId = "histogram")
+      # Make a histogram plot
+      shiny::plotOutput(outputId = "histogram")
     })
     
     output$histogram <- renderPlot({
       
-      shinymap::plotVariation(inputData = kartlagInput(), xlab = "Opptaksområde", ylab = input$level1)
+      shinymap::plotVariation(inputData = kartlagInput(), xlab = c("Opptaksomr\u00E5de", "Area")[lang], ylab = input$level1)
       
     })
     
-    output$mymap <- leaflet::renderLeaflet({
-      leaflet::leaflet() %>%
-        leaflet::addTiles() %>%  # Add default OpenStreetMap map tiles
-        leaflet::addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
+    output$leafletmap <- leaflet::renderLeaflet({
+      
+      shinymap::makeLeafletmap(inputData = kartlagInput())
       
     })
     

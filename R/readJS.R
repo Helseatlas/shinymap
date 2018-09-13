@@ -30,7 +30,7 @@ readIAjson <- function(json_file = NULL, testing = FALSE){
     # Convert all special characters to "normal" characters if running tests,
     # because the sorting with special characters is system dependent.
     
-    conv_list1 <- list("\u00E5", "\u00F8", "\u00E5", "\u00C6",  "\u00D8", "\u00C5", '-', "St. ")
+    conv_list1 <- list("\u00E6", "\u00F8", "\u00E5", "\u00C6",  "\u00D8", "\u00C5", '-', "St. ")
     conv_list2 <- list("ae","o", "aa", "AE", "O", "AA", "", "St")
     
     for (i in 1:length(conv_list1)){

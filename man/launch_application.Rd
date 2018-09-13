@@ -4,10 +4,14 @@
 \alias{launch_application}
 \title{Launch the application locally}
 \usage{
-launch_application(datasett = NULL)
+launch_application(datasett = NULL, language = "no", title = "tmp")
 }
 \arguments{
 \item{datasett}{The data set to be loaded into the application}
+
+\item{language}{The language of the atlas ("en" or "no")}
+
+\item{title}{The title of the atlas}
 }
 \description{
 Launch the application locally

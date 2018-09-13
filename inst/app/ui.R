@@ -7,7 +7,7 @@ shinyUI(function(request){
                                   tags$style(type = "text/css", "h1{color: #003A8C;}")#, # Title color
   #                                tags$style(type="text/css", ".container-fluid {  max-width: 1200px;}") # max page width
    )
-   ),
+   ), uiOutput("title"),
   
     sidebarPanel(
       uiOutput("pickLevel1"),

@@ -2,6 +2,7 @@
 
 export(filterOut)
 export(launch_application)
+export(makeLeafletmap)
 export(plotVariation)
 export(readIAjson)
 export(submit_application)
