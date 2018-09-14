@@ -5,7 +5,7 @@
 #' @param title The title of the atlas
 #'
 #' @export
-launch_application <- function(datasett = NULL, language = NULL, title = NULL){
+launch_app <- function(datasett = NULL, language = NULL, title = NULL){
   if (is.null(datasett)){
     datasett <- kols
   }
@@ -25,7 +25,7 @@ launch_application <- function(datasett = NULL, language = NULL, title = NULL){
 #' @param title The title of the atlas
 #'
 #' @export
-submit_application <- function(datasett = NULL, name = "experimental", HNproxy = FALSE, shiny_account = "skde", language = NULL, title = NULL){
+submit_app <- function(datasett = NULL, name = "experimental", HNproxy = FALSE, shiny_account = "skde", language = NULL, title = NULL){
   if (HNproxy){
     options(RCurlOptions = list(proxy = "http://www-proxy.helsenord.no:8080"))
     options(shinyapps.http = "rcurl")
@@ -59,8 +59,6 @@ create_appDir <- function(healthatlas_data = NULL, language = NULL, title = NULL
   dir.create(paste0(tmpshinydir, "/app/data"))
   # Save the data to a .RData file
   save(healthatlas_data, language, title, file = paste0(tmpshinydir,"/app/data/data.RData"))
-  # Save other objects to a .RData file
-#  save(language, title, file = paste0(tmpshinydir,"/app/data/data.RData"))
   # Return the name of the main directory
   return(paste0(tmpshinydir, "/app"))
 }
