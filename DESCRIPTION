@@ -20,7 +20,8 @@ Imports:
   dplyr,
   ggthemes,
   tibble,
-  jsonlite
+  jsonlite,
+  maps
 Suggests: 
     testthat,
     covr

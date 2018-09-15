@@ -6,9 +6,9 @@
 #' @export
 #'
 makeLeafletmap <- function(inputData = NULL){
+  norway <- maps::map(database = "world", regions = "Norway", fill = TRUE, col = 1, plot = F)
   
-  leaflet::leaflet() %>%
-    leaflet::addTiles() %>%  # Add default OpenStreetMap map tiles
-    leaflet::addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
-  
+  leaflet::leaflet(norway) %>% leaflet::setView(lng = 10.0, lat = 65.0, zoom = 4) %>%
+    leaflet::addTiles() %>%
+    leaflet::addPolygons(fillColor = topo.colors(10, alpha = NULL), stroke = FALSE)
 }

@@ -11,14 +11,14 @@ shinyServer(
       healthatlas_data <- NULL
     }
 
-    if (is.null(language) || !exists("language")){
+    if (!exists("language")|| is.null(language)){
       # Define language to Norwegian, if not defined
       language <- "no"
     }
 
-    if (is.null(title) || !exists("title")){
+    if (!exists("webpage_title") || is.null(webpage_title)){
       # Define the atlas title, if not defined
-      title <- "Helseatlas"
+      webpage_title <- "Helseatlas"
     }
 
     if (language == "no"){
@@ -77,8 +77,7 @@ shinyServer(
     })
 
     kartlagInput <- reactive({
-
-      datasett <- shinymap::filterOut(healthatlas_data, level1 = input$level1, level2 = input$level2, level3 = input$level3)
+      datasett <- shinymap::filterOut(healthatlas_data, filter1 = input$level1, filter2 = input$level2, filter3 = input$level3)
       return(datasett)
     })
 
@@ -96,7 +95,7 @@ shinyServer(
     })
 
     output$title <- renderUI({
-      return(HTML(paste0("<h1>", title, "</h1>")))
+      return(HTML(paste0("<h1>", webpage_title, "</h1>")))
     })
 
     output$titleTable <- renderUI({

@@ -9,7 +9,7 @@ launch_app <- function(datasett = NULL, language = NULL, title = NULL){
   if (is.null(datasett)){
     datasett <- kols
   }
-  shinydir <- create_appDir(healthatlas_data = datasett, language = language, title = title)
+  shinydir <- create_appDir(healthatlas_data = datasett, language = language, webpage_title = title)
   shiny::runApp(appDir = shinydir)
 }
 
@@ -30,7 +30,7 @@ submit_app <- function(datasett = NULL, name = "experimental", HNproxy = FALSE, 
     options(RCurlOptions = list(proxy = "http://www-proxy.helsenord.no:8080"))
     options(shinyapps.http = "rcurl")
   }
-  shinydir <- create_appDir(healthatlas_data = datasett, language = language, title = title)
+  shinydir <- create_appDir(healthatlas_data = datasett, language = language, webpage_title = title)
   rsconnect::deployApp(appDir = shinydir, appName = name, account = shiny_account)
 }
 
@@ -42,11 +42,11 @@ submit_app <- function(datasett = NULL, name = "experimental", HNproxy = FALSE, 
 #'
 #' @param healthatlas_data The data to be saved in the directory, to be used by the app
 #' @param language The language of the atlas ("en" or "no")
-#' @param title The title of the atlas
+#' @param webpage_title The title of the atlas
 #'
 #' @return The created directory
 #'
-create_appDir <- function(healthatlas_data = NULL, language = NULL, title = NULL){
+create_appDir <- function(healthatlas_data = NULL, language = NULL, webpage_title = NULL){
   # Name the directory
   tmpshinydir <- paste0(tempdir(),"/shiny")
   # Delete old content in directory
@@ -58,7 +58,7 @@ create_appDir <- function(healthatlas_data = NULL, language = NULL, title = NULL
   # Create data folder
   dir.create(paste0(tmpshinydir, "/app/data"))
   # Save the data to a .RData file
-  save(healthatlas_data, language, title, file = paste0(tmpshinydir,"/app/data/data.RData"))
+  save(healthatlas_data, language, webpage_title, file = paste0(tmpshinydir,"/app/data/data.RData"))
   # Return the name of the main directory
   return(paste0(tmpshinydir, "/app"))
 }

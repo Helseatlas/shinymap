@@ -4,7 +4,7 @@
 \alias{filterOut}
 \title{Filter routine}
 \usage{
-filterOut(datasett, filter1, filter2, filter3)
+filterOut(datasett, filter1 = NULL, filter2 = NULL, filter3 = NULL)
 }
 \arguments{
 \item{datasett}{Original dataset}
