@@ -78,7 +78,7 @@ shinyServer(
 
     kartlagInput <- reactive({
 
-      datasett <- shinymap::filterOut(healthatlas_data, input$level1, input$level2, input$level3)
+      datasett <- shinymap::filterOut(healthatlas_data, level1 = input$level1, level2 = input$level2, level3 = input$level3)
       return(datasett)
     })
 
