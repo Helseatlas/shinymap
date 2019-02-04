@@ -21,7 +21,10 @@ Imports:
   ggthemes,
   tibble,
   jsonlite,
-  maps
+  maps,
+  geojsonio,
+  rmapshaper,
+  rgdal
 Suggests: 
     testthat,
     covr

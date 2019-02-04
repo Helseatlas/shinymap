@@ -1,3 +1,25 @@
+# Testing reduce_map_size.R
+
+#library(spdplyr)
+map <- shp2geojson(folder = "tests/testthat/data/maps")
+
+#############################
+# From old reduce_map_size: #
+#############################
+
+reduced_map <- rgeos::gSimplify(original_map, tol = amount)
+reduced_map <- as(reduced_map, "SpatialPolygonsDataFrame")
+
+# Read shapefile attributes
+df = data.frame(original_map)
+
+# Keep shp attributes
+reduced_map <- sp::SpatialPolygonsDataFrame(reduced_map, df)
+rgdal::writeOGR(reduced_map,dsn = folder, layer = new_shapefile, driver="ESRI Shapefile", overwrite_layer=overwrite)
+return(reduced_map)
+
+###########################
+
 # Just testing
 
 devtools::install_github("Helseatlas/shinymap", ref = "data_independence")

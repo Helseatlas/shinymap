@@ -5,5 +5,5 @@ test_that("leaflet map is made", {
 })
 
 test_that("ggplot2 map is made", {
-  expect_equal_to_reference(plotggmap(mapfile = ), "data/leaflet.rds")
+  expect_equal_to_reference(plotggmap(mapfile = ), "data/ggmap.rds")
 })
