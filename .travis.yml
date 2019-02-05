@@ -6,9 +6,13 @@ cache: packages
 warnings_are_errors: true
 
 r:
+  - oldrel
   - release
 
 before_install:
+  - sudo add-apt-repository -y ppa:opencpu/jq
+  - sudo apt-get update
+  - sudo apt-get install libjq-dev
   - Rscript -e "if (!require('covr')) install.packages('covr')"
   - Rscript -e "if (!require('roxygen2')) install.packages('roxygen2')"
   - Rscript -e "if (!require('devtools')) install.packages('devtools')"
