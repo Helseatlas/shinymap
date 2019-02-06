@@ -9,6 +9,7 @@ r:
   - release
 
 before_install:
+  - sudo apt-get install -y libgdal20 libgeos-c1v5
   - sudo apt-get install -y libgdal-dev libspatialite5 libgeos-c1
   - sudo apt-get install -y libprotobuf-dev libudunits2-dev libv8-dev libgdal1-dev
   - sudo apt-get install -y libprotobuf-dev protobuf-compiler
