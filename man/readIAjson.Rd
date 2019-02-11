@@ -4,12 +4,10 @@
 \alias{readIAjson}
 \title{Read json-data from IA}
 \usage{
-readIAjson(json_file = NULL, testing = FALSE)
+readIAjson(json_file = NULL)
 }
 \arguments{
 \item{json_file}{The json file used by IA}
-
-\item{testing}{Will convert special characters to non-special characters if set to TRUE}
 }
 \value{
 A data frame

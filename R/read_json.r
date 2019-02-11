@@ -5,13 +5,12 @@
 #' data into a data frame.  
 #'
 #' @param json_file The json file used by IA
-#' @param testing Will convert special characters to non-special characters if set to TRUE
 #'
 #' @return A data frame
 #' @export
 #' @importFrom magrittr "%>%"
 #'
-readIAjson <- function(json_file = NULL, testing = FALSE){
+readIAjson <- function(json_file = NULL){
   
   # Read the json file
   # NOTE: The js-file HAS to be converted from UTF-8 BOM to UTF-8 (in notepad++) before this will work!
@@ -25,19 +24,6 @@ readIAjson <- function(json_file = NULL, testing = FALSE){
   
   # Name of reference areas are located in json_data$geographies$comparisonFeatures$name
   ref_area <- data.frame(tbl$comparisonFeatures)$name
-  
-  if (testing){
-    # Convert all special characters to "normal" characters if running tests,
-    # because the sorting with special characters is system dependent.
-    
-    conv_list1 <- list("\u00E6", "\u00F8", "\u00E5", "\u00C6",  "\u00D8", "\u00C5", '-', "St. ")
-    conv_list2 <- list("ae","o", "aa", "AE", "O", "AA", "", "St")
-    
-    for (i in 1:length(conv_list1)){
-      area <- gsub(conv_list1[i], conv_list2[i], area)
-      ref_area <- gsub(conv_list1[i], conv_list2[i], ref_area)
-    }
-  }
   
   # The rest of the data is located in json_data$geographies$themes
   themes <- data.frame(tbl$themes) %>% tibble::as_data_frame()
