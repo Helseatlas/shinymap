@@ -2,12 +2,13 @@ app <- ShinyDriver$new("../")
 app$snapshotInit("mytest")
 
 app$snapshot()
+app$setInputs(level2 = "Spirometri hos fastlege (andeler)")
+app$snapshot()
+app$setInputs(level1 = "Poliklinikk")
 app$setInputs(level1 = "Akuttinnleggelser")
-app$setInputs(level2 = "Ventilasjonsstøtte (andeler)")
+app$setInputs(level2 = "Reinnleggelser")
+app$snapshot()
+app$setInputs(level1 = "Sykelighet")
 app$snapshot()
 app$snapshot()
-# Input 'leafletmap_shape_mouseover' was set, but doesn't have an input binding.
-# Input 'leafletmap_shape_mouseout' was set, but doesn't have an input binding.
-# Input 'leafletmap_shape_mouseover' was set, but doesn't have an input binding.
-# Input 'leafletmap_shape_mouseout' was set, but doesn't have an input binding.
 app$snapshot()
