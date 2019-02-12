@@ -1,19 +1,10 @@
-library(shinytest)
-library(testthat)
-
 context("Test shiny app")
 
-#open shiny app
-app <- ShinyDriver$new('../../inst/app')
+library(shinytest)
 
 test_that("app gets expected output", {
-  #set numeric input
-  app$setInputs(level1 = "20")
-  #get output
-  output <- app$getValue(name = "pickLevel1")
-  #test
-  expect_equal(output, "20")  
-})
+  testthat::skip_on_cran()
 
-#stop shiny app
-app$stop()
+  appdir <- system.file(package = "shinymap", "app")
+  expect_pass(testApp(appdir, compareImages = FALSE))
+})
