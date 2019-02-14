@@ -1,6 +1,9 @@
 app <- ShinyDriver$new("../")
+
+
 app$snapshotInit("mytest")
 
+app$setInputs()
 app$snapshot()
 app$setInputs(level2 = "Spirometri hos fastlege (andeler)")
 app$snapshot()
