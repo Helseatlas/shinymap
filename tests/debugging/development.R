@@ -1,3 +1,11 @@
+# Example on how to update package data
+
+testdata <- readRDS("~/repo/shinymap/tests/testthat/data/kols.rds")
+save(testdata, file = "data/testdata.RData")
+
+
+
+
 # Testing reduce_map_size.R
 
 #library(spdplyr)
@@ -23,7 +31,7 @@ return(reduced_map)
 # Just testing
 
 devtools::install_github("Helseatlas/shinymap", ref = "data_independence")
-shinymap::submit_application(datasett = kols, HNproxy = TRUE, title = "Helseatlas kols", language = "no")
+shinymap::launch_app(datasett = kols, publish_app = TRUE, HNproxy = TRUE, title = "Helseatlas kols", language = "no")
 
 print(ls())
 

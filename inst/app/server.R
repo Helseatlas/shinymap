@@ -3,12 +3,13 @@ shinyServer(
   function(input, output) {
 
     if (file.exists("data/data.RData")){
-      # load information sent through "launch_application" or "submit_application"
+      # load information sent through "launch_application"
       load("data/data.RData")
     }
 
-    if (!exists("healthatlas_data")){
-      healthatlas_data <- shinymap::kols
+    if (isTRUE(getOption("shiny.testmode"))) {
+      # Load static/dummy data if this is a test run
+      healthatlas_data <- shinymap::testdata
     }
 
     if (!exists("language")|| is.null(language)){
