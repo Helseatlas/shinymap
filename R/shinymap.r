@@ -12,3 +12,12 @@ NULL
 #' @keywords datasets
 #' @name kols
 NULL
+
+#' Dataset with data from the COPD health atlas
+#' 
+#' To be used for testing of the package
+#' 
+#' @docType data
+#' @keywords datasets
+#' @name testdata
+NULL
