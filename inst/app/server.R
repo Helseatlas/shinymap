@@ -129,7 +129,7 @@ shinyServer(
 
     output$leafletmap <- leaflet::renderLeaflet({
 
-      shinymap::makeLeafletmap(inputData = kartlagInput())
+      shinymap::makeMap(type = "leaflet")
 
     })
 

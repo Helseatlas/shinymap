@@ -4,10 +4,7 @@
 \alias{makeLeafletmap}
 \title{Make a Leaflet map}
 \usage{
-makeLeafletmap(inputData = NULL)
-}
-\arguments{
-\item{inputData}{The input data set to be plotted}
+makeLeafletmap()
 }
 \value{
 a map

@@ -2,7 +2,7 @@
 
 export(filterOut)
 export(launch_app)
-export(makeLeafletmap)
+export(makeMap)
 export(plotVariation)
 export(readIAjson)
 export(shp2geojson)
