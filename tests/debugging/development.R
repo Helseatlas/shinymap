@@ -1,7 +1,11 @@
+library(magrittr)
+
 print(ls())
 
 rm(list=ls())
 
+getwd()
+setwd("/Users/arnfinn/repo/shinymap")
 
 # Example on how to update package data, which will be loadable by shinymaps::testdata
 
@@ -28,6 +32,31 @@ language <- "no"
 webpage_title <- "Helseatlas kols 2013-2015"
 runApp('inst/app')
 
+##############
+# Plot a map #
+##############
+
+# Eldre
+map <- geojsonio::geojson_read("tests/testthat/data/maps/eldre.geojson", what = "sp")
+
+eldre <- utm33toLeaflet(map)
+
+leaflet::leaflet(eldre) %>%
+  leaflet::addTiles() %>%
+  leaflet::addPolygons(stroke = FALSE, smoothFactor = 0.3, fillOpacity = 0.2, fillColor = c("green", "blue", "red", "yellow", "orange", "purple"))
 
 
+# Map from https://kartkatalog.geonorge.no/metadata/geonorge/norske-fylker-og-kommuner-illustrasjonsdata-2018-klippet-etter-kyst/cbbdf78c-fa3a-48bf-8f3f-9eec74e428fd
+# Reduced in size with reduce_map_size function
 
+map <- geojsonio::geojson_read("tests/testthat/data/maps/kommuner.geojson", what = "sp")
+
+new <- utm33toLeaflet(map)
+
+leaflet::leaflet(new) %>%
+  leaflet::addTiles() %>%
+  leaflet::addPolygons(stroke = FALSE, smoothFactor = 0.3, fillOpacity = 0.2, fillColor = c("green", "blue", "red", "yellow", "orange", "purple"))
+
+
+# Save map to disk
+geojsonio::geojson_write(map, file = "tests/testthat/data/maps/kommuner.geojson")
