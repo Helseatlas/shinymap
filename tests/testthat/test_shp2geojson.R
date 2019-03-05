@@ -1,6 +1,6 @@
 context("shp2geojson")
 
-test_that("map is reduced in size", {
+test_that("shp2geojson is OK", {
   # Default
   expect_equal_to_reference(shp2geojson(folder = "data/maps",
                                         shapefile = "shapefile1",
@@ -29,4 +29,11 @@ test_that("map is reduced in size", {
                                         amount = 0.01),
                             "data/shp2geojson3.json")
   
+  # Unit test that map can be converted from utm33 to leaflet projection
+  map <- geojsonio::geojson_read("data/maps/kommuner.geojson",
+                                 what = "sp")
+  expect_equal_to_reference(utm33toLeaflet(map), "data/utm33toLeaflet.rds")
+  
+  # Unit test that map can be reduced in size
+  expect_equal_to_reference(reduce_map_size(map, 0.1), "data/reduce_map_size.rds")
   })

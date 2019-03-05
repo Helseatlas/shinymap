@@ -23,7 +23,7 @@ shp2geojson <- function(shapefile = "eldre",
 
   # Reduce file size
   if (reduce_size){
-    geojson_map <- rmapshaper::ms_simplify(geojson_map, keep = amount) 
+    geojson_map <- reduce_map_size(map = geojson_map, amount = amount) #rmapshaper::ms_simplify(geojson_map, keep = amount) 
   }
 
   # Save geojson file to disk
@@ -32,4 +32,29 @@ shp2geojson <- function(shapefile = "eldre",
   }
   
   return(geojson_map)
+}
+
+#' Reduce size of map
+#'
+#' @param map Map to be reduced in size
+#' @param amount How much to reduce the size
+#'
+#' @return Map of reduced size
+reduce_map_size <- function(map, amount = 0.1){
+  return(rmapshaper::ms_simplify(map, keep = amount))
+}
+
+#' Convert map from UTM 33 projection to epsg:4326 projection
+#'
+#' @param map map to be converted
+#'
+#' @return Converted map
+utm33toLeaflet <- function(map){
+  # utm33 = "epsg:32633"
+  # leaflet = "epsg:4326"
+
+  sp::proj4string(map) <- sp::CRS("+init=epsg:32633") 
+  new <- sp::CRS("+init=epsg:4326") # WGS 84
+  map_transformed <- sp::spTransform(map, new)
+  return(map_transformed)
 }
