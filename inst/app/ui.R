@@ -17,7 +17,7 @@ shinyUI(function(request){
     mainPanel(
         tabsetPanel(#type = "tabs", id="tab",
                  tabPanel(uiOutput("titleTable"), uiOutput("makeTable")),
-                 tabPanel(uiOutput("titleMap"), uiOutput("makeMap")),
+                 tabPanel(uiOutput("titleMap"), uiOutput("makeMap"), uiOutput("makeMap2")),
                  tabPanel(uiOutput("titleHist"), uiOutput("plotHistogram"))
     ))
   )

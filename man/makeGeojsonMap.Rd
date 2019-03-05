@@ -2,18 +2,18 @@
 % Please edit documentation in R/make_map.r
 \name{makeGeojsonMap}
 \alias{makeGeojsonMap}
-\title{Title}
+\title{Plot a map with data}
 \usage{
 makeGeojsonMap(data = NULL, map = NULL)
 }
 \arguments{
-\item{data}{}
+\item{data}{Data to be plotted}
 
-\item{map}{}
+\item{map}{Map to plot}
 }
 \value{
 a map made from a geojson file
 }
 \description{
-Title
+Plot a map with data
 }

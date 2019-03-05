@@ -112,15 +112,31 @@ shinyServer(
     })
 
     output$makeMap <- renderUI({
+      selectInput(inputId = "maptype",
+                  label = c("Velg karttype", "Choose map type")[lang],
+                  choices = c("leaflet","geojson"),
+                  selected = "leaflet")
       # Make a leaflet map
-      leaflet::leafletOutput("leafletmap")
+#      leaflet::leafletOutput("leafletmap")
     })
-
+    output$makeMap2 <- renderUI({
+      # Make a leaflet map
+      if(input$maptype == "leaflet"){
+        leaflet::leafletOutput("leafletmap")
+      } else if (input$maptype == "geojson"){
+        shiny::plotOutput(outputId = "geojsonmap")
+      }
+    })
+    
     output$plotHistogram <- renderUI({
       # Make a histogram plot
       shiny::plotOutput(outputId = "histogram")
     })
 
+    output$geojsonmap <- renderPlot({
+      geojsonmap <- "../../tests/testthat/data/maps/eldre.geojson"
+      shinymap::makeMap(type = "geojson", map = geojsonmap)
+    })
     output$histogram <- renderPlot({
 
       shinymap::plotVariation(inputData = kartlagInput(), xlab = c("Opptaksomr\u00E5de", "Area")[lang], ylab = input$level1)
