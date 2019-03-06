@@ -27,6 +27,7 @@ shinymap::launch_app(datasett = shinymap::kols, publish_app = TRUE, HNproxy = TR
 # How to run the app locally
 
 healthatlas_data <- shinymap::kols # or another dataset to use
+healthatlas_map <- geojsonio::geojson_read("tests/testthat/data/maps/eldre.geojson", what = "sp")
 language <- "en"
 language <- "no"
 webpage_title <- "Helseatlas kols 2013-2015"

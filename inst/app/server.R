@@ -111,7 +111,7 @@ shinyServer(
       return(c("Histogram", "Histogram")[lang])
     })
 
-    output$makeMap <- renderUI({
+    output$pickMap <- renderUI({
       selectInput(inputId = "maptype",
                   label = c("Velg karttype", "Choose map type")[lang],
                   choices = c("leaflet","geojson"),
@@ -119,7 +119,7 @@ shinyServer(
       # Make a leaflet map
 #      leaflet::leafletOutput("leafletmap")
     })
-    output$makeMap2 <- renderUI({
+    output$plotMap <- renderUI({
       # Make a leaflet map
       if(input$maptype == "leaflet"){
         leaflet::leafletOutput("leafletmap")
@@ -134,8 +134,7 @@ shinyServer(
     })
 
     output$geojsonmap <- renderPlot({
-      geojsonmap <- "../../tests/testthat/data/maps/eldre.geojson"
-      shinymap::makeMap(type = "geojson", map = geojsonmap)
+      shinymap::makeMap(type = "geojson", map = healthatlas_map)
     })
     output$histogram <- renderPlot({
 
