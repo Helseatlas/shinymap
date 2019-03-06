@@ -21,10 +21,9 @@ makeLeafletmap <- function(){
 #' @param data Data to be plotted
 #' @param map Map to plot
 #'
-#' @return a map made from a geojson file
+#' @return a plot made from a geojson map
 makeGeojsonMap <- function(data = NULL, map = NULL){
-  geojsonmap <- geojsonio::geojson_read(map, what = "sp")
-  graphics::plot(geojsonmap)
+  graphics::plot(map)
 }
 
 #' Common function to make a map
@@ -37,14 +36,11 @@ makeGeojsonMap <- function(data = NULL, map = NULL){
 #' @export
 #'
 makeMap <- function(data = NULL, map = NULL, type = "leaflet"){
-
-  if (type == "leaflet"){
-    output <- makeLeafletmap()
-  } else if (type == "geojson"){
-    output <- makeGeojsonMap(data = data, map = map)
-  } else {
-    output <- NULL
-  }
-
+  
+  output <- NULL
+  switch(type,
+         leaflet = {output <- makeLeafletmap()},
+         geojson = {output <- makeGeojsonMap(data = data, map = map)}
+         )
   return(output)
 }
