@@ -59,4 +59,5 @@ leaflet::leaflet(new) %>%
 
 
 # Save map to disk
+map$Kommunenav <- NULL # rm kommunenavn (trouble with norwegian letters)
 geojsonio::geojson_write(map, file = "tests/testthat/data/maps/kommuner.geojson")
