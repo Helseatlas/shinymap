@@ -2,18 +2,16 @@
 #'
 #' @return a map
 #'
-makeLeafletmap <- function(){
-  norway <- maps::map(database = "world",
-                      regions = "Norway",
-                      fill = TRUE,
-                      col = 1,
-                      plot = F)
-
-  leaflet::leaflet(norway) %>%
-    leaflet::setView(lng = 10.0, lat = 65.0, zoom = 4) %>%
+makeLeafletmap <- function(data = NULL, map = NULL, utm33 = TRUE){
+  if (utm33){
+    # convert from utm33 to leaflet
+    map <- shinymap::utm33toLeaflet(map = map)
+  }
+  
+  leaflet::leaflet(map) %>%
     leaflet::addTiles() %>%
-    leaflet::addPolygons(fillColor = grDevices::topo.colors(10, alpha = NULL),
-                         stroke = FALSE)
+    leaflet::addPolygons(stroke = FALSE, smoothFactor = 0.3, fillOpacity = 0.2, fillColor = c("green", "blue", "red", "yellow", "orange", "purple"))
+
 }
 
 #' Plot a map with data
@@ -23,7 +21,7 @@ makeLeafletmap <- function(){
 #'
 #' @return a plot made from a geojson map
 makeGeojsonMap <- function(data = NULL, map = NULL){
-  graphics::plot(map)
+  sp::plot(map)
 }
 
 #' Common function to make a map
@@ -39,7 +37,7 @@ makeMap <- function(data = NULL, map = NULL, type = "leaflet"){
   
   output <- NULL
   switch(type,
-         leaflet = {output <- makeLeafletmap()},
+         leaflet = {output <- makeLeafletmap(data = data, map = map)},
          geojson = {output <- makeGeojsonMap(data = data, map = map)}
          )
   return(output)

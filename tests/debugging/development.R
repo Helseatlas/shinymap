@@ -33,6 +33,8 @@ language <- "no"
 webpage_title <- "Helseatlas kols 2013-2015"
 runApp('inst/app')
 
+
+
 ##############
 # Plot a map #
 ##############

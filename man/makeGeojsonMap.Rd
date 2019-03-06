@@ -12,7 +12,7 @@ makeGeojsonMap(data = NULL, map = NULL)
 \item{map}{Map to plot}
 }
 \value{
-a map made from a geojson file
+a plot made from a geojson map
 }
 \description{
 Plot a map with data

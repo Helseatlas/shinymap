@@ -121,11 +121,12 @@ shinyServer(
     })
     output$plotMap <- renderUI({
       # Make a leaflet map
-      if(input$maptype == "leaflet"){
-        leaflet::leafletOutput("leafletmap")
-      } else if (input$maptype == "geojson"){
-        shiny::plotOutput(outputId = "geojsonmap")
-      }
+      type <- input$maptype
+      if (is.null(type)){return(NULL)}
+      switch(type,
+             leaflet = {leaflet::leafletOutput("leafletmap")},
+             geojson = {shiny::plotOutput(outputId = "geojsonmap")}
+      )
     })
     
     output$plotHistogram <- renderUI({
@@ -144,7 +145,7 @@ shinyServer(
 
     output$leafletmap <- leaflet::renderLeaflet({
 
-      shinymap::makeMap(type = "leaflet")
+      shinymap::makeMap(type = "leaflet", map = healthatlas_map)
 
     })
 

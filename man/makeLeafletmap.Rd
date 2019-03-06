@@ -4,7 +4,7 @@
 \alias{makeLeafletmap}
 \title{Make a Leaflet map}
 \usage{
-makeLeafletmap()
+makeLeafletmap(data = NULL, map = NULL, utm33 = FALSE)
 }
 \value{
 a map

@@ -49,6 +49,9 @@ reduce_map_size <- function(map, amount = 0.1){
 #' @param map map to be converted
 #'
 #' @return Converted map
+#'
+#' @export
+#'
 utm33toLeaflet <- function(map){
   # utm33 = "epsg:32633"
   # leaflet = "epsg:4326"
