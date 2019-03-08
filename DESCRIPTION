@@ -14,7 +14,6 @@ BugReports: https://github.com/Helseatlas/shinymap/issues
 URL: https://helseatlas.github.io/shinymap
 Imports:
   shiny,
-  shinythemes,
   sp,
   rsconnect,
   ggplot2,
@@ -24,11 +23,9 @@ Imports:
   ggthemes,
   tibble,
   jsonlite,
-  maps,
   geojsonio,
   rmapshaper,
-  rgdal,
-  grDevices
+  rgdal
 Suggests: 
     testthat,
     shinytest,
