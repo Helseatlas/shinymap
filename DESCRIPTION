@@ -1,6 +1,6 @@
 Package: shinymap
 Title: R-package to produce shiny maps of Norway
-Version: 0.4.1
+Version: 0.5.0
 Authors@R: person("Arnfinn Hykkerud", "Steindal", email = "arnfinn.steindal@skde.no", role = c("aut", "cre"))
 Author: Arnfinn Hykkerud Steindal [aut, cre]
 Maintainer: Arnfinn Hykkerud Steindal <arnfinn.steindal@skde.no>
