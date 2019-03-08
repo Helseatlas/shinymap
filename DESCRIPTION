@@ -31,4 +31,6 @@ Imports:
   grDevices
 Suggests: 
     testthat,
+    shinytest,
+    xml2,
     covr
