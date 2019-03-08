@@ -1,8 +1,12 @@
 #' Make a Leaflet map
 #'
+#' @param data Data to be presented in map
+#' @param map Map to be plotted
+#' @param utm33 Convert from UTM 33 to Leaflet projection
+#'
 #' @return a map
 #'
-makeLeafletmap <- function(data = NULL, map = NULL, utm33 = TRUE){
+plotLeafletmap <- function(data = NULL, map = NULL, utm33 = TRUE){
   if (utm33){
     # convert from utm33 to leaflet
     map <- shinymap::utm33toLeaflet(map = map)
@@ -18,9 +22,14 @@ makeLeafletmap <- function(data = NULL, map = NULL, utm33 = TRUE){
 #'
 #' @param data Data to be plotted
 #' @param map Map to plot
+#' @param utm33 Convert from UTM 33 to Leaflet projection
 #'
 #' @return a plot made from a geojson map
-makeGeojsonMap <- function(data = NULL, map = NULL){
+plotSimpleMap <- function(data = NULL, map = NULL, utm33 = TRUE){
+  if (utm33){
+    # convert from utm33 to leaflet
+    map <- shinymap::utm33toLeaflet(map = map)
+  }
   sp::plot(map)
 }
 
@@ -37,8 +46,8 @@ makeMap <- function(data = NULL, map = NULL, type = "leaflet"){
   
   output <- NULL
   switch(type,
-         leaflet = {output <- makeLeafletmap(data = data, map = map)},
-         geojson = {output <- makeGeojsonMap(data = data, map = map)}
+         leaflet = {output <- plotLeafletmap(data = data, map = map)},
+         simple = {output <- plotSimpleMap(data = data, map = map)}
          )
   return(output)
 }

@@ -114,7 +114,7 @@ shinyServer(
     output$pickMap <- renderUI({
       selectInput(inputId = "maptype",
                   label = c("Velg karttype", "Choose map type")[lang],
-                  choices = c("leaflet","geojson"),
+                  choices = c("leaflet","simple"),
                   selected = "leaflet")
       # Make a leaflet map
 #      leaflet::leafletOutput("leafletmap")
@@ -125,7 +125,7 @@ shinyServer(
       if (is.null(type)){return(NULL)}
       switch(type,
              leaflet = {leaflet::leafletOutput("leafletmap")},
-             geojson = {shiny::plotOutput(outputId = "geojsonmap")}
+             simple = {shiny::plotOutput(outputId = "simplemap")}
       )
     })
     
@@ -134,19 +134,16 @@ shinyServer(
       shiny::plotOutput(outputId = "histogram")
     })
 
-    output$geojsonmap <- renderPlot({
-      shinymap::makeMap(type = "geojson", map = healthatlas_map)
+    output$simplemap <- renderPlot({
+      shinymap::makeMap(type = "simple", map = healthatlas_map)
     })
+    
     output$histogram <- renderPlot({
-
       shinymap::plotVariation(inputData = kartlagInput(), xlab = c("Opptaksomr\u00E5de", "Area")[lang], ylab = input$level1)
-
     })
 
     output$leafletmap <- leaflet::renderLeaflet({
-
       shinymap::makeMap(type = "leaflet", map = healthatlas_map)
-
     })
 
   }

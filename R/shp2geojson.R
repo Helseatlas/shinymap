@@ -56,7 +56,7 @@ utm33toLeaflet <- function(map){
   # utm33 = "epsg:32633"
   # leaflet = "epsg:4326"
 
-  sp::proj4string(map) <- sp::CRS("+init=epsg:32633") 
+  suppressWarnings(sp::proj4string(map) <- sp::CRS("+init=epsg:32633"))
   new <- sp::CRS("+init=epsg:4326") # WGS 84
   map_transformed <- sp::spTransform(map, new)
   return(map_transformed)

@@ -28,10 +28,27 @@ shinymap::launch_app(datasett = shinymap::kols, publish_app = TRUE, HNproxy = TR
 
 healthatlas_data <- shinymap::kols # or another dataset to use
 healthatlas_map <- geojsonio::geojson_read("tests/testthat/data/maps/eldre.geojson", what = "sp")
+
+healthatlas_map <- geojsonio::geojson_read("tests/testthat/test.geojson", what = "sp")
+
+summary(healthatlas_map)
+healthatlas_map2 <- shinymap::utm33toLeaflet(healthatlas_map)
+summary(healthatlas_map2)
+
 language <- "en"
 language <- "no"
 webpage_title <- "Helseatlas kols 2013-2015"
 runApp('inst/app')
+
+
+testdata <- readRDS("tests/testthat/data/eldre.rds")
+testmap <- geojsonio::geojson_read("tests/testthat/data/maps/test.geojson", what = "sp")
+testmap$bohf_str <- NULL # rm bohf names (trouble with norwegian letters)
+geojsonio::geojson_write(map, file = "tests/testthat/data/maps/test.geojson")
+
+
+makeMap(data = testdata, map = testmap, type = "simpl")
+
 
 
 
