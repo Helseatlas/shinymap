@@ -24,8 +24,9 @@ Imports:
   tibble,
   jsonlite,
   geojsonio,
-  rmapshaper,
-  rgdal
+  rmapshaper
+Remotes: 
+    cran/rgdal@1.3.9
 Suggests: 
     testthat,
     shinytest,
