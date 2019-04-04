@@ -16,12 +16,21 @@ save(testdata, file = "data/testdata.RData")
 # How to run the app through launch_app
 
 devtools::install_github("Helseatlas/shinymap")
-shinymap::launch_app(dataset = shinymap::kols, publish_app = FALSE, title = "Helseatlas kols", language = "no")
+shinymap::launch_app(dataset = shinymap::kols, 
+                     map = geojsonio::geojson_read("tests/testthat/data/maps/test.geojson", what = "sp"), 
+                     publish_app = FALSE, 
+                     title = "Helseatlas kols", 
+                     language = "no")
+
 
 # How to submit to shinyapps.io through launch_app
-
 devtools::install_github("Helseatlas/shinymap")
-shinymap::launch_app(datasett = shinymap::kols, publish_app = TRUE, HNproxy = TRUE, title = "Helseatlas kols", language = "no")
+shinymap::launch_app(dataset = shinymap::kols, 
+                     map = geojsonio::geojson_read("tests/testthat/data/maps/test.geojson", what = "sp"), 
+                     publish_app = TRUE, 
+#                     HNproxy = TRUE, 
+                     title = "Helseatlas kols", 
+                     language = "no")
 
 
 # How to run the app locally
