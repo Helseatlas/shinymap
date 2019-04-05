@@ -4,12 +4,14 @@
 \alias{launch_app}
 \title{Launch the application, either locally or to shinyapps.io}
 \usage{
-launch_app(dataset = NULL, language = NULL, title = NULL,
-  publish_app = FALSE, name = "experimental", shiny_account = "skde",
-  HNproxy = FALSE)
+launch_app(dataset = NULL, map = NULL, language = NULL,
+  title = NULL, publish_app = FALSE, name = "experimental",
+  shiny_account = "skde", HNproxy = FALSE)
 }
 \arguments{
 \item{dataset}{The data set to be loaded into the application}
+
+\item{map}{The map to be used in the application}
 
 \item{language}{The language of the atlas ("en" or "no")}
 
