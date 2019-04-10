@@ -14,10 +14,7 @@ plotLeafletmap <- function(data = NULL, map = NULL, utm33 = TRUE){
   
   leaflet::leaflet(map) %>%
     leaflet::addTiles() %>%
-    leaflet::addPolygons(stroke = FALSE,
-                         smoothFactor = 0.3,
-                         fillOpacity = 0.2,
-                         fillColor = c("green", "blue", "red", "yellow", "orange", "purple"))
+    leaflet::addPolygons(stroke = FALSE, smoothFactor = 0.3, fillOpacity = 0.2, fillColor = c("green", "blue", "red", "yellow", "orange", "purple"))
 
 }
 
