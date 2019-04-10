@@ -1,9 +1,9 @@
 {
   "input": {
-    "level1": "Fastlege og legevakt",
-    "level1-selectized": "",
-    "level2": "Personer hos fastlege eller legevakt",
-    "level2-selectized": ""
+    "menu_level1": "Fastlege og legevakt",
+    "menu_level1-selectized": "",
+    "menu_level2": "Personer hos fastlege eller legevakt",
+    "menu_level2-selectized": ""
   },
   "output": {
     "makeTable": {
@@ -13,7 +13,7 @@
       ]
     },
     "pickLevel1": {
-      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"level1\">Velg et tema:<\/label>\n  <div>\n    <select id=\"level1\"><option value=\"Fastlege og legevakt\" selected>Fastlege og legevakt<\/option>\n<option value=\"Poliklinikk\">Poliklinikk<\/option>\n<option value=\"Akuttinnleggelser\">Akuttinnleggelser<\/option>\n<option value=\"Rehabilitering\">Rehabilitering<\/option>\n<option value=\"Sykelighet\">Sykelighet<\/option><\/select>\n    <script type=\"application/json\" data-for=\"level1\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"menu_level1\">Velg et tema:<\/label>\n  <div>\n    <select id=\"menu_level1\"><option value=\"Fastlege og legevakt\" selected>Fastlege og legevakt<\/option>\n<option value=\"Poliklinikk\">Poliklinikk<\/option>\n<option value=\"Akuttinnleggelser\">Akuttinnleggelser<\/option>\n<option value=\"Rehabilitering\">Rehabilitering<\/option>\n<option value=\"Sykelighet\">Sykelighet<\/option><\/select>\n    <script type=\"application/json\" data-for=\"menu_level1\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "selectize",
@@ -32,7 +32,7 @@
       ]
     },
     "pickLevel2": {
-      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"level2\">Velg et tema:<\/label>\n  <div>\n    <select id=\"level2\"><option value=\"Personer hos fastlege eller legevakt\" selected>Personer hos fastlege eller legevakt<\/option>\n<option value=\"Spirometri hos fastlege (andeler)\">Spirometri hos fastlege (andeler)<\/option><\/select>\n    <script type=\"application/json\" data-for=\"level2\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"menu_level2\">Velg et tema:<\/label>\n  <div>\n    <select id=\"menu_level2\"><option value=\"Personer hos fastlege eller legevakt\" selected>Personer hos fastlege eller legevakt<\/option>\n<option value=\"Spirometri hos fastlege (andeler)\">Spirometri hos fastlege (andeler)<\/option><\/select>\n    <script type=\"application/json\" data-for=\"menu_level2\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "selectize",
