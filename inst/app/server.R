@@ -86,7 +86,7 @@ shinyServer(
         ),
         splitLayout(
           renderPlot({
-            shinymap::plotVariation_vert(inputData = kartlagInput(), xlab = c("Opptaksomr\u00E5de", "Area")[lang], ylab = input$menu_level1)
+            shinymap::plotVariation(inputData = kartlagInput(), xlab = c("Opptaksomr\u00E5de", "Area")[lang], ylab = input$menu_level1)
             })
         )
       )

@@ -21,3 +21,12 @@ NULL
 #' @keywords datasets
 #' @name testdata
 NULL
+
+#' Map
+#' 
+#' To be used for testing of the package
+#' 
+#' @docType data
+#' @keywords datasets
+#' @name testmap
+NULL
