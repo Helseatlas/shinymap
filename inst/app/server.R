@@ -72,7 +72,25 @@ shinyServer(
       }
     })
 
-
+    output$makeOverview <- renderUI({
+      verticalLayout(
+        splitLayout(cellWidths = c("25%", "75%"),
+                    cellArgs = list(style = "padding: 6px"),
+                    renderTable({
+                      pickedData()
+                    }),
+                    leaflet::renderLeaflet({
+                        shinymap::makeMap(type = "leaflet", map = healthatlas_map)
+                      })
+        ),
+        splitLayout(
+          renderPlot({
+            shinymap::plotVariation(inputData = kartlagInput(), xlab = c("Opptaksomr\u00E5de", "Area")[lang], ylab = input$menu_level1)
+            })
+        )
+      )
+    })
+    
     output$makeTable <- renderUI({
       tableOutput("tabell")
     })
@@ -99,6 +117,10 @@ shinyServer(
       return(HTML(paste0("<h1>", webpage_title, "</h1>")))
     })
 
+    output$titleOverview <- renderUI({
+      return(c("Oversikt","Overview")[lang])
+    })
+    
     output$titleTable <- renderUI({
       return(c("Tabell","Table")[lang])
     })
