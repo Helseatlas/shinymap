@@ -17,7 +17,7 @@ readIAjson <- function(json_file = NULL){
   json_data <- jsonlite::fromJSON(json_file)
   
   # make it a tibble data fram
-  tbl <- tibble::as_data_frame(json_data$geographies)
+  tbl <- tibble::as_tibble(json_data$geographies)
   
   # Names of areas are located in json_data$geographies$features$name
   area <- data.frame(tbl$features)$name
@@ -26,7 +26,7 @@ readIAjson <- function(json_file = NULL){
   ref_area <- data.frame(tbl$comparisonFeatures)$name
   
   # The rest of the data is located in json_data$geographies$themes
-  themes <- data.frame(tbl$themes) %>% tibble::as_data_frame()
+  themes <- data.frame(tbl$themes) %>% tibble::as_tibble()
   
   # Test that number of highest level names (json_data$geographies$themes$name) 
   # is equal the length of the data (json_data$geographies$themes$indicators)
@@ -47,9 +47,9 @@ readIAjson <- function(json_file = NULL){
     next_level <- data.frame(themes$indicators[i])
     
     # Rates to be plotted
-    rates <- data.frame(next_level$values)  %>% tibble::as_data_frame()
+    rates <- data.frame(next_level$values)  %>% tibble::as_tibble()
     # Rates for Norway etc
-    ref_rates <- data.frame(next_level$comparisonValues)  %>% tibble::as_data_frame()
+    ref_rates <- data.frame(next_level$comparisonValues)  %>% tibble::as_tibble()
     # Link to fact sheets
     href <- next_level$href
     
