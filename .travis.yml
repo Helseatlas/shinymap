@@ -2,7 +2,6 @@ language: r
 sudo: false
 cache: packages
 warnings_are_errors: true
-use_devtools: true
 
 r:
   - release
@@ -25,21 +24,18 @@ addons:
       - protobuf-compiler
       - libgdal-dev
 
-before_install:
-  - Rscript -e "if (!require('covr')) install.packages('covr')"
-  - Rscript -e "if (!require('roxygen2')) install.packages('roxygen2')"
-  - Rscript -e "if (!require('devtools')) install.packages('devtools')"
-  - Rscript -e "if (!require('pkgdown')) devtools::install_github('r-lib/pkgdown')"
-  - Rscript -e "if (!require('shinytest')) install.packages('shinytest')"
-
 script:
   - R CMD build .
   - R CMD check *tar.gz
 
 after_success:
+  - Rscript -e "if (!require('covr')) install.packages('covr')"
   - Rscript -e 'covr::codecov()'
+  - Rscript -e "if (!require('devtools')) install.packages('devtools')"
   - Rscript -e 'devtools::document()'
+  - Rscript -e "if (!require('roxygen2')) install.packages('roxygen2')"
   - Rscript -e 'roxygen2::roxygenise()'
+  - Rscript -e "if (!require('pkgdown')) devtools::install_github('r-lib/pkgdown')"
   - Rscript -e 'pkgdown::build_site()'
 
 deploy:
