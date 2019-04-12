@@ -3,9 +3,28 @@ sudo: false
 cache: packages
 warnings_are_errors: true
 
-r:
-  - release
-  - devel
+matrix:
+  include:
+    - os: linux
+      dist: xenial
+      r: release
+    - os: linux
+      dist: xenial
+      r: devel
+    - os: linux
+      dist: trusty
+      r: release
+    - os: linux
+      dist: trusty
+      r: oldrel
+    - os: osx
+      r: release
+    - os: windows
+      r: release
+  allow_failures:
+    - os: osx
+    - os: windows
+    - r: oldrel
 
 env:
   global:
@@ -31,8 +50,6 @@ script:
 after_success:
   - Rscript -e "if (!require('covr')) install.packages('covr')"
   - Rscript -e 'covr::codecov()'
-  - Rscript -e "if (!require('devtools')) install.packages('devtools')"
-  - Rscript -e 'devtools::document()'
   - Rscript -e "if (!require('roxygen2')) install.packages('roxygen2')"
   - Rscript -e 'roxygen2::roxygenise()'
   - Rscript -e "if (!require('pkgdown')) devtools::install_github('r-lib/pkgdown')"
@@ -43,8 +60,12 @@ deploy:
   skip_cleanup: true                      # Don't remove files
   github_token: $GITHUB_TOKEN             # Set in travis-ci.org dashboard
   local_dir: docs                         # Deploy the docs folder
-  on:
+  on: # Only deploy if master branch, xenial build and with latest released version of R.
     branch: master
+    dist: xenial
+    r: release
 
 notifications:
-  email: false
+  email:
+    on_success: never # default: change
+    on_failure: change # default: always 
