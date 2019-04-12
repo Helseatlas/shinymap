@@ -81,7 +81,9 @@ shinyServer(
                       pickedData()
                     }),
                     leaflet::renderLeaflet({
+                      if (isFALSE(getOption("shiny.testmode"))) {
                         shinymap::makeMap(type = "leaflet", map = healthatlas_map)
+                      }
                       })
         ),
         splitLayout(
