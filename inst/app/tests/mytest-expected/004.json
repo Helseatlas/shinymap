@@ -7,162 +7,10 @@
   },
   "output": {
     "makeOverview": {
-      "html": "<div class=\"row\">\n  <div class=\"col-sm-12\">\n    <div class=\"shiny-split-layout\">\n      <div style=\"width: 25%; padding: 6px\">\n        <div id=\"out743285af9cd77232\" class=\"shiny-html-output\"><\/div>\n      <\/div>\n      <div style=\"width: 75%; padding: 6px\">\n        <div id=\"out63abcb50844b143c\" style=\"width:100%; height:400px; \" class=\"leaflet html-widget html-widget-output\"><\/div>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>\n<div class=\"row\">\n  <div class=\"col-sm-12\">\n    <div class=\"shiny-split-layout\">\n      <div style=\"width: 100.000%;\">\n        <div id=\"outfabebb84e24ce657\" class=\"shiny-plot-output\" style=\"width: 100% ; height: 400px\"><\/div>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
-      "deps": [
-        {
-          "name": "htmlwidgets",
-          "version": "1.3",
-          "src": {
-            "href": "htmlwidgets-1.3"
-          },
-          "meta": null,
-          "script": "htmlwidgets.js",
-          "stylesheet": null,
-          "head": null,
-          "attachment": null,
-          "package": null,
-          "all_files": true
-        },
-        {
-          "name": "jquery",
-          "version": "1.12.4",
-          "src": {
-            "href": "jquery-1.12.4"
-          },
-          "meta": null,
-          "script": "jquery.min.js",
-          "stylesheet": null,
-          "head": null,
-          "attachment": null,
-          "package": null,
-          "all_files": true
-        },
-        {
-          "name": "leaflet",
-          "version": "1.3.1",
-          "src": {
-            "href": "leaflet-1.3.1"
-          },
-          "meta": null,
-          "script": "leaflet.js",
-          "stylesheet": "leaflet.css",
-          "head": null,
-          "attachment": null,
-          "package": null,
-          "all_files": true
-        },
-        {
-          "name": "leafletfix",
-          "version": "1.0.0",
-          "src": {
-            "href": "leafletfix-1.0.0"
-          },
-          "meta": null,
-          "script": null,
-          "stylesheet": "leafletfix.css",
-          "head": null,
-          "attachment": null,
-          "package": null,
-          "all_files": true
-        },
-        {
-          "name": "Proj4Leaflet",
-          "version": "1.0.1",
-          "src": {
-            "href": "Proj4Leaflet-1.0.1"
-          },
-          "meta": null,
-          "script": [
-            "proj4-compressed.js",
-            "proj4leaflet.js"
-          ],
-          "stylesheet": null,
-          "head": null,
-          "attachment": null,
-          "package": null,
-          "all_files": true
-        },
-        {
-          "name": "rstudio_leaflet",
-          "version": "1.3.1",
-          "src": {
-            "href": "rstudio_leaflet-1.3.1"
-          },
-          "meta": null,
-          "script": null,
-          "stylesheet": "rstudio_leaflet.css",
-          "head": null,
-          "attachment": null,
-          "package": null,
-          "all_files": true
-        },
-        {
-          "name": "leaflet-binding",
-          "version": "2.0.2",
-          "src": {
-            "href": "leaflet-binding-2.0.2"
-          },
-          "meta": null,
-          "script": "leaflet.js",
-          "stylesheet": null,
-          "head": null,
-          "attachment": null,
-          "package": null,
-          "all_files": false
-        }
-      ]
-    },
-    "out63abcb50844b143c": {
-      "x": null,
-      "evals": [
-
-      ],
-      "jsHooks": null,
+      "html": "<div id=\"tabell\" class=\"shiny-html-output\"><\/div>",
       "deps": [
 
       ]
-    },
-    "out743285af9cd77232": "<table  class = 'table shiny-table table- spacing-s' style = 'width:auto;'>\n<thead> <tr> <th style='text-align: left;'> Opptaksomr <\/th> <th style='text-align: right;'> Rate <\/th> <th style='text-align: right;'> Antall <\/th> <th style='text-align: right;'> Innbyggere <\/th>  <\/tr> <\/thead> <tbody>\n  <tr> <td> Area1 <\/td> <td align=\"right\"> 27.80 <\/td> <td align=\"right\"> 245 <\/td> <td align=\"right\">  69 <\/td> <\/tr>\n  <tr> <td> Area2 <\/td> <td align=\"right\"> 26.20 <\/td> <td align=\"right\"> 570 <\/td> <td align=\"right\"> 149 <\/td> <\/tr>\n  <tr> <td> Area3 <\/td> <td align=\"right\"> 28.10 <\/td> <td align=\"right\"> 463 <\/td> <td align=\"right\"> 130 <\/td> <\/tr>\n  <tr> <td> Area4 <\/td> <td align=\"right\"> 25.00 <\/td> <td align=\"right\"> 210 <\/td> <td align=\"right\">  53 <\/td> <\/tr>\n  <tr> <td> Area5 <\/td> <td align=\"right\"> 28.20 <\/td> <td align=\"right\"> 546 <\/td> <td align=\"right\"> 155 <\/td> <\/tr>\n  <tr> <td> Area6 <\/td> <td align=\"right\"> 29.30 <\/td> <td align=\"right\"> 935 <\/td> <td align=\"right\"> 274 <\/td> <\/tr>\n  <tr> <td> Area7 <\/td> <td align=\"right\"> 30.20 <\/td> <td align=\"right\"> 770 <\/td> <td align=\"right\"> 232 <\/td> <\/tr>\n  <tr> <td> Area23 <\/td> <td align=\"right\"> 31.10 <\/td> <td align=\"right\"> 434 <\/td> <td align=\"right\"> 135 <\/td> <\/tr>\n  <tr> <td> Area9 <\/td> <td align=\"right\"> 25.80 <\/td> <td align=\"right\"> 280 <\/td> <td align=\"right\">  72 <\/td> <\/tr>\n  <tr> <td> Area8 <\/td> <td align=\"right\"> 29.30 <\/td> <td align=\"right\"> 954 <\/td> <td align=\"right\"> 277 <\/td> <\/tr>\n  <tr> <td> Area10 <\/td> <td align=\"right\"> 29.80 <\/td> <td align=\"right\"> 690 <\/td> <td align=\"right\"> 206 <\/td> <\/tr>\n  <tr> <td> Area11 <\/td> <td align=\"right\"> 29.00 <\/td> <td align=\"right\"> 953 <\/td> <td align=\"right\"> 277 <\/td> <\/tr>\n  <tr> <td> Area12 <\/td> <td align=\"right\"> 28.60 <\/td> <td align=\"right\"> 871 <\/td> <td align=\"right\"> 249 <\/td> <\/tr>\n  <tr> <td> Area13 <\/td> <td align=\"right\"> 31.20 <\/td> <td align=\"right\"> 1371 <\/td> <td align=\"right\"> 429 <\/td> <\/tr>\n  <tr> <td> Area14 <\/td> <td align=\"right\"> 33.00 <\/td> <td align=\"right\"> 723 <\/td> <td align=\"right\"> 236 <\/td> <\/tr>\n  <tr> <td> Area15 <\/td> <td align=\"right\"> 38.20 <\/td> <td align=\"right\"> 343 <\/td> <td align=\"right\"> 125 <\/td> <\/tr>\n  <tr> <td> Area16 <\/td> <td align=\"right\"> 32.40 <\/td> <td align=\"right\"> 218 <\/td> <td align=\"right\">  71 <\/td> <\/tr>\n  <tr> <td> Area17 <\/td> <td align=\"right\"> 27.70 <\/td> <td align=\"right\"> 1448 <\/td> <td align=\"right\"> 400 <\/td> <\/tr>\n  <tr> <td> Area18 <\/td> <td align=\"right\"> 28.90 <\/td> <td align=\"right\"> 1367 <\/td> <td align=\"right\"> 395 <\/td> <\/tr>\n  <tr> <td> Area19 <\/td> <td align=\"right\"> 29.80 <\/td> <td align=\"right\"> 875 <\/td> <td align=\"right\"> 261 <\/td> <\/tr>\n  <tr> <td> Area20 <\/td> <td align=\"right\"> 29.80 <\/td> <td align=\"right\"> 596 <\/td> <td align=\"right\"> 177 <\/td> <\/tr>\n  <tr> <td> Area21 <\/td> <td align=\"right\"> 27.10 <\/td> <td align=\"right\"> 909 <\/td> <td align=\"right\"> 246 <\/td> <\/tr>\n  <tr> <td> Norway <\/td> <td align=\"right\"> 29.30 <\/td> <td align=\"right\"> 15771 <\/td> <td align=\"right\"> 4620 <\/td> <\/tr>\n   <\/tbody> <\/table>",
-    "outfabebb84e24ce657": {
-      "src": "[image data sha1: 1d35182102a8b29001f377b86b31459bcf49284b]",
-      "width": 611,
-      "height": 400,
-      "coordmap": {
-        "panels": [
-          {
-            "panel": 1,
-            "row": 1,
-            "col": 1,
-            "panel_vars": {
-
-            },
-            "log": {
-              "x": null,
-              "y": null
-            },
-            "domain": {
-              "left": -1.91,
-              "right": 40.11,
-              "bottom": 0.4,
-              "top": 23.6
-            },
-            "mapping": {
-              "x": "get(\"rate\")",
-              "y": "get(\"area\")"
-            },
-            "range": {
-              "left": 51.3003908183477,
-              "right": 605.520547945205,
-              "bottom": 368.698436036049,
-              "top": 5.47945205479452
-            }
-          }
-        ],
-        "dims": {
-          "width": 611,
-          "height": 400
-        }
-      }
     },
     "pickLevel1": {
       "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"menu_level1\">Velg et tema:<\/label>\n  <div>\n    <select id=\"menu_level1\"><option value=\"Fastlege og legevakt\" selected>Fastlege og legevakt<\/option>\n<option value=\"Poliklinikk\">Poliklinikk<\/option>\n<option value=\"Akuttinnleggelser\">Akuttinnleggelser<\/option>\n<option value=\"Rehabilitering\">Rehabilitering<\/option>\n<option value=\"Sykelighet\">Sykelighet<\/option><\/select>\n    <script type=\"application/json\" data-for=\"menu_level1\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
@@ -203,6 +51,7 @@
       ]
     },
     "pickLevel3": null,
+    "tabell": "<table  class = 'table shiny-table table- spacing-s' style = 'width:auto;'>\n<thead> <tr> <th style='text-align: left;'> Opptaksomr <\/th> <th style='text-align: right;'> Rate <\/th> <th style='text-align: right;'> Antall <\/th> <th style='text-align: right;'> Innbyggere <\/th>  <\/tr> <\/thead> <tbody>\n  <tr> <td> Area1 <\/td> <td align=\"right\"> 27.80 <\/td> <td align=\"right\"> 245 <\/td> <td align=\"right\">  69 <\/td> <\/tr>\n  <tr> <td> Area2 <\/td> <td align=\"right\"> 26.20 <\/td> <td align=\"right\"> 570 <\/td> <td align=\"right\"> 149 <\/td> <\/tr>\n  <tr> <td> Area3 <\/td> <td align=\"right\"> 28.10 <\/td> <td align=\"right\"> 463 <\/td> <td align=\"right\"> 130 <\/td> <\/tr>\n  <tr> <td> Area4 <\/td> <td align=\"right\"> 25.00 <\/td> <td align=\"right\"> 210 <\/td> <td align=\"right\">  53 <\/td> <\/tr>\n  <tr> <td> Area5 <\/td> <td align=\"right\"> 28.20 <\/td> <td align=\"right\"> 546 <\/td> <td align=\"right\"> 155 <\/td> <\/tr>\n  <tr> <td> Area6 <\/td> <td align=\"right\"> 29.30 <\/td> <td align=\"right\"> 935 <\/td> <td align=\"right\"> 274 <\/td> <\/tr>\n  <tr> <td> Area7 <\/td> <td align=\"right\"> 30.20 <\/td> <td align=\"right\"> 770 <\/td> <td align=\"right\"> 232 <\/td> <\/tr>\n  <tr> <td> Area23 <\/td> <td align=\"right\"> 31.10 <\/td> <td align=\"right\"> 434 <\/td> <td align=\"right\"> 135 <\/td> <\/tr>\n  <tr> <td> Area9 <\/td> <td align=\"right\"> 25.80 <\/td> <td align=\"right\"> 280 <\/td> <td align=\"right\">  72 <\/td> <\/tr>\n  <tr> <td> Area8 <\/td> <td align=\"right\"> 29.30 <\/td> <td align=\"right\"> 954 <\/td> <td align=\"right\"> 277 <\/td> <\/tr>\n  <tr> <td> Area10 <\/td> <td align=\"right\"> 29.80 <\/td> <td align=\"right\"> 690 <\/td> <td align=\"right\"> 206 <\/td> <\/tr>\n  <tr> <td> Area11 <\/td> <td align=\"right\"> 29.00 <\/td> <td align=\"right\"> 953 <\/td> <td align=\"right\"> 277 <\/td> <\/tr>\n  <tr> <td> Area12 <\/td> <td align=\"right\"> 28.60 <\/td> <td align=\"right\"> 871 <\/td> <td align=\"right\"> 249 <\/td> <\/tr>\n  <tr> <td> Area13 <\/td> <td align=\"right\"> 31.20 <\/td> <td align=\"right\"> 1371 <\/td> <td align=\"right\"> 429 <\/td> <\/tr>\n  <tr> <td> Area14 <\/td> <td align=\"right\"> 33.00 <\/td> <td align=\"right\"> 723 <\/td> <td align=\"right\"> 236 <\/td> <\/tr>\n  <tr> <td> Area15 <\/td> <td align=\"right\"> 38.20 <\/td> <td align=\"right\"> 343 <\/td> <td align=\"right\"> 125 <\/td> <\/tr>\n  <tr> <td> Area16 <\/td> <td align=\"right\"> 32.40 <\/td> <td align=\"right\"> 218 <\/td> <td align=\"right\">  71 <\/td> <\/tr>\n  <tr> <td> Area17 <\/td> <td align=\"right\"> 27.70 <\/td> <td align=\"right\"> 1448 <\/td> <td align=\"right\"> 400 <\/td> <\/tr>\n  <tr> <td> Area18 <\/td> <td align=\"right\"> 28.90 <\/td> <td align=\"right\"> 1367 <\/td> <td align=\"right\"> 395 <\/td> <\/tr>\n  <tr> <td> Area19 <\/td> <td align=\"right\"> 29.80 <\/td> <td align=\"right\"> 875 <\/td> <td align=\"right\"> 261 <\/td> <\/tr>\n  <tr> <td> Area20 <\/td> <td align=\"right\"> 29.80 <\/td> <td align=\"right\"> 596 <\/td> <td align=\"right\"> 177 <\/td> <\/tr>\n  <tr> <td> Area21 <\/td> <td align=\"right\"> 27.10 <\/td> <td align=\"right\"> 909 <\/td> <td align=\"right\"> 246 <\/td> <\/tr>\n  <tr> <td> Norway <\/td> <td align=\"right\"> 29.30 <\/td> <td align=\"right\"> 15771 <\/td> <td align=\"right\"> 4620 <\/td> <\/tr>\n   <\/tbody> <\/table>",
     "title": {
       "html": "<h1>Helseatlas<\/h1>",
       "deps": [

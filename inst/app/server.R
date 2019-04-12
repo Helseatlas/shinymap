@@ -1,23 +1,23 @@
 shinyServer(
-
+  
   function(input, output) {
-
+    
     if (file.exists("data/data.RData")){
       # load information sent through "launch_application"
       load("data/data.RData")
     }
-
+    
     if (isTRUE(getOption("shiny.testmode"))) {
       # Load static/dummy data if this is a test run
       healthatlas_data <- shinymap::testdata
       healthatlas_map <- shinymap::testmap
     }
-
+    
     if (!exists("language")|| is.null(language)){
       # Define language to Norwegian, if not defined
       language <- "no"
     }
-
+    
     if (language == "no"){
       lang = 1
     } else if (language == "en"){
@@ -25,20 +25,20 @@ shinyServer(
     } else { # default language value
       lang = 1
     }
-
+    
     if (!exists("webpage_title") || is.null(webpage_title)){
       # Define the atlas title, if not defined
       webpage_title <- c("Helseatlas","The Norwegian healthcare atlas")[lang]
     }
-
+    
     pickable_level1 <- c(levels(factor(healthatlas_data$level1)))
-
+    
     pickable_level2 <- eventReactive(input$menu_level1,{
       tmpdata <- dplyr::filter(healthatlas_data, level1 == input$menu_level1)
       level2 <- c(levels(factor(tmpdata$level2)))
       return(level2)
     })
-
+    
     pickable_level3 <- eventReactive(c(input$menu_level1, input$menu_level2), {
       if(is.null(input$menu_level2)){return()}
       tmpdata1 <- dplyr::filter(healthatlas_data, level1 == input$menu_level1)
@@ -46,24 +46,24 @@ shinyServer(
       level3 <- c(levels(factor(tmpdata2$level3)))
       return(level3)
     })
-
+    
     output$pickLevel1 <- renderUI({
       selectInput(inputId = "menu_level1",
                   label = c("Velg et tema:", "Pick a subject")[lang],
                   choices = pickable_level1,
                   selected = pickable_level1[1])
     })
-
+    
     output$pickLevel2 <- renderUI({
       if ("level2" %in% colnames(healthatlas_data)){
         selectInput(inputId = "menu_level2",
                     label = c("Velg et tema:", "Pick a subject")[lang],
                     choices = pickable_level2(),
                     selected = pickable_level2()[1])
-
+        
       }
     })
-
+    
     output$pickLevel3 <- renderUI({
       if ("level3" %in% colnames(healthatlas_data)){
         selectInput(inputId = "menu_level3",
@@ -72,37 +72,40 @@ shinyServer(
                     selected = pickable_level3()[1])
       }
     })
-
+    
     output$makeOverview <- renderUI({
-      verticalLayout(
-        splitLayout(cellWidths = c("25%", "75%"),
-                    cellArgs = list(style = "padding: 6px"),
-                    renderTable({
-                      pickedData()
-                    }),
-                    leaflet::renderLeaflet({
-                      if (isFALSE(getOption("shiny.testmode"))) {
+      # will not use the following when running tests due to some random numbers generated
+      if (isFALSE(getOption("shiny.testmode"))) {
+        verticalLayout(
+          splitLayout(cellWidths = c("25%", "75%"),
+                      cellArgs = list(style = "padding: 6px"),
+                      renderTable({
+                        pickedData()
+                      }),
+                      leaflet::renderLeaflet({
                         shinymap::makeMap(type = "leaflet", map = healthatlas_map)
-                      }
                       })
-        ),
-        splitLayout(
-          renderPlot({
-            shinymap::plotVariation(inputData = kartlagInput(), xlab = c("Opptaksomr\u00E5de", "Area")[lang], ylab = input$menu_level1)
+          ),
+          splitLayout(
+            renderPlot({
+              shinymap::plotVariation(inputData = kartlagInput(), xlab = c("Opptaksomr\u00E5de", "Area")[lang], ylab = input$menu_level1)
             })
+          )
         )
-      )
+      } else { # Show a regular table when testing
+        tableOutput("tabell")
+      }
     })
     
     output$makeTable <- renderUI({
       tableOutput("tabell")
     })
-
+    
     kartlagInput <- reactive({
       datasett <- shinymap::filterOut(healthatlas_data, filter1 = input$menu_level1, filter2 = input$menu_level2, filter3 = input$menu_level3)
       return(datasett)
     })
-
+    
     pickedData <- reactive({
       new_tab <- data.frame(kartlagInput()$area)
       colnames(new_tab) <- c(c("Opptaksomr", "Area")[lang])
@@ -111,15 +114,15 @@ shinyServer(
       new_tab[c("Innbyggere", "Inhab")[lang]] <- kartlagInput()$denominator
       return(new_tab)
     })
-
+    
     output$tabell<-renderTable({
       pickedData()
     })
-
+    
     output$title <- renderUI({
       return(HTML(paste0("<h1>", webpage_title, "</h1>")))
     })
-
+    
     output$titleOverview <- renderUI({
       return(c("Oversikt","Overview")[lang])
     })
@@ -127,22 +130,22 @@ shinyServer(
     output$titleTable <- renderUI({
       return(c("Tabell","Table")[lang])
     })
-
+    
     output$titleMap <- renderUI({
       return(c("Kart", "Map")[lang])
     })
-
+    
     output$titleHist <- renderUI({
       return(c("Histogram", "Histogram")[lang])
     })
-
+    
     output$pickMap <- renderUI({
       selectInput(inputId = "maptype",
                   label = c("Velg karttype", "Choose map type")[lang],
                   choices = c("leaflet","simple"),
                   selected = "leaflet")
       # Make a leaflet map
-#      leaflet::leafletOutput("leafletmap")
+      #      leaflet::leafletOutput("leafletmap")
     })
     output$plotMap <- renderUI({
       # Make a leaflet map
@@ -158,7 +161,7 @@ shinyServer(
       # Make a histogram plot
       shiny::plotOutput(outputId = "histogram")
     })
-
+    
     output$simplemap <- renderPlot({
       shinymap::makeMap(type = "simple", map = healthatlas_map)
     })
@@ -166,11 +169,11 @@ shinyServer(
     output$histogram <- renderPlot({
       shinymap::plotVariation(inputData = kartlagInput(), xlab = c("Opptaksomr\u00E5de", "Area")[lang], ylab = input$menu_level1)
     })
-
+    
     output$leafletmap <- leaflet::renderLeaflet({
       shinymap::makeMap(type = "leaflet", map = healthatlas_map)
     })
-
+    
   }
-
+  
 )
