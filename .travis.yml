@@ -14,9 +14,6 @@ matrix:
     - os: linux
       dist: trusty
       r: release
-    - os: linux
-      dist: trusty
-      r: oldrel
     - os: osx
       r: release
     - os: windows
@@ -24,7 +21,6 @@ matrix:
   allow_failures:
     - os: osx
     - os: windows
-    - r: oldrel
 
 env:
   global:
