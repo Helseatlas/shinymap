@@ -12,8 +12,8 @@ LazyData: true
 RoxygenNote: 6.1.1
 BugReports: https://github.com/Helseatlas/shinymap/issues
 URL: https://helseatlas.github.io/shinymap
+Remotes: cran/shiny@1.2.0
 Imports:
-  shiny,
   sp,
   rsconnect,
   ggplot2,
