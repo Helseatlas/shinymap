@@ -10,6 +10,7 @@ shinyServer(
     if (isTRUE(getOption("shiny.testmode"))) {
       # Load static/dummy data if this is a test run
       healthatlas_data <- shinymap::testdata
+      healthatlas_map <- shinymap::testmap
     }
 
     if (!exists("language")|| is.null(language)){
@@ -85,7 +86,7 @@ shinyServer(
         ),
         splitLayout(
           renderPlot({
-            shinymap::plotVariation(inputData = kartlagInput(), xlab = c("Opptaksomr\u00E5de", "Area")[lang], ylab = input$menu_level1)
+            shinymap::plotVariation_vert(inputData = kartlagInput(), xlab = c("Opptaksomr\u00E5de", "Area")[lang], ylab = input$menu_level1)
             })
         )
       )
