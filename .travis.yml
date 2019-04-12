@@ -8,12 +8,15 @@ matrix:
     - os: linux
       dist: xenial
       r: release
+      env: DIST=xenial
     - os: linux
       dist: xenial
       r: devel
+      env: DIST=xenial
     - os: linux
       dist: trusty
       r: release
+      env: DIST=trusty
     - os: osx
       r: release
     - os: windows
@@ -25,6 +28,9 @@ matrix:
 env:
   global:
     - _R_CHECK_TESTS_NLINES_=0
+
+r_github_packages:
+  - jimhester/lintr
 
 addons:
   apt:
@@ -50,6 +56,7 @@ after_success:
   - Rscript -e 'roxygen2::roxygenise()'
   - Rscript -e "if (!require('pkgdown')) devtools::install_github('r-lib/pkgdown')"
   - Rscript -e 'pkgdown::build_site()'
+  - Rscript -e 'lintr::lint_package()'
 
 deploy:
   provider: pages                         # Specify the gh-pages deployment method
