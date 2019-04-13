@@ -60,6 +60,10 @@ r_packages:
   - roxygen2
   - pkgdown
 
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update    ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install v8; fi
+
 script:
   - R CMD build .
   - R CMD check *tar.gz
