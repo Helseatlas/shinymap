@@ -5,24 +5,24 @@ warnings_are_errors: true
 
 matrix:
   include:
-    - os: linux
-      dist: xenial
-      r: release
-      env: 
-        - DIST=xenial
-        - RUN_LINTR=true
-    - os: linux
-      dist: xenial
-      r: devel
-      env: 
-        - DIST=xenial
-        - RUN_LINTR=false
-    - os: linux
-      dist: trusty
-      r: release
-      env: 
-        - DIST=trusty
-        - RUN_LINTR=false
+#    - os: linux
+#      dist: xenial
+#      r: release
+#      env: 
+#        - DIST=xenial
+#        - RUN_LINTR=true
+#    - os: linux
+#      dist: xenial
+#      r: devel
+#      env: 
+#        - DIST=xenial
+#        - RUN_LINTR=false
+#    - os: linux
+#      dist: trusty
+#      r: release
+#      env: 
+#        - DIST=trusty
+#        - RUN_LINTR=false
     - os: osx
       r: release
       env: 
@@ -34,7 +34,6 @@ matrix:
         - DIST=windows
         - RUN_LINTR=false
   allow_failures:
-    - os: osx
     - os: windows
 
 env:
