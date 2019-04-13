@@ -15,11 +15,12 @@ shinyUI(function(request) {
       uiOutput("pickLevel3")
     ),
     mainPanel(
-        tabsetPanel(#type = "tabs", id="tab",
-                 tabPanel(uiOutput("titleOverview"), uiOutput("makeOverview")),
-                 tabPanel(uiOutput("titleTable"), uiOutput("makeTable")),
-                 tabPanel(uiOutput("titleMap"), uiOutput("pickMap"), uiOutput("plotMap")),
-                 tabPanel(uiOutput("titleHist"), uiOutput("plotHistogram"))
-    ))
+      tabsetPanel(
+        tabPanel(uiOutput("titleOverview"), uiOutput("makeOverview")),
+        tabPanel(uiOutput("titleTable"), uiOutput("makeTable")),
+        tabPanel(uiOutput("titleMap"), uiOutput("pickMap"), uiOutput("plotMap")),
+        tabPanel(uiOutput("titleHist"), uiOutput("plotHistogram"))
+      )
+    )
   )
 })
