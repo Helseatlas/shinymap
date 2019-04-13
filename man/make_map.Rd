@@ -2,9 +2,9 @@
 % Please edit documentation in R/make_map.r
 \name{make_map}
 \alias{make_map}
-\title{Common function to make a map}
+\title{Function to make a map}
 \usage{
-make_map(data = NULL, map = NULL, type = "leaflet")
+make_map(data = NULL, map = NULL, type = "leaflet", utm33 = TRUE)
 }
 \arguments{
 \item{data}{Data to be plotted in the map}
@@ -12,10 +12,12 @@ make_map(data = NULL, map = NULL, type = "leaflet")
 \item{map}{The map itself}
 
 \item{type}{Type of map (default = "leaflet")}
+
+\item{utm33}{Convert from UTM 33 to Leaflet projection (default = TRUE)}
 }
 \value{
 a map
 }
 \description{
-Common function to make a map
+Function to make a map
 }

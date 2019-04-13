@@ -46,10 +46,10 @@ test_that("shp2geojson is OK", {
   )
 })
 
-test_that("utm33toLeaflet is OK", {
+test_that("utm33_to_leaflet is OK", {
   # Unit test that map can be converted from utm33 to leaflet projection
   map <- geojsonio::geojson_read("data/maps/test.geojson", what = "sp")
-  expect_equal_to_reference(utm33toLeaflet(map), "data/utm33toLeaflet.rds", tolerance = 1e-4)
+  expect_equal_to_reference(utm33_to_leaflet(map), "data/utm33_to_leaflet.rds", tolerance = 1e-4)
 })
 
 test_that("reduce_map_size is OK", {

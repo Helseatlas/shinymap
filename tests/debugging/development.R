@@ -55,7 +55,7 @@ runApp("inst/app")
 # How two extra test maps were made
 testmap <- geojsonio::geojson_read("tests/testthat/data/maps/test.geojson", what = "sp")
 geojsonio::geojson_write(testmap, file = "tests/testthat/data/maps/utm33.geojson")
-new <- utm33toLeaflet(testmap)
+new <- utm33_to_leaflet(testmap)
 geojsonio::geojson_write(new, file = "tests/testthat/data/maps/epsg4326.geojson")
 
 
@@ -66,7 +66,7 @@ geojsonio::geojson_write(new, file = "tests/testthat/data/maps/epsg4326.geojson"
 # Eldre
 map <- geojsonio::geojson_read("tests/testthat/data/maps/eldre.geojson", what = "sp")
 
-eldre <- utm33toLeaflet(map)
+eldre <- utm33_to_leaflet(map)
 
 leaflet::leaflet(eldre) %>%
   leaflet::addTiles() %>%
@@ -82,7 +82,7 @@ leaflet::leaflet(eldre) %>%
 
 map <- geojsonio::geojson_read("tests/testthat/data/maps/kommuner.geojson", what = "sp")
 
-new <- utm33toLeaflet(map)
+new <- utm33_to_leaflet(map)
 
 leaflet::leaflet(new) %>%
   leaflet::addTiles() %>%

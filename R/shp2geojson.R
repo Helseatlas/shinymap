@@ -52,7 +52,7 @@ reduce_map_size <- function(map, amount = 0.1) {
 #'
 #' @export
 #'
-utm33toLeaflet <- function(map) {
+utm33_to_leaflet <- function(map) {
   # utm33 is "epsg:32633"
   # leaflet is "epsg:4326"
 
