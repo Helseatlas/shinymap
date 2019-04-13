@@ -8,19 +8,31 @@ matrix:
     - os: linux
       dist: xenial
       r: release
-      env: DIST=xenial
+      env: 
+        - DIST=xenial
+        - RUN_LINTR=true
     - os: linux
       dist: xenial
       r: devel
-      env: DIST=xenial
+      env: 
+        - DIST=xenial
+        - RUN_LINTR=false
     - os: linux
       dist: trusty
       r: release
-      env: DIST=trusty
+      env: 
+        - DIST=trusty
+        - RUN_LINTR=false
     - os: osx
       r: release
+      env: 
+        - DIST=osx
+        - RUN_LINTR=false
     - os: windows
       r: release
+      env: 
+        - DIST=windows
+        - RUN_LINTR=false
   allow_failures:
     - os: osx
     - os: windows
@@ -53,13 +65,19 @@ script:
   - R CMD check *tar.gz
 
 after_script:
-  - R CMD INSTALL $PKG_TARBALL
-  - Rscript -e 'lintr::lint_package()'
+  - |
+    if [[ "$RUN_LINTR" = true ]]; then
+      R CMD INSTALL $PKG_TARBALL
+      Rscript -e 'lintr::lint_package()'
+    fi
 
 after_success:
-  - Rscript -e 'covr::codecov()'
-  - Rscript -e 'roxygen2::roxygenise()'
-  - Rscript -e 'pkgdown::build_site()'
+  -|
+    if [[ "$RUN_LINTR" = true ]]; then
+      Rscript -e 'covr::codecov()'
+      Rscript -e 'roxygen2::roxygenise()'
+      Rscript -e 'pkgdown::build_site()'
+    fi
 
 deploy:
   provider: pages                         # Specify the gh-pages deployment method
