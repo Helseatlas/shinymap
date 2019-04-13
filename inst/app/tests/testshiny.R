@@ -3,7 +3,6 @@ app <- ShinyDriver$new("../")
 app$snapshotInit("testshiny")
 
 app$setInputs()
-app$snapshot()
 app$setInputs(menu_level2 = "Spesialisthelsetjenesten")
 app$snapshot()
 app$setInputs(menu_level3 = "Poliklinikk/dag")

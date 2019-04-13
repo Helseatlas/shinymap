@@ -1,10 +1,10 @@
 {
   "input": {
-    "menu_level1": "Barn 0-16 aar, totalt",
+    "menu_level1": "Medisinske tilstander, spesialisthelsetjenesten",
     "menu_level1-selectized": "",
-    "menu_level2": "Spesialisthelsetjenesten",
+    "menu_level2": "Kontakttype",
     "menu_level2-selectized": "",
-    "menu_level3": "Poliklinikk/dag",
+    "menu_level3": "Alle kontakter",
     "menu_level3-selectized": ""
   },
   "output": {
@@ -34,7 +34,7 @@
       ]
     },
     "pick_level2": {
-      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"menu_level2\">Velg et tema:<\/label>\n  <div>\n    <select id=\"menu_level2\"><option value=\"Primaerhelsetjenesten\" selected>Primaerhelsetjenesten<\/option>\n<option value=\"Spesialisthelsetjenesten\">Spesialisthelsetjenesten<\/option><\/select>\n    <script type=\"application/json\" data-for=\"menu_level2\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"menu_level2\">Velg et tema:<\/label>\n  <div>\n    <select id=\"menu_level2\"><option value=\"Kontakttype\" selected>Kontakttype<\/option>\n<option value=\"Medisinske innleggelser\">Medisinske innleggelser<\/option><\/select>\n    <script type=\"application/json\" data-for=\"menu_level2\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "selectize",
@@ -53,7 +53,7 @@
       ]
     },
     "pick_level3": {
-      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"menu_level3\">Velg et tema:<\/label>\n  <div>\n    <select id=\"menu_level3\"><option value=\"Alle kontakter\" selected>Alle kontakter<\/option>\n<option value=\"Innleggelser\">Innleggelser<\/option>\n<option value=\"Poliklinikk/dag\">Poliklinikk/dag<\/option><\/select>\n    <script type=\"application/json\" data-for=\"menu_level3\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"menu_level3\">Velg et tema:<\/label>\n  <div>\n    <select id=\"menu_level3\"><option value=\"Alle kontakter\" selected>Alle kontakter<\/option>\n<option value=\"Innleggelser\">Innleggelser<\/option>\n<option value=\"Poliklinikk/dag\">Poliklinikk/dag<\/option>\n<option value=\"Utvalgte akutte diagnoser\">Utvalgte akutte diagnoser<\/option><\/select>\n    <script type=\"application/json\" data-for=\"menu_level3\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "selectize",
@@ -71,7 +71,7 @@
         }
       ]
     },
-    "tabell": "<table  class = 'table shiny-table table- spacing-s' style = 'width:auto;'>\n<thead> <tr> <th style='text-align: left;'> Opptaksomr <\/th> <th style='text-align: left;'> Rate <\/th> <th style='text-align: left;'> Antall <\/th> <th style='text-align: left;'> Innbyggere <\/th>  <\/tr> <\/thead> <tbody>\n  <tr> <td> Area1 <\/td> <td> 65605 <\/td> <td> 10052 <\/td> <td> 15332 <\/td> <\/tr>\n  <tr> <td> Area2 <\/td> <td> 67641 <\/td> <td> 25430 <\/td> <td> 37609 <\/td> <\/tr>\n  <tr> <td> Area3 <\/td> <td> 69673 <\/td> <td> 29976 <\/td> <td> 43186 <\/td> <\/tr>\n  <tr> <td> Area5 <\/td> <td> 85678 <\/td> <td> 24851 <\/td> <td> 29056 <\/td> <\/tr>\n  <tr> <td> Area6 <\/td> <td> 80049 <\/td> <td> 49907 <\/td> <td> 62253 <\/td> <\/tr>\n  <tr> <td> Area7 <\/td> <td> 77243 <\/td> <td> 41785 <\/td> <td> 54199 <\/td> <\/tr>\n  <tr> <td> Area9 <\/td> <td> 79378 <\/td> <td> 18473 <\/td> <td> 23330 <\/td> <\/tr>\n  <tr> <td> Area8 <\/td> <td> 80571 <\/td> <td> 74034 <\/td> <td> 91673 <\/td> <\/tr>\n  <tr> <td> Area10 <\/td> <td> 66647 <\/td> <td> 26458 <\/td> <td> 39744 <\/td> <\/tr>\n  <tr> <td> Area11 <\/td> <td> 61704 <\/td> <td> 50763 <\/td> <td> 81507 <\/td> <\/tr>\n  <tr> <td> Area12 <\/td> <td> 76751 <\/td> <td> 43905 <\/td> <td> 57341 <\/td> <\/tr>\n  <tr> <td> Area13 <\/td> <td> 82109 <\/td> <td> 89058 <\/td> <td> 108469 <\/td> <\/tr>\n  <tr> <td> Area14 <\/td> <td> 85246 <\/td> <td> 81496 <\/td> <td> 95564 <\/td> <\/tr>\n  <tr> <td> Area17 <\/td> <td> 69226 <\/td> <td> 52052 <\/td> <td> 75231 <\/td> <\/tr>\n  <tr> <td> Area18 <\/td> <td> 74190 <\/td> <td> 74488 <\/td> <td> 100582 <\/td> <\/tr>\n  <tr> <td> Area19 <\/td> <td> 68665 <\/td> <td> 31033 <\/td> <td> 45330 <\/td> <\/tr>\n  <tr> <td> Area20 <\/td> <td> 71733 <\/td> <td> 23838 <\/td> <td> 33344 <\/td> <\/tr>\n  <tr> <td> Area21 <\/td> <td> 87681 <\/td> <td> 55851 <\/td> <td> 63768 <\/td> <\/tr>\n  <tr> <td> Norway <\/td> <td> 75973 <\/td> <td> 803447 <\/td> <td> 1057514 <\/td> <\/tr>\n  <tr> <td> Referanseomraade <\/td> <td> . <\/td> <td> . <\/td> <td> . <\/td> <\/tr>\n   <\/tbody> <\/table>",
+    "tabell": "<table  class = 'table shiny-table table- spacing-s' style = 'width:auto;'>\n<thead> <tr> <th style='text-align: left;'> Opptaksomr <\/th> <th style='text-align: left;'> Rate <\/th> <th style='text-align: left;'> Antall <\/th> <th style='text-align: left;'> Innbyggere <\/th>  <\/tr> <\/thead> <tbody>\n  <tr> <td> Area1 <\/td> <td> 48807 <\/td> <td> 7445 <\/td> <td> 15332 <\/td> <\/tr>\n  <tr> <td> Area2 <\/td> <td> 47332 <\/td> <td> 17768 <\/td> <td> 37609 <\/td> <\/tr>\n  <tr> <td> Area3 <\/td> <td> 52598 <\/td> <td> 22466 <\/td> <td> 43186 <\/td> <\/tr>\n  <tr> <td> Area5 <\/td> <td> 60638 <\/td> <td> 17469 <\/td> <td> 29056 <\/td> <\/tr>\n  <tr> <td> Area6 <\/td> <td> 61026 <\/td> <td> 38149 <\/td> <td> 62253 <\/td> <\/tr>\n  <tr> <td> Area7 <\/td> <td> 54270 <\/td> <td> 29205 <\/td> <td> 54199 <\/td> <\/tr>\n  <tr> <td> Area9 <\/td> <td> 57031 <\/td> <td> 13171 <\/td> <td> 23330 <\/td> <\/tr>\n  <tr> <td> Area8 <\/td> <td> 58052 <\/td> <td> 53578 <\/td> <td> 91673 <\/td> <\/tr>\n  <tr> <td> Area10 <\/td> <td> 47944 <\/td> <td> 18990 <\/td> <td> 39744 <\/td> <\/tr>\n  <tr> <td> Area11 <\/td> <td> 47053 <\/td> <td> 38984 <\/td> <td> 81507 <\/td> <\/tr>\n  <tr> <td> Area12 <\/td> <td> 59735 <\/td> <td> 34001 <\/td> <td> 57341 <\/td> <\/tr>\n  <tr> <td> Area13 <\/td> <td> 59967 <\/td> <td> 65038 <\/td> <td> 108469 <\/td> <\/tr>\n  <tr> <td> Area14 <\/td> <td> 56467 <\/td> <td> 55771 <\/td> <td> 95564 <\/td> <\/tr>\n  <tr> <td> Area17 <\/td> <td> 50991 <\/td> <td> 37941 <\/td> <td> 75231 <\/td> <\/tr>\n  <tr> <td> Area18 <\/td> <td> 57388 <\/td> <td> 57493 <\/td> <td> 100582 <\/td> <\/tr>\n  <tr> <td> Area19 <\/td> <td> 53148 <\/td> <td> 23862 <\/td> <td> 45330 <\/td> <\/tr>\n  <tr> <td> Area20 <\/td> <td> 54428 <\/td> <td> 17912 <\/td> <td> 33344 <\/td> <\/tr>\n  <tr> <td> Area21 <\/td> <td> 66563 <\/td> <td> 42388 <\/td> <td> 63768 <\/td> <\/tr>\n  <tr> <td> Norway <\/td> <td> 55898 <\/td> <td> 591628 <\/td> <td> 1057514 <\/td> <\/tr>\n  <tr> <td> Referanseomraade <\/td> <td> . <\/td> <td> . <\/td> <td> . <\/td> <\/tr>\n   <\/tbody> <\/table>",
     "title": {
       "html": "<h1>Helseatlas<\/h1>",
       "deps": [
