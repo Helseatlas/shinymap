@@ -6,7 +6,7 @@
     "menu_level2-selectized": ""
   },
   "output": {
-    "makeTable": {
+    "makeOverview": {
       "html": "<div id=\"tabell\" class=\"shiny-html-output\"><\/div>",
       "deps": [
 
@@ -66,6 +66,12 @@
     },
     "titleMap": {
       "html": "Kart",
+      "deps": [
+
+      ]
+    },
+    "titleOverview": {
+      "html": "Oversikt",
       "deps": [
 
       ]

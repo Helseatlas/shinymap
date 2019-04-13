@@ -12,6 +12,10 @@ setwd("/Users/arnfinn/repo/shinymap")
 testdata <- readRDS("~/repo/shinymap/tests/testthat/data/kols.rds")
 save(testdata, file = "data/testdata.RData")
 
+testmap <- geojsonio::geojson_read("tests/testthat/data/maps/test.geojson", what = "sp")
+save(testmap, file = "data/testmap.RData")
+
+
 
 # How to run the app through launch_app
 
