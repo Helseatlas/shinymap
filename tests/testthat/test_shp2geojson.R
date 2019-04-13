@@ -51,9 +51,3 @@ test_that("utm33_to_leaflet is OK", {
   map <- geojsonio::geojson_read("data/maps/test.geojson", what = "sp")
   expect_equal_to_reference(utm33_to_leaflet(map), "data/utm33_to_leaflet.rds", tolerance = 1e-4)
 })
-
-test_that("reduce_map_size is OK", {
-  # Unit test that map can be reduced in size
-  map <- geojsonio::geojson_read("data/maps/kommuner.geojson", what = "sp")
-  expect_equal_to_reference(reduce_map_size(map, 0.1), "data/reduce_map_size.rds", tolerance = 1e-8)
-})

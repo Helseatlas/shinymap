@@ -23,7 +23,7 @@ shp2geojson <- function(shapefile = "eldre",
 
   # Reduce file size
   if (reduce_size) {
-    geojson_map <- reduce_map_size(map = geojson_map, amount = amount)
+    geojson_map <- rmapshaper::ms_simplify(geojson_map, keep = amount)
   }
 
   # Save geojson file to disk
@@ -32,16 +32,6 @@ shp2geojson <- function(shapefile = "eldre",
   }
 
   return(geojson_map)
-}
-
-#' Reduce size of map
-#'
-#' @param map Map to be reduced in size
-#' @param amount How much to reduce the size
-#'
-#' @return Map of reduced size
-reduce_map_size <- function(map, amount = 0.1) {
-  return(rmapshaper::ms_simplify(map, keep = amount))
 }
 
 #' Convert map from UTM 33 projection to epsg:4326 projection
