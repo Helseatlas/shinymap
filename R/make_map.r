@@ -45,7 +45,7 @@ plotSimpleMap <- function(data = NULL, map = NULL, utm33 = TRUE) {
 #' @return a map
 #' @export
 #'
-makeMap <- function(data = NULL, map = NULL, type = "leaflet") {
+make_map <- function(data = NULL, map = NULL, type = "leaflet") {
   output <- NULL
   switch(type,
     leaflet = {

@@ -10,16 +10,16 @@ shinyUI(function(request) {
     )), uiOutput("title"),
 
     sidebarPanel(
-      uiOutput("pickLevel1"),
-      uiOutput("pickLevel2"),
-      uiOutput("pickLevel3")
+      uiOutput("pick_level1"),
+      uiOutput("pick_level2"),
+      uiOutput("pick_level3")
     ),
     mainPanel(
       tabsetPanel(
-        tabPanel(uiOutput("titleOverview"), uiOutput("makeOverview")),
-        tabPanel(uiOutput("titleTable"), uiOutput("makeTable")),
-        tabPanel(uiOutput("titleMap"), uiOutput("pickMap"), uiOutput("plotMap")),
-        tabPanel(uiOutput("titleHist"), uiOutput("plotHistogram"))
+        tabPanel(uiOutput("title_overview"), uiOutput("make_overview")),
+        tabPanel(uiOutput("title_table"), uiOutput("make_table")),
+        tabPanel(uiOutput("title_map"), uiOutput("pick_map"), uiOutput("plot_map")),
+        tabPanel(uiOutput("title_hist"), uiOutput("plot_histogram"))
       )
     )
   )

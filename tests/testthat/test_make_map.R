@@ -1,19 +1,19 @@
 context("make_map")
 
-test_that("makeMap is OK", {
+test_that("make_map is OK", {
   testdata <- readRDS("data/eldre.rds")
   testmap <- geojsonio::geojson_read("data/maps/test.geojson", what = "sp")
-  expect_equal_to_reference(makeMap(data = testdata,
+  expect_equal_to_reference(make_map(data = testdata,
                                     map = testmap,
                                     type = "leaflet"),
-                            "data/makeMap1.rds",
+                            "data/make_map1.rds",
                             tolerance = 5e-5)
-  expect_equal_to_reference(makeMap(data = testdata,
+  expect_equal_to_reference(make_map(data = testdata,
                                     map = testmap,
                                     type = "simple"),
-                            "data/makeMap2.rds")
-  expect_null(makeMap(type = "siple"))
-  expect_error(makeMap())
+                            "data/make_map2.rds")
+  expect_null(make_map(type = "siple"))
+  expect_error(make_map())
 })
 
 

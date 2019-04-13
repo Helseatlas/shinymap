@@ -7,7 +7,7 @@
 #' @param ylab Label on y-axis
 #'
 #' @export
-plotVariation <- function(inputData = NULL, xlab = "Opptaksomr", ylab = "Rate", type = "histogram") {
+plot_variation <- function(inputData = NULL, xlab = "Opptaksomr", ylab = "Rate", type = "histogram") {
 
 
   # barplot

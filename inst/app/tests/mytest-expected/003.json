@@ -6,13 +6,13 @@
     "menu_level2-selectized": ""
   },
   "output": {
-    "makeOverview": {
+    "make_overview": {
       "html": "<div id=\"tabell\" class=\"shiny-html-output\"><\/div>",
       "deps": [
 
       ]
     },
-    "pickLevel1": {
+    "pick_level1": {
       "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"menu_level1\">Velg et tema:<\/label>\n  <div>\n    <select id=\"menu_level1\"><option value=\"Fastlege og legevakt\" selected>Fastlege og legevakt<\/option>\n<option value=\"Poliklinikk\">Poliklinikk<\/option>\n<option value=\"Akuttinnleggelser\">Akuttinnleggelser<\/option>\n<option value=\"Rehabilitering\">Rehabilitering<\/option>\n<option value=\"Sykelighet\">Sykelighet<\/option><\/select>\n    <script type=\"application/json\" data-for=\"menu_level1\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
       "deps": [
         {
@@ -31,7 +31,7 @@
         }
       ]
     },
-    "pickLevel2": {
+    "pick_level2": {
       "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"menu_level2\">Velg et tema:<\/label>\n  <div>\n    <select id=\"menu_level2\"><option value=\"Personer paa poliklinikk\" selected>Personer paa poliklinikk<\/option>\n<option value=\"Spirometri paa poliklinikk (andeler)\">Spirometri paa poliklinikk (andeler)<\/option><\/select>\n    <script type=\"application/json\" data-for=\"menu_level2\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
       "deps": [
         {
@@ -50,7 +50,7 @@
         }
       ]
     },
-    "pickLevel3": null,
+    "pick_level3": null,
     "tabell": "<table  class = 'table shiny-table table- spacing-s' style = 'width:auto;'>\n<thead> <tr> <th style='text-align: left;'> Opptaksomr <\/th> <th style='text-align: right;'> Rate <\/th> <th style='text-align: right;'> Antall <\/th> <th style='text-align: right;'> Innbyggere <\/th>  <\/tr> <\/thead> <tbody>\n  <tr> <td> Area1 <\/td> <td align=\"right\"> 121.20 <\/td> <td align=\"right\"> 38184 <\/td> <td align=\"right\"> 461 <\/td> <\/tr>\n  <tr> <td> Area2 <\/td> <td align=\"right\"> 102.90 <\/td> <td align=\"right\"> 95215 <\/td> <td align=\"right\"> 992 <\/td> <\/tr>\n  <tr> <td> Area3 <\/td> <td align=\"right\"> 73.40 <\/td> <td align=\"right\"> 70961 <\/td> <td align=\"right\"> 537 <\/td> <\/tr>\n  <tr> <td> Area4 <\/td> <td align=\"right\"> 89.90 <\/td> <td align=\"right\"> 41919 <\/td> <td align=\"right\"> 393 <\/td> <\/tr>\n  <tr> <td> Area5 <\/td> <td align=\"right\"> 58.40 <\/td> <td align=\"right\"> 71370 <\/td> <td align=\"right\"> 435 <\/td> <\/tr>\n  <tr> <td> Area6 <\/td> <td align=\"right\"> 84.70 <\/td> <td align=\"right\"> 146062 <\/td> <td align=\"right\"> 1226 <\/td> <\/tr>\n  <tr> <td> Area7 <\/td> <td align=\"right\"> 69.50 <\/td> <td align=\"right\"> 132447 <\/td> <td align=\"right\"> 945 <\/td> <\/tr>\n  <tr> <td> Area23 <\/td> <td align=\"right\"> 91.60 <\/td> <td align=\"right\"> 64333 <\/td> <td align=\"right\"> 595 <\/td> <\/tr>\n  <tr> <td> Area9 <\/td> <td align=\"right\"> 69.70 <\/td> <td align=\"right\"> 56050 <\/td> <td align=\"right\"> 403 <\/td> <\/tr>\n  <tr> <td> Area8 <\/td> <td align=\"right\"> 87.40 <\/td> <td align=\"right\"> 137988 <\/td> <td align=\"right\"> 1170 <\/td> <\/tr>\n  <tr> <td> Area10 <\/td> <td align=\"right\"> 75.70 <\/td> <td align=\"right\"> 86891 <\/td> <td align=\"right\"> 663 <\/td> <\/tr>\n  <tr> <td> Area11 <\/td> <td align=\"right\"> 67.50 <\/td> <td align=\"right\"> 155662 <\/td> <td align=\"right\"> 980 <\/td> <\/tr>\n  <tr> <td> Area12 <\/td> <td align=\"right\"> 65.40 <\/td> <td align=\"right\"> 150013 <\/td> <td align=\"right\"> 994 <\/td> <\/tr>\n  <tr> <td> Area13 <\/td> <td align=\"right\"> 79.30 <\/td> <td align=\"right\"> 239191 <\/td> <td align=\"right\"> 1776 <\/td> <\/tr>\n  <tr> <td> Area14 <\/td> <td align=\"right\"> 80.90 <\/td> <td align=\"right\"> 113228 <\/td> <td align=\"right\"> 823 <\/td> <\/tr>\n  <tr> <td> Area15 <\/td> <td align=\"right\"> 122.10 <\/td> <td align=\"right\"> 44086 <\/td> <td align=\"right\"> 423 <\/td> <\/tr>\n  <tr> <td> Area16 <\/td> <td align=\"right\"> 60.50 <\/td> <td align=\"right\"> 62333 <\/td> <td align=\"right\"> 380 <\/td> <\/tr>\n  <tr> <td> Area17 <\/td> <td align=\"right\"> 68.50 <\/td> <td align=\"right\"> 218086 <\/td> <td align=\"right\"> 1572 <\/td> <\/tr>\n  <tr> <td> Area18 <\/td> <td align=\"right\"> 74.50 <\/td> <td align=\"right\"> 241963 <\/td> <td align=\"right\"> 1770 <\/td> <\/tr>\n  <tr> <td> Area19 <\/td> <td align=\"right\"> 113.30 <\/td> <td align=\"right\"> 118596 <\/td> <td align=\"right\"> 1358 <\/td> <\/tr>\n  <tr> <td> Area20 <\/td> <td align=\"right\"> 88.00 <\/td> <td align=\"right\"> 91860 <\/td> <td align=\"right\"> 831 <\/td> <\/tr>\n  <tr> <td> Area21 <\/td> <td align=\"right\"> 132.50 <\/td> <td align=\"right\"> 143083 <\/td> <td align=\"right\"> 1890 <\/td> <\/tr>\n  <tr> <td> Norway <\/td> <td align=\"right\"> 82.50 <\/td> <td align=\"right\"> 2519521 <\/td> <td align=\"right\"> 20620 <\/td> <\/tr>\n   <\/tbody> <\/table>",
     "title": {
       "html": "<h1>Helseatlas<\/h1>",
@@ -58,25 +58,25 @@
 
       ]
     },
-    "titleHist": {
+    "title_hist": {
       "html": "Histogram",
       "deps": [
 
       ]
     },
-    "titleMap": {
+    "title_map": {
       "html": "Kart",
       "deps": [
 
       ]
     },
-    "titleOverview": {
+    "title_overview": {
       "html": "Oversikt",
       "deps": [
 
       ]
     },
-    "titleTable": {
+    "title_table": {
       "html": "Tabell",
       "deps": [
 

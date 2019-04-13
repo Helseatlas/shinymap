@@ -2,8 +2,8 @@
 
 export(filterOut)
 export(launch_app)
-export(makeMap)
-export(plotVariation)
+export(make_map)
+export(plot_variation)
 export(readIAjson)
 export(shp2geojson)
 export(utm33toLeaflet)

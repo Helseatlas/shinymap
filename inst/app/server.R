@@ -47,7 +47,7 @@ shinyServer(
       return(level3)
     })
 
-    output$pickLevel1 <- renderUI({
+    output$pick_level1 <- renderUI({
       selectInput(
         inputId = "menu_level1",
         label = c("Velg et tema:", "Pick a subject")[lang],
@@ -56,7 +56,7 @@ shinyServer(
       )
     })
 
-    output$pickLevel2 <- renderUI({
+    output$pick_level2 <- renderUI({
       if ("level2" %in% colnames(healthatlas_data)) {
         selectInput(
           inputId = "menu_level2",
@@ -67,7 +67,7 @@ shinyServer(
       }
     })
 
-    output$pickLevel3 <- renderUI({
+    output$pick_level3 <- renderUI({
       if ("level3" %in% colnames(healthatlas_data)) {
         selectInput(
           inputId = "menu_level3",
@@ -78,7 +78,7 @@ shinyServer(
       }
     })
 
-    output$makeOverview <- renderUI({
+    output$make_overview <- renderUI({
       # will not use the following when running tests due to some random numbers generated
       if (isFALSE(getOption("shiny.testmode"))) {
         verticalLayout(
@@ -86,15 +86,15 @@ shinyServer(
             cellWidths = c("25%", "75%"),
             cellArgs = list(style = "padding: 6px"),
             renderTable({
-              pickedData()
+              picked_data()
             }),
             leaflet::renderLeaflet({
-              shinymap::makeMap(type = "leaflet", map = healthatlas_map)
+              shinymap::make_map(type = "leaflet", map = healthatlas_map)
             })
           ),
           splitLayout(
             renderPlot({
-              shinymap::plotVariation(inputData = kartlagInput(),
+              shinymap::plot_variation(inputData = kartlag_input(),
                                       xlab = c("Opptaksomr\u00E5de", "Area")[lang],
                                       ylab = input$menu_level1)
             })
@@ -106,11 +106,11 @@ shinyServer(
       }
     })
 
-    output$makeTable <- renderUI({
+    output$make_table <- renderUI({
       tableOutput("tabell")
     })
 
-    kartlagInput <- reactive({
+    kartlag_input <- reactive({
       datasett <- shinymap::filterOut(healthatlas_data,
         filter1 = input$menu_level1,
         filter2 = input$menu_level2,
@@ -119,40 +119,40 @@ shinyServer(
       return(datasett)
     })
 
-    pickedData <- reactive({
-      new_tab <- data.frame(kartlagInput()$area)
+    picked_data <- reactive({
+      new_tab <- data.frame(kartlag_input()$area)
       colnames(new_tab) <- c(c("Opptaksomr", "Area")[lang])
-      new_tab[c("Rate", "Rate")[lang]] <- kartlagInput()$rate
-      new_tab[c("Antall", "Num")[lang]] <- kartlagInput()$numerater
-      new_tab[c("Innbyggere", "Inhab")[lang]] <- kartlagInput()$denominator
+      new_tab[c("Rate", "Rate")[lang]] <- kartlag_input()$rate
+      new_tab[c("Antall", "Num")[lang]] <- kartlag_input()$numerater
+      new_tab[c("Innbyggere", "Inhab")[lang]] <- kartlag_input()$denominator
       return(new_tab)
     })
 
     output$tabell <- renderTable({
-      pickedData()
+      picked_data()
     })
 
     output$title <- renderUI({
       return(HTML(paste0("<h1>", webpage_title, "</h1>")))
     })
 
-    output$titleOverview <- renderUI({
+    output$title_overview <- renderUI({
       return(c("Oversikt", "Overview")[lang])
     })
 
-    output$titleTable <- renderUI({
+    output$title_table <- renderUI({
       return(c("Tabell", "Table")[lang])
     })
 
-    output$titleMap <- renderUI({
+    output$title_map <- renderUI({
       return(c("Kart", "Map")[lang])
     })
 
-    output$titleHist <- renderUI({
+    output$title_hist <- renderUI({
       return(c("Histogram", "Histogram")[lang])
     })
 
-    output$pickMap <- renderUI({
+    output$pick_map <- renderUI({
       selectInput(
         inputId = "maptype",
         label = c("Velg karttype", "Choose map type")[lang],
@@ -160,7 +160,7 @@ shinyServer(
         selected = "leaflet"
       )
     })
-    output$plotMap <- renderUI({
+    output$plot_map <- renderUI({
       # Make a leaflet map
       type <- input$maptype
       if (is.null(type)) {
@@ -176,25 +176,25 @@ shinyServer(
       )
     })
 
-    output$plotHistogram <- renderUI({
+    output$plot_histogram <- renderUI({
       # Make a histogram plot
       shiny::plotOutput(outputId = "histogram")
     })
 
     output$simplemap <- renderPlot({
-      shinymap::makeMap(type = "simple", map = healthatlas_map)
+      shinymap::make_map(type = "simple", map = healthatlas_map)
     })
 
     output$histogram <- renderPlot({
-      shinymap::plotVariation(
-        inputData = kartlagInput(),
+      shinymap::plot_variation(
+        inputData = kartlag_input(),
         xlab = c("Opptaksomr\u00E5de", "Area")[lang],
         ylab = input$menu_level1
       )
     })
 
     output$leafletmap <- leaflet::renderLeaflet({
-      shinymap::makeMap(type = "leaflet", map = healthatlas_map)
+      shinymap::make_map(type = "leaflet", map = healthatlas_map)
     })
   }
 )
