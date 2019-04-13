@@ -1,0 +1,105 @@
+{
+  "input": {
+    "menu_level1": "Barn 0-16 aar, totalt",
+    "menu_level1-selectized": ""
+  },
+  "output": {
+    "make_overview": {
+      "html": "<div id=\"tabell\" class=\"shiny-html-output\"><\/div>",
+      "deps": [
+
+      ]
+    },
+    "pick_level1": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"menu_level1\">Velg et tema:<\/label>\n  <div>\n    <select id=\"menu_level1\"><option value=\"Barn 0-16 aar, totalt\" selected>Barn 0-16 aar, totalt<\/option>\n<option value=\"Medisinske tilstander, spesialisthelsetjenesten\">Medisinske tilstander, spesialisthelsetjenesten<\/option>\n<option value=\"Kirurgiske tilstander, spesialisthelsetjenesten\">Kirurgiske tilstander, spesialisthelsetjenesten<\/option><\/select>\n    <script type=\"application/json\" data-for=\"menu_level1\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "selectize",
+          "version": "0.11.2",
+          "src": {
+            "href": "shared/selectize"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "css/selectize.bootstrap3.css",
+          "head": "<!--[if lt IE 9]>\n<script src=\"shared/selectize/js/es5-shim.min.js\"><\/script>\n<![endif]-->\n<script src=\"shared/selectize/js/selectize.min.js\"><\/script>",
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    },
+    "pick_level2": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"menu_level2\">Velg et tema:<\/label>\n  <div>\n    <select id=\"menu_level2\"><option value=\"Primaerhelsetjenesten\" selected>Primaerhelsetjenesten<\/option>\n<option value=\"Spesialisthelsetjenesten\">Spesialisthelsetjenesten<\/option><\/select>\n    <script type=\"application/json\" data-for=\"menu_level2\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "selectize",
+          "version": "0.11.2",
+          "src": {
+            "href": "shared/selectize"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "css/selectize.bootstrap3.css",
+          "head": "<!--[if lt IE 9]>\n<script src=\"shared/selectize/js/es5-shim.min.js\"><\/script>\n<![endif]-->\n<script src=\"shared/selectize/js/selectize.min.js\"><\/script>",
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    },
+    "pick_level3": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"menu_level3\">Velg et tema:<\/label>\n  <div>\n    <select id=\"menu_level3\"><\/select>\n    <script type=\"application/json\" data-for=\"menu_level3\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "selectize",
+          "version": "0.11.2",
+          "src": {
+            "href": "shared/selectize"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "css/selectize.bootstrap3.css",
+          "head": "<!--[if lt IE 9]>\n<script src=\"shared/selectize/js/es5-shim.min.js\"><\/script>\n<![endif]-->\n<script src=\"shared/selectize/js/selectize.min.js\"><\/script>",
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    },
+    "tabell": "<table  class = 'table shiny-table table- spacing-s' style = 'width:auto;'>\n<thead> <tr> <th style='text-align: left;'> Opptaksomr <\/th> <th style='text-align: left;'> Rate <\/th> <th style='text-align: left;'> Antall <\/th> <th style='text-align: left;'> Innbyggere <\/th>  <\/tr> <\/thead> <tbody>\n  <tr> <td> Area1 <\/td> <td> 158098 <\/td> <td> 24086 <\/td> <td> 15332 <\/td> <\/tr>\n  <tr> <td> Area2 <\/td> <td> 160652 <\/td> <td> 60291 <\/td> <td> 37609 <\/td> <\/tr>\n  <tr> <td> Area3 <\/td> <td> 154949 <\/td> <td> 66383 <\/td> <td> 43186 <\/td> <\/tr>\n  <tr> <td> Area5 <\/td> <td> 172279 <\/td> <td> 49585 <\/td> <td> 29056 <\/td> <\/tr>\n  <tr> <td> Area6 <\/td> <td> 160625 <\/td> <td> 100562 <\/td> <td> 62253 <\/td> <\/tr>\n  <tr> <td> Area7 <\/td> <td> 164622 <\/td> <td> 88575 <\/td> <td> 54199 <\/td> <\/tr>\n  <tr> <td> Area9 <\/td> <td> 165661 <\/td> <td> 38251 <\/td> <td> 23330 <\/td> <\/tr>\n  <tr> <td> Area8 <\/td> <td> 153231 <\/td> <td> 141518 <\/td> <td> 91673 <\/td> <\/tr>\n  <tr> <td> Area10 <\/td> <td> 162108 <\/td> <td> 64176 <\/td> <td> 39744 <\/td> <\/tr>\n  <tr> <td> Area11 <\/td> <td> 166592 <\/td> <td> 137743 <\/td> <td> 81507 <\/td> <\/tr>\n  <tr> <td> Area12 <\/td> <td> 173040 <\/td> <td> 98262 <\/td> <td> 57341 <\/td> <\/tr>\n  <tr> <td> Area13 <\/td> <td> 181220 <\/td> <td> 196474 <\/td> <td> 108469 <\/td> <\/tr>\n  <tr> <td> Area14 <\/td> <td> 164244 <\/td> <td> 166702 <\/td> <td> 95564 <\/td> <\/tr>\n  <tr> <td> Area17 <\/td> <td> 165394 <\/td> <td> 122865 <\/td> <td> 75231 <\/td> <\/tr>\n  <tr> <td> Area18 <\/td> <td> 178204 <\/td> <td> 178110 <\/td> <td> 100582 <\/td> <\/tr>\n  <tr> <td> Area19 <\/td> <td> 181195 <\/td> <td> 81297 <\/td> <td> 45330 <\/td> <\/tr>\n  <tr> <td> Area20 <\/td> <td> 154442 <\/td> <td> 50973 <\/td> <td> 33344 <\/td> <\/tr>\n  <tr> <td> Area21 <\/td> <td> 174781 <\/td> <td> 111357 <\/td> <td> 63768 <\/td> <\/tr>\n  <tr> <td> Norway <\/td> <td> 167731 <\/td> <td> 1777206 <\/td> <td> 1057514 <\/td> <\/tr>\n  <tr> <td> Referanseomraade <\/td> <td> . <\/td> <td> 803289 <\/td> <td> 477075 <\/td> <\/tr>\n  <tr> <td> Area1 <\/td> <td> 65605 <\/td> <td> 10052 <\/td> <td> 15332 <\/td> <\/tr>\n  <tr> <td> Area2 <\/td> <td> 67641 <\/td> <td> 25430 <\/td> <td> 37609 <\/td> <\/tr>\n  <tr> <td> Area3 <\/td> <td> 69673 <\/td> <td> 29976 <\/td> <td> 43186 <\/td> <\/tr>\n  <tr> <td> Area5 <\/td> <td> 85678 <\/td> <td> 24851 <\/td> <td> 29056 <\/td> <\/tr>\n  <tr> <td> Area6 <\/td> <td> 80049 <\/td> <td> 49907 <\/td> <td> 62253 <\/td> <\/tr>\n  <tr> <td> Area7 <\/td> <td> 77243 <\/td> <td> 41785 <\/td> <td> 54199 <\/td> <\/tr>\n  <tr> <td> Area9 <\/td> <td> 79378 <\/td> <td> 18473 <\/td> <td> 23330 <\/td> <\/tr>\n  <tr> <td> Area8 <\/td> <td> 80571 <\/td> <td> 74034 <\/td> <td> 91673 <\/td> <\/tr>\n  <tr> <td> Area10 <\/td> <td> 66647 <\/td> <td> 26458 <\/td> <td> 39744 <\/td> <\/tr>\n  <tr> <td> Area11 <\/td> <td> 61704 <\/td> <td> 50763 <\/td> <td> 81507 <\/td> <\/tr>\n  <tr> <td> Area12 <\/td> <td> 76751 <\/td> <td> 43905 <\/td> <td> 57341 <\/td> <\/tr>\n  <tr> <td> Area13 <\/td> <td> 82109 <\/td> <td> 89058 <\/td> <td> 108469 <\/td> <\/tr>\n  <tr> <td> Area14 <\/td> <td> 85246 <\/td> <td> 81496 <\/td> <td> 95564 <\/td> <\/tr>\n  <tr> <td> Area17 <\/td> <td> 69226 <\/td> <td> 52052 <\/td> <td> 75231 <\/td> <\/tr>\n  <tr> <td> Area18 <\/td> <td> 74190 <\/td> <td> 74488 <\/td> <td> 100582 <\/td> <\/tr>\n  <tr> <td> Area19 <\/td> <td> 68665 <\/td> <td> 31033 <\/td> <td> 45330 <\/td> <\/tr>\n  <tr> <td> Area20 <\/td> <td> 71733 <\/td> <td> 23838 <\/td> <td> 33344 <\/td> <\/tr>\n  <tr> <td> Area21 <\/td> <td> 87681 <\/td> <td> 55851 <\/td> <td> 63768 <\/td> <\/tr>\n  <tr> <td> Norway <\/td> <td> 75973 <\/td> <td> 803447 <\/td> <td> 1057514 <\/td> <\/tr>\n  <tr> <td> Referanseomraade <\/td> <td> . <\/td> <td> . <\/td> <td> . <\/td> <\/tr>\n  <tr> <td> Area1 <\/td> <td> 6449 <\/td> <td> 974 <\/td> <td> 15332 <\/td> <\/tr>\n  <tr> <td> Area2 <\/td> <td> 4697 <\/td> <td> 1757 <\/td> <td> 37609 <\/td> <\/tr>\n  <tr> <td> Area3 <\/td> <td> 7292 <\/td> <td> 3080 <\/td> <td> 43186 <\/td> <\/tr>\n  <tr> <td> Area5 <\/td> <td> 6853 <\/td> <td> 1951 <\/td> <td> 29056 <\/td> <\/tr>\n  <tr> <td> Area6 <\/td> <td> 5359 <\/td> <td> 3380 <\/td> <td> 62253 <\/td> <\/tr>\n  <tr> <td> Area7 <\/td> <td> 6533 <\/td> <td> 3495 <\/td> <td> 54199 <\/td> <\/tr>\n  <tr> <td> Area9 <\/td> <td> 7034 <\/td> <td> 1600 <\/td> <td> 23330 <\/td> <\/tr>\n  <tr> <td> Area8 <\/td> <td> 5804 <\/td> <td> 5399 <\/td> <td> 91673 <\/td> <\/tr>\n  <tr> <td> Area10 <\/td> <td> 6380 <\/td> <td> 2521 <\/td> <td> 39744 <\/td> <\/tr>\n  <tr> <td> Area11 <\/td> <td> 5155 <\/td> <td> 4314 <\/td> <td> 81507 <\/td> <\/tr>\n  <tr> <td> Area12 <\/td> <td> 5264 <\/td> <td> 2959 <\/td> <td> 57341 <\/td> <\/tr>\n  <tr> <td> Area13 <\/td> <td> 5064 <\/td> <td> 5482 <\/td> <td> 108469 <\/td> <\/tr>\n  <tr> <td> Area14 <\/td> <td> 4251 <\/td> <td> 4540 <\/td> <td> 95564 <\/td> <\/tr>\n  <tr> <td> Area17 <\/td> <td> 6861 <\/td> <td> 5008 <\/td> <td> 75231 <\/td> <\/tr>\n  <tr> <td> Area18 <\/td> <td> 4487 <\/td> <td> 4468 <\/td> <td> 100582 <\/td> <\/tr>\n  <tr> <td> Area19 <\/td> <td> 7851 <\/td> <td> 3476 <\/td> <td> 45330 <\/td> <\/tr>\n  <tr> <td> Area20 <\/td> <td> 7768 <\/td> <td> 2527 <\/td> <td> 33344 <\/td> <\/tr>\n  <tr> <td> Area21 <\/td> <td> 7054 <\/td> <td> 4492 <\/td> <td> 63768 <\/td> <\/tr>\n  <tr> <td> Norway <\/td> <td> 5779 <\/td> <td> 61420 <\/td> <td> 1057514 <\/td> <\/tr>\n  <tr> <td> Referanseomraade <\/td> <td> 5062 <\/td> <td> 24871 <\/td> <td> 477075 <\/td> <\/tr>\n  <tr> <td> Area1 <\/td> <td> 72062 <\/td> <td> 11026 <\/td> <td> 15332 <\/td> <\/tr>\n  <tr> <td> Area2 <\/td> <td> 72337 <\/td> <td> 27187 <\/td> <td> 37609 <\/td> <\/tr>\n  <tr> <td> Area3 <\/td> <td> 76965 <\/td> <td> 33056 <\/td> <td> 43186 <\/td> <\/tr>\n  <tr> <td> Area5 <\/td> <td> 92527 <\/td> <td> 26802 <\/td> <td> 29056 <\/td> <\/tr>\n  <tr> <td> Area6 <\/td> <td> 85418 <\/td> <td> 53287 <\/td> <td> 62253 <\/td> <\/tr>\n  <tr> <td> Area7 <\/td> <td> 83777 <\/td> <td> 45280 <\/td> <td> 54199 <\/td> <\/tr>\n  <tr> <td> Area9 <\/td> <td> 86411 <\/td> <td> 20073 <\/td> <td> 23330 <\/td> <\/tr>\n  <tr> <td> Area8 <\/td> <td> 86385 <\/td> <td> 79433 <\/td> <td> 91673 <\/td> <\/tr>\n  <tr> <td> Area10 <\/td> <td> 73029 <\/td> <td> 28979 <\/td> <td> 39744 <\/td> <\/tr>\n  <tr> <td> Area11 <\/td> <td> 66872 <\/td> <td> 55077 <\/td> <td> 81507 <\/td> <\/tr>\n  <tr> <td> Area12 <\/td> <td> 82009 <\/td> <td> 46864 <\/td> <td> 57341 <\/td> <\/tr>\n  <tr> <td> Area13 <\/td> <td> 87167 <\/td> <td> 94540 <\/td> <td> 108469 <\/td> <\/tr>\n  <tr> <td> Area14 <\/td> <td> 89548 <\/td> <td> 86036 <\/td> <td> 95564 <\/td> <\/tr>\n  <tr> <td> Area17 <\/td> <td> 76079 <\/td> <td> 57060 <\/td> <td> 75231 <\/td> <\/tr>\n  <tr> <td> Area18 <\/td> <td> 78673 <\/td> <td> 78955 <\/td> <td> 100582 <\/td> <\/tr>\n  <tr> <td> Area19 <\/td> <td> 76506 <\/td> <td> 34508 <\/td> <td> 45330 <\/td> <\/tr>\n  <tr> <td> Area20 <\/td> <td> 79504 <\/td> <td> 26364 <\/td> <td> 33344 <\/td> <\/tr>\n  <tr> <td> Area21 <\/td> <td> 94737 <\/td> <td> 60343 <\/td> <td> 63768 <\/td> <\/tr>\n  <tr> <td> Norway <\/td> <td> 81759 <\/td> <td> 864867 <\/td> <td> 1057514 <\/td> <\/tr>\n  <tr> <td> Referanseomraade <\/td> <td> . <\/td> <td> 395559 <\/td> <td> 477075 <\/td> <\/tr>\n   <\/tbody> <\/table>",
+    "title": {
+      "html": "<h1>Helseatlas<\/h1>",
+      "deps": [
+
+      ]
+    },
+    "title_hist": {
+      "html": "Histogram",
+      "deps": [
+
+      ]
+    },
+    "title_map": {
+      "html": "Kart",
+      "deps": [
+
+      ]
+    },
+    "title_overview": {
+      "html": "Oversikt",
+      "deps": [
+
+      ]
+    },
+    "title_table": {
+      "html": "Tabell",
+      "deps": [
+
+      ]
+    }
+  },
+  "export": {
+
+  }
+}
