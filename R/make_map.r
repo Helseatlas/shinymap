@@ -6,16 +6,19 @@
 #'
 #' @return a map
 #'
-plotLeafletmap <- function(data = NULL, map = NULL, utm33 = TRUE){
-  if (utm33){
+plotLeafletmap <- function(data = NULL, map = NULL, utm33 = TRUE) {
+  if (utm33) {
     # convert from utm33 to leaflet
     map <- shinymap::utm33toLeaflet(map = map)
   }
-  
+
   leaflet::leaflet(map) %>%
     leaflet::addTiles() %>%
-    leaflet::addPolygons(stroke = FALSE, smoothFactor = 0.3, fillOpacity = 0.2, fillColor = c("green", "blue", "red", "yellow", "orange", "purple"))
-
+    leaflet::addPolygons(stroke = FALSE,
+                         smoothFactor = 0.3,
+                         fillOpacity = 0.2,
+                         fillColor = c("green", "blue", "red",
+                                       "yellow", "orange", "purple"))
 }
 
 #' Plot a map with data
@@ -25,8 +28,8 @@ plotLeafletmap <- function(data = NULL, map = NULL, utm33 = TRUE){
 #' @param utm33 Convert from UTM 33 to Leaflet projection
 #'
 #' @return a plot made from a geojson map
-plotSimpleMap <- function(data = NULL, map = NULL, utm33 = TRUE){
-  if (utm33){
+plotSimpleMap <- function(data = NULL, map = NULL, utm33 = TRUE) {
+  if (utm33) {
     # convert from utm33 to leaflet
     map <- shinymap::utm33toLeaflet(map = map)
   }
@@ -42,12 +45,15 @@ plotSimpleMap <- function(data = NULL, map = NULL, utm33 = TRUE){
 #' @return a map
 #' @export
 #'
-makeMap <- function(data = NULL, map = NULL, type = "leaflet"){
-  
+makeMap <- function(data = NULL, map = NULL, type = "leaflet") {
   output <- NULL
   switch(type,
-         leaflet = {output <- plotLeafletmap(data = data, map = map)},
-         simple = {output <- plotSimpleMap(data = data, map = map)}
-         )
+    leaflet = {
+      output <- plotLeafletmap(data = data, map = map)
+    },
+    simple = {
+      output <- plotSimpleMap(data = data, map = map)
+    }
+  )
   return(output)
 }

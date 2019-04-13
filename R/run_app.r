@@ -17,20 +17,22 @@ launch_app <- function(dataset = NULL,
                        publish_app = FALSE,
                        name = "experimental",
                        shiny_account = "skde",
-                       HNproxy = FALSE){
-  
-  if (is.null(dataset)){
+                       HNproxy = FALSE) {
+  if (is.null(dataset)) {
     # If no dataset is defined, use the dataset shipped with the shinymap package
     # (for testing only)
     dataset <- shinymap::kols
   }
-  
+
   # Create a directory with all necessary data.
-  shinydir <- create_appDir(healthatlas_data = dataset, healthatlas_map = map, language = language, webpage_title = title)
-  
+  shinydir <- create_appDir(healthatlas_data = dataset,
+                            healthatlas_map = map,
+                            language = language,
+                            webpage_title = title)
+
   # Run the app
-  if (publish_app){
-    if (HNproxy){
+  if (publish_app) {
+    if (HNproxy) {
       options(RCurlOptions = list(proxy = "http://www-proxy.helsenord.no:8080"))
       options(shinyapps.http = "rcurl")
     }
@@ -53,9 +55,9 @@ launch_app <- function(dataset = NULL,
 #'
 #' @return The created directory
 #'
-create_appDir <- function(healthatlas_data = NULL, healthatlas_map = NULL, language = NULL, webpage_title = NULL){
+create_appDir <- function(healthatlas_data = NULL, healthatlas_map = NULL, language = NULL, webpage_title = NULL) {
   # Name the directory
-  tmpshinydir <- paste0(tempdir(),"/shiny")
+  tmpshinydir <- paste0(tempdir(), "/", "shiny")
   # Delete old content in directory
   unlink(tmpshinydir, recursive = TRUE, force = TRUE)
   # Create main directory
@@ -63,10 +65,13 @@ create_appDir <- function(healthatlas_data = NULL, healthatlas_map = NULL, langu
   # Copy the installed version of the shinymap package to the directory
   file.copy(system.file("app", package = "shinymap"), tmpshinydir, recursive = TRUE)
   # Create data folder
-  dir.create(paste0(tmpshinydir, "/app/data"))
+  dir.create(paste0(tmpshinydir, "/", "app/data"))
   # Save the data to a .RData file
-  save(healthatlas_data, healthatlas_map, language, webpage_title, file = paste0(tmpshinydir,"/app/data/data.RData"))
+  save(healthatlas_data,
+       healthatlas_map,
+       language,
+       webpage_title,
+       file = paste0(tmpshinydir, "/", "app/data/data.RData"))
   # Return the name of the main directory
-  return(paste0(tmpshinydir, "/app"))
+  return(paste0(tmpshinydir, "/", "app"))
 }
-

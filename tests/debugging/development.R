@@ -2,7 +2,7 @@ library(magrittr)
 
 print(ls())
 
-rm(list=ls())
+rm(list = ls())
 
 getwd()
 setwd("/Users/arnfinn/repo/shinymap")
@@ -16,21 +16,25 @@ save(testdata, file = "data/testdata.RData")
 # How to run the app through launch_app
 
 devtools::install_github("Helseatlas/shinymap")
-shinymap::launch_app(dataset = shinymap::kols, 
-                     map = geojsonio::geojson_read("tests/testthat/data/maps/test.geojson", what = "sp"), 
-                     publish_app = FALSE, 
-                     title = "Helseatlas kols", 
-                     language = "no")
+shinymap::launch_app(
+  dataset = shinymap::kols,
+  map = geojsonio::geojson_read("tests/testthat/data/maps/test.geojson", what = "sp"),
+  publish_app = FALSE,
+  title = "Helseatlas kols",
+  language = "no"
+)
 
 
 # How to submit to shinyapps.io through launch_app
 devtools::install_github("Helseatlas/shinymap")
-shinymap::launch_app(dataset = shinymap::kols, 
-                     map = geojsonio::geojson_read("tests/testthat/data/maps/test.geojson", what = "sp"), 
-                     publish_app = TRUE, 
-#                     HNproxy = TRUE, 
-                     title = "Helseatlas kols", 
-                     language = "no")
+shinymap::launch_app(
+  dataset = shinymap::kols,
+  map = geojsonio::geojson_read("tests/testthat/data/maps/test.geojson", what = "sp"),
+  publish_app = TRUE,
+  #                     HNproxy = TRUE,
+  title = "Helseatlas kols",
+  language = "no"
+)
 
 
 # How to run the app locally
@@ -41,7 +45,7 @@ healthatlas_map <- geojsonio::geojson_read("tests/testthat/data/maps/test.geojso
 language <- "en"
 language <- "no"
 webpage_title <- "Helseatlas kols 2013-2015"
-runApp('inst/app')
+runApp("inst/app")
 
 
 # How two extra test maps were made
@@ -62,7 +66,11 @@ eldre <- utm33toLeaflet(map)
 
 leaflet::leaflet(eldre) %>%
   leaflet::addTiles() %>%
-  leaflet::addPolygons(stroke = FALSE, smoothFactor = 0.3, fillOpacity = 0.2, fillColor = c("green", "blue", "red", "yellow", "orange", "purple"))
+  leaflet::addPolygons(stroke = FALSE,
+                       smoothFactor = 0.3,
+                       fillOpacity = 0.2,
+                       fillColor = c("green", "blue", "red",
+                                     "yellow", "orange", "purple"))
 
 
 # Map from https://kartkatalog.geonorge.no/metadata/geonorge/norske-fylker-og-kommuner-illustrasjonsdata-2018-klippet-etter-kyst/cbbdf78c-fa3a-48bf-8f3f-9eec74e428fd
