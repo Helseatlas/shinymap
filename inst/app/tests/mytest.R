@@ -1,5 +1,5 @@
+# nolint start
 app <- ShinyDriver$new("../")
-
 
 app$snapshotInit("mytest")
 
@@ -14,3 +14,4 @@ app$setInputs(menu_level2 = "Reinnleggelser")
 app$snapshot()
 app$setInputs(menu_level1 = "Sykelighet")
 app$snapshot()
+# nolint end

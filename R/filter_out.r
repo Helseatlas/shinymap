@@ -8,7 +8,7 @@
 #' @return datasett
 #' @export
 #'
-filterOut <- function(datasett, filter1 = NULL, filter2 = NULL, filter3 = NULL) {
+filter_out <- function(datasett, filter1 = NULL, filter2 = NULL, filter3 = NULL) {
 
   # filter out level1
   if (!is.null(filter1)) {

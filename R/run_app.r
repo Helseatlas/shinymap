@@ -25,7 +25,7 @@ launch_app <- function(dataset = NULL,
   }
 
   # Create a directory with all necessary data.
-  shinydir <- create_appDir(healthatlas_data = dataset,
+  shinydir <- create_appdir(healthatlas_data = dataset,
                             healthatlas_map = map,
                             language = language,
                             webpage_title = title)
@@ -55,7 +55,7 @@ launch_app <- function(dataset = NULL,
 #'
 #' @return The created directory
 #'
-create_appDir <- function(healthatlas_data = NULL, healthatlas_map = NULL, language = NULL, webpage_title = NULL) {
+create_appdir <- function(healthatlas_data = NULL, healthatlas_map = NULL, language = NULL, webpage_title = NULL) {
   # Name the directory
   tmpshinydir <- paste0(tempdir(), "/", "shiny")
   # Delete old content in directory

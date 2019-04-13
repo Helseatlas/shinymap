@@ -40,19 +40,17 @@ shiny::shinyServer(
     pickable_level1 <- c(levels(factor(healthatlas_data$level1)))
 
     pickable_level2 <- shiny::eventReactive(input$menu_level1, {
-      tmpdata <- dplyr::filter(healthatlas_data, level1 == input$menu_level1)
-      level2 <- c(levels(factor(tmpdata$level2)))
-      return(level2)
+      tmpdata <- dplyr::filter(healthatlas_data, healthatlas_data$level1 == input$menu_level1)
+      return(c(levels(factor(tmpdata$level2))))
     })
 
     pickable_level3 <- shiny::eventReactive(c(input$menu_level1, input$menu_level2), {
       if (is.null(input$menu_level2)) {
         return()
       }
-      tmpdata1 <- dplyr::filter(healthatlas_data, level1 == input$menu_level1)
-      tmpdata2 <- dplyr::filter(tmpdata1, level2 == input$menu_level2)
-      level3 <- c(levels(factor(tmpdata2$level3)))
-      return(level3)
+      tmpdata1 <- dplyr::filter(healthatlas_data, healthatlas_data$level1 == input$menu_level1)
+      tmpdata2 <- dplyr::filter(tmpdata1, tmpdata1$level2 == input$menu_level2)
+      return(c(levels(factor(tmpdata2$level3))))
     })
 
     output$pick_level1 <- shiny::renderUI({
@@ -120,7 +118,7 @@ shiny::shinyServer(
     })
 
     kartlag_input <- reactive({
-      datasett <- shinymap::filterOut(healthatlas_data,
+      datasett <- shinymap::filter_out(healthatlas_data,
         filter1 = input$menu_level1,
         filter2 = input$menu_level2,
         filter3 = input$menu_level3

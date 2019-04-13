@@ -10,7 +10,7 @@
 #' @export
 #' @importFrom magrittr "%>%"
 #'
-readIAjson <- function(json_file = NULL) {
+read_iajson <- function(json_file = NULL) {
 
   # Read the json file
   # NOTE: The js-file HAS to be converted from UTF-8 BOM to UTF-8 (in notepad++) before this will work!
@@ -23,7 +23,9 @@ readIAjson <- function(json_file = NULL) {
   area <- data.frame(tbl$features)$name
 
   # Name of reference areas are located in json_data$geographies$comparisonFeatures$name
+  # nolint start
   ref_area <- data.frame(tbl$comparisonFeatures)$name
+  # nolint end
 
   # The rest of the data is located in json_data$geographies$themes
   themes <- data.frame(tbl$themes) %>%
@@ -51,8 +53,10 @@ readIAjson <- function(json_file = NULL) {
     rates <- data.frame(next_level$values) %>%
       tibble::as_tibble()
     # Rates for Norway etc
+    # nolint start
     ref_rates <- data.frame(next_level$comparisonValues) %>%
       tibble::as_tibble()
+    # nolint end
     # Link to fact sheets
     href <- next_level$href
 
@@ -88,8 +92,10 @@ readIAjson <- function(json_file = NULL) {
         denominator <- data.frame(extra[, paste0("values", post)][1])
         name_numerater <- extra[, paste0("name", post)][2]
         name_denominator <- extra[, paste0("name", post)][1]
+        # nolint start
         ref_numerater <- data.frame(extra[, paste0("comparisonValues", post)][2])
         ref_denominator <- data.frame(extra[, paste0("comparisonValues", post)][1])
+        # nolint end
 
         combined <- data.frame(area, level1, level2)
         colnames(combined) <- c("area", "level1", "level2")
