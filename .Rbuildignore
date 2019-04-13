@@ -3,4 +3,3 @@
 ^docs$
 ^\.travis\.yml$
 ^codecov\.yml$
-^\.lintr$

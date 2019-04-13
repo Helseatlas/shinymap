@@ -45,18 +45,24 @@ addons:
       - protobuf-compiler
       - libgdal-dev
 
+r_packages:
+  - covr
+  - lintr
+  - roxygen2
+  - pkgdown
+
 script:
   - R CMD build .
   - R CMD check *tar.gz
 
-after_success:
-  - Rscript -e "if (!require('covr')) install.packages('covr')"
-  - Rscript -e 'covr::codecov()'
-  - Rscript -e "if (!require('roxygen2')) install.packages('roxygen2')"
-  - Rscript -e 'roxygen2::roxygenise()'
-  - Rscript -e "if (!require('pkgdown')) devtools::install_github('r-lib/pkgdown')"
-  - Rscript -e 'pkgdown::build_site()'
+after_script:
+  - R CMD INSTALL $PKG_TARBALL
   - Rscript -e 'lintr::lint_package()'
+
+after_success:
+  - Rscript -e 'covr::codecov()'
+  - Rscript -e 'roxygen2::roxygenise()'
+  - Rscript -e 'pkgdown::build_site()'
 
 deploy:
   provider: pages                         # Specify the gh-pages deployment method
