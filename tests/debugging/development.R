@@ -12,6 +12,9 @@ setwd("/Users/arnfinn/repo/shinymap")
 testdata <- readRDS("~/repo/shinymap/tests/testthat/data/kols.rds")
 save(testdata, file = "data/testdata.RData")
 
+testdata <- readRDS("~/repo/shinymap/tests/testthat/data/barn.rds")
+save(testdata2, file = "data/testdata2.RData")
+
 testmap <- geojsonio::geojson_read("tests/testthat/data/maps/test.geojson", what = "sp")
 save(testmap, file = "data/testmap.RData")
 

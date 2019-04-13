@@ -4,11 +4,11 @@
 \alias{plot_variation}
 \title{Make a plot based on a data frame}
 \usage{
-plot_variation(inputData = NULL, xlab = "Opptaksomr", ylab = "Rate",
+plot_variation(input_data = NULL, xlab = "Opptaksomr", ylab = "Rate",
   type = "histogram")
 }
 \arguments{
-\item{inputData}{Data to be plotted}
+\item{input_data}{Data to be plotted}
 
 \item{xlab}{Label on x-axis}
 
