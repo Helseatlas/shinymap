@@ -5,24 +5,24 @@ warnings_are_errors: true
 
 matrix:
   include:
-#    - os: linux
-#      dist: xenial
-#      r: release
-#      env: 
-#        - DIST=xenial
-#        - RUN_LINTR=true
-#    - os: linux
-#      dist: xenial
-#      r: devel
-#      env: 
-#        - DIST=xenial
-#        - RUN_LINTR=false
-#    - os: linux
-#      dist: trusty
-#      r: release
-#      env: 
-#        - DIST=trusty
-#        - RUN_LINTR=false
+    - os: linux
+      dist: xenial
+      r: release
+      env: 
+        - DIST=xenial
+        - RUN_LINTR=true
+    - os: linux
+      dist: xenial
+      r: devel
+      env: 
+        - DIST=xenial
+        - RUN_LINTR=false
+    - os: linux
+      dist: trusty
+      r: release
+      env: 
+        - DIST=trusty
+        - RUN_LINTR=false
     - os: osx
       r: release
       env: 
@@ -60,10 +60,13 @@ r_packages:
   - pkgdown
 
 before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install v8; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew tap homebrew/cask; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew cask install phantomjs; fi
+  - |
+    if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then 
+      brew update
+      brew install v8
+      brew tap homebrew/cask
+      brew cask install phantomjs
+    fi
 
 script:
   - R CMD build .
