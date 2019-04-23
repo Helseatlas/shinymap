@@ -29,6 +29,4 @@ Imports:
   rgdal
 Suggests: 
     testthat,
-    shinytest,
-    xml2,
-    covr
+    shinytest
