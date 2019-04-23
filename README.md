@@ -106,3 +106,19 @@ git push
 
 - Create a [pull request](https://github.com/Helseatlas/shinymap/compare) (PR).
 - Wait for PR to me reviewed and tested.
+
+### Test the package locally
+
+The packages `testhat` and `shinytest` have to be installed if you want to test your local version of `shinymap`. In addition, you must install `PhantomJS`. The latter can be installed with the following R command:
+
+```r
+shinytest::installDependencies()
+```
+
+### Update documentation
+
+Run the following command to update the documentation in `man/`:
+
+```r
+roxygen2::roxygenise()
+```
