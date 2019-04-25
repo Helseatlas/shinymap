@@ -61,9 +61,10 @@ r_packages:
 
 before_install:
   - |
-    if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then 
+    if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
       brew update
       brew install v8@3.15
+      export PATH="/usr/local/opt/v8@3.15/bin:$PATH"
       brew tap homebrew/cask
       brew cask install phantomjs
       brew search v8
