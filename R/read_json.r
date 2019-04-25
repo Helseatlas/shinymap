@@ -12,31 +12,73 @@
 #'
 read_iajson <- function(json_file = NULL) {
 
+  json_file <- "../json-files/kols.json"
+  #json_file <- "../json-files/barn.json"
   # Read the json file
   # NOTE: The js-file HAS to be converted from UTF-8 BOM to UTF-8 (in notepad++) before this will work!
-  json_data <- jsonlite::fromJSON(json_file)
+  json_data <- jsonlite::fromJSON(json_file, simplifyDataFrame = TRUE)
+  
+  themes <- data.frame(json_data$geographies$themes)
 
-  # make it a tibble data fram
-  tbl <- tibble::as_tibble(json_data$geographies)
-
-  # Names of areas are located in json_data$geographies$features$name
-  area <- data.frame(tbl$features)$name
-
-  # Name of reference areas are located in json_data$geographies$comparisonFeatures$name
+  feature <- data.frame(json_data$geographies$features)
+  area <- feature$name
+  
+  # Name of reference areas
   # nolint start
-  ref_area <- data.frame(tbl$comparisonFeatures)$name
+  comparisonFeature <- data.frame(json_data$geographies$comparisonFeature)
+  ref_area <- comparisonFeature$name
   # nolint end
 
-  # The rest of the data is located in json_data$geographies$themes
-  themes <- data.frame(tbl$themes) %>%
-    tibble::as_tibble()
+  level1 <- data.frame(json_data$geographies$themes)$name
 
-  # Test that number of highest level names (json_data$geographies$themes$name)
-  # is equal the length of the data (json_data$geographies$themes$indicators)
-  if (length(themes$name) != length(themes$indicators)) {
-    stop("Something fishy in your json file. ")
+#  all_data <- data.frame()
+
+  for (i in 1:length(data.frame(json_data$geographies$themes)$indicators)) {
+    data <- data.frame(data.frame(json_data$geographies$themes)$indicators[i])
+    data$level1 <- level1[i]
+    
+    
+    
+#    all_data <- rbind(all_data, data)
   }
+  
+  testthat::compare(tmp, tmp2)
+  
+  
+  mylist2 <- data.frame(json_data$geographies$themes)$indicators
+  
+  test <- data.frame(mylist[2])
+  
+  test$values[1]
+  
+  tmp <- json_data$geographies$features
+  
+  all_data <- do.call("rbind", data.frame(json_data$geographies$themes)$indicators)
 
+  all_data$values[3]
+  
+#  all_data <- data.frame()
+#  for (i in 1:length(data.frame(json_data$geographies$themes)$indicators)) {
+#    all_data <- rbind(all_data, data.frame(data.frame(json_data$geographies$themes)$indicators[i]))
+#  }
+
+  level2 <- all_data$name
+  
+  url <- all_data$href
+
+  precision <- all_data$precision
+  
+  values <- all_data$values
+  
+
+  
+  data1 <- data.frame(data.frame(json_data$geographies$themes)$indicators[1])
+  data2 <- data.frame(data.frame(json_data$geographies$themes)$indicators[2])
+  
+  level2 <- data.frame(json_data$geographies$themes)$indicators
+  
+  length(test)
+  
   # Define an empty data frame, so we can add data to this frame in the loop.
   all_data <- data.frame()
 
