@@ -66,6 +66,7 @@ before_install:
       brew install v8
       brew tap homebrew/cask
       brew cask install phantomjs
+      export PATH="/usr/local/opt/llvm/bin:$PATH"
     fi
 
 script:
