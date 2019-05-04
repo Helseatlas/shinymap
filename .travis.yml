@@ -35,6 +35,7 @@ matrix:
         - RUN_LINTR=false
   allow_failures:
     - os: windows
+    - os: osx
 
 env:
   global:
