@@ -63,12 +63,10 @@ before_install:
   - |
     if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
       brew update
+      brew install v8
+      brew install udunits
       brew tap homebrew/cask
       brew cask install phantomjs
-      brew install v8
-      export PATH="/usr/local/opt/v8/bin:$PATH"
-      export LDFLAGS="-L/usr/local/opt/v8/lib"
-      export CPPFLAGS="-I/usr/local/opt/v8/include"
     fi
 
 script:
