@@ -20,3 +20,13 @@ test_that("JSON files from IA can be read", {
   tmp <- read_iajson(json_file = file)
   expect_equal_to_reference(tmp, "data/nyfodt.rds")
 })
+
+test_that("test that read_iajson fails", {
+  expect_error(read_iajson(json_file = "file"))
+
+  expect_error(read_iajson(json_file = NULL))
+
+  expect_error(read_iajson())
+
+  expect_error(read_iajson(json_file = "data/shp2geojson1.json"))
+})
