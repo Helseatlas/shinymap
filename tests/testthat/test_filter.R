@@ -36,3 +36,25 @@ test_that("barn can be filtered correctly", {
                    filter3 = "Utvalgte akutte diagnoser")
   expect_equal_to_reference(tmp, "data/filter_4.rds")
 })
+
+test_that("barn can be filtered correctly 2", {
+  file <- readRDS("data/barn.rds")
+  tmp <- filter_out(file,
+                   filter1 = "Medisinske tilstander, spesialisthelsetjenesten",
+                   filter2 = "Kontakttype")
+  expect_equal_to_reference(tmp, "data/filter_5.rds")
+})
+
+test_that("barn can be filtered correctly 3", {
+  file <- readRDS("data/barn.rds")
+  tmp <- filter_out(file)
+  expect_equal(tmp, file)
+})
+
+test_that("filter_out will return NULL", {
+  expect_null(filter_out(NULL))
+})
+
+test_that("filter_out will return ERROR", {
+  expect_error(filter_out())
+})
