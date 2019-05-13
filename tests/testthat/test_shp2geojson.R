@@ -34,16 +34,17 @@ test_that("shp2geojson is OK", {
     "data/shp2geojson2.json"
   )
 
-  # Reduce size with a factor 0.01 (default 0.1)
+  # Reduce size with a factor 0.01 (default 0.1), and save file
   expect_equal_to_reference(
     shp2geojson(
       folder = "data/maps",
       shapefile = "shapefile2",
-      geojson = NULL,
+      geojson = "tmp",
       amount = 0.01
     ),
     "data/shp2geojson3.json"
   )
+  file.remove("tmp.geojson")
 })
 
 test_that("utm33_to_leaflet is OK", {
