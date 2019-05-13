@@ -7,6 +7,7 @@
 #'
 #' @return a map
 #' @export
+#' @importFrom magrittr "%>%"
 #'
 make_map <- function(data = NULL, map = NULL, type = "leaflet", utm33 = TRUE) {
   output <- NULL
