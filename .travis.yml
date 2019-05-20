@@ -35,7 +35,6 @@ matrix:
         - RUN_LINTR=false
   allow_failures:
     - os: windows
-    - os: osx
 
 env:
   global:
@@ -52,7 +51,6 @@ addons:
       - libv8-dev
       - libjq-dev
       - protobuf-compiler
-      - gdal-bin
       - libgdal-dev
 
 r_packages:
