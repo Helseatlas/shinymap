@@ -52,6 +52,7 @@ addons:
       - libv8-dev
       - libjq-dev
       - protobuf-compiler
+      - gdal-bin
       - libgdal-dev
 
 r_packages:
