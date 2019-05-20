@@ -25,7 +25,7 @@ apt-get install libcurl4-gnutls-dev libgit2-dev libssl-dev libudunits2-dev libv8
 # curl-config libprotobuf-dev 
 
 # Install packages from DESCRIPTION file
-Rscript -e "install.packages(c('shiny', 'sp', 'rsconnect', 'ggplot2', 'leaflet', 'magrittr', 'dplyr', 'ggthemes', 'tibble', 'jsonlite', 'geojsonio', 'rmapshaper', 'rgdal'))"
+Rscript -e "install.packages(c('shiny', 'sp', 'rsconnect', 'ggplot2', 'leaflet', 'magrittr', 'dplyr', 'ggthemes', 'geojsonio', 'rmapshaper', 'rgdal'))"
 Rscript -e "install.packages('testthat', 'shinytest', 'xml2', 'covr')"
 
 # Build and test package

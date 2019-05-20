@@ -22,8 +22,6 @@ Imports:
   magrittr,
   dplyr,
   ggthemes,
-  tibble,
-  jsonlite,
   geojsonio,
   rmapshaper,
   rgdal

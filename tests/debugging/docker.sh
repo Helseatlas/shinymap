@@ -56,6 +56,6 @@ Rscript -e "devtools::install_github('r-lib/pkgdown')"
 
 # Install packages from DESCRIPTION file
 Rscript -e "install.packages('testthat')"
-Rscript -e "install.packages(c('shiny', 'shinythemes', 'rsconnect', 'ggplot2', 'leaflet', 'dplyr', 'ggthemes', 'tibble', 'maps'))"
+Rscript -e "install.packages(c('shiny', 'shinythemes', 'rsconnect', 'ggplot2', 'leaflet', 'dplyr', 'ggthemes', 'maps'))"
 R CMD build .
 R CMD check *tar.gz
