@@ -8,7 +8,7 @@
     "menu_level3-selectized": ""
   },
   "output": {
-    "make_overview": {
+    "make_table": {
       "html": "<div id=\"tabell\" class=\"shiny-html-output\"><\/div>",
       "deps": [
 
@@ -86,12 +86,6 @@
     },
     "title_map": {
       "html": "Kart",
-      "deps": [
-
-      ]
-    },
-    "title_overview": {
-      "html": "Oversikt",
       "deps": [
 
       ]
