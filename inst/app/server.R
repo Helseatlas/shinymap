@@ -6,7 +6,7 @@ shiny::shinyServer(
     }
 
     if (!exists("healthatlas_data")) {
-      healthatlas_data <- data::kols
+      healthatlas_data <- data::barn
     }
 
     if (!exists("healthatlas_map")) {
@@ -19,22 +19,6 @@ shiny::shinyServer(
       healthatlas_map <- shinymap::testmap
     }
 
-    if (!("level1_name" %in% names(healthatlas_data))) {
-      healthatlas_data$level1_name <- healthatlas_data$level1
-    }
-
-    if (!("level2_name" %in% names(healthatlas_data)) && ("level2" %in% names(healthatlas_data))) {
-      healthatlas_data$level2_name <- healthatlas_data$level2
-    }
-    
-    if (!("level3_name" %in% names(healthatlas_data)) && ("level3" %in% names(healthatlas_data))) {
-      healthatlas_data$level3_name <- healthatlas_data$level3
-    }
-    
-    if (!("area_name" %in% names(healthatlas_data))) {
-      healthatlas_data$area_name <- healthatlas_data$area
-    }
-    
     if (!exists("language") || is.null(language)) {
       # Define language to Norwegian, if not defined
       language <- "no"
