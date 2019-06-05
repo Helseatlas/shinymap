@@ -12,9 +12,9 @@ setwd("/Users/arnfinn/repo/shinymap")
 testdata <- readRDS("~/repo/shinymap/tests/testthat/data/kols.rds")
 save(testdata, file = "data/testdata.RData")
 
-testdata <- readRDS("~/repo/shinymap/tests/testthat/data/barn.rds")
-
 testdata <- get(load("data/kols.RData"))
+
+testdata <- readRDS("~/repo/shinymap/tests/testthat/data/start_plot.rds")
 
 testdata$area_name <- testdata$area
 testdata$level1_name <- testdata$level1
@@ -29,8 +29,8 @@ testdata <- within(testdata, rm(name_numerater))
 testdata$numerator <- testdata$numerater
 testdata <- within(testdata, rm(numerater))
 
-barn <- testdata
-saveRDS(barn, file = "~/repo/shinymap/tests/testthat/data/barn.rds")
+start_plot <- testdata
+saveRDS(start_plot, file = "~/repo/shinymap/tests/testthat/data/start_plot.rds")
 
 save(kols, file = "data/kols.RData")
 save(testdata, file = "data/testdata.RData")
