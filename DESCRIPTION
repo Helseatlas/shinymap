@@ -16,8 +16,6 @@ Remotes:
   git::https://github.com/Helseatlas/maps.git,
   git::https://github.com/Helseatlas/data.git
 Imports:
-  data,
-  maps,
   shiny,
   shinythemes,
   sp,
