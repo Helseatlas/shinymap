@@ -12,22 +12,22 @@ filter_out <- function(datasett, filter1 = NULL, filter2 = NULL, filter3 = NULL)
 
   # filter out level1
   if (!is.null(filter1)) {
-    if ("level1" %in% colnames(datasett)) {
-      datasett <- try(dplyr::filter(datasett, get("level1") == filter1))
+    if ("level1_name" %in% colnames(datasett)) {
+      datasett <- try(dplyr::filter(datasett, get("level1_name") == filter1))
     }
   }
 
   # filter out level2
   if (!is.null(filter2)) {
-    if ("level2" %in% colnames(datasett)) {
-      datasett <- try(dplyr::filter(datasett, get("level2") == filter2))
+    if ("level2_name" %in% colnames(datasett)) {
+      datasett <- try(dplyr::filter(datasett, get("level2_name") == filter2))
     }
   }
 
   if (!is.null(filter3)) {
     # filter out level3
-    if ("level3" %in% colnames(datasett)) {
-      datasett <- try(dplyr::filter(datasett, get("level3") == filter3))
+    if ("level3_name" %in% colnames(datasett)) {
+      datasett <- try(dplyr::filter(datasett, get("level3_name") == filter3))
     }
   }
 

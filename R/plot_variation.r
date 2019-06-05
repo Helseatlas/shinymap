@@ -13,9 +13,9 @@ plot_variation <- function(input_data = NULL, xlab = "Opptaksomr", ylab = "Rate"
 
   # barplot
   if (type == "histogram") {
-    input_data$area <- factor(input_data$area, levels = input_data$area[order(input_data$rate)])
+    input_data$area_name <- factor(input_data$area_name, levels = input_data$area_name[order(input_data$value)])
     ggplot2::ggplot(data = input_data,
-                    ggplot2::aes(x = get("area"), y = get("rate"))) +
+                    ggplot2::aes(x = get("area_name"), y = get("value"))) +
       ggplot2::geom_bar(stat = "identity", fill = "#95BDE6") +
       ggplot2::labs(x = xlab, y = ylab) +
       ggplot2::coord_flip() +
