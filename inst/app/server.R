@@ -10,7 +10,7 @@ shiny::shinyServer(
     }
 
     if (!exists("healthatlas_map")) {
-      healthatlas_map <- shinymap::testmap
+      healthatlas_map <- maps::barn
     }
 
     if (isTRUE(getOption("shiny.testmode"))) {

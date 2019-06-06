@@ -9,7 +9,7 @@
 #' @export
 #' @importFrom magrittr "%>%"
 #'
-make_map <- function(data = NULL, map = NULL, type = "leaflet", utm33 = TRUE) {
+make_map <- function(data = NULL, map = NULL, type = "leaflet", utm33 = FALSE) {
   output <- NULL
 
   if (utm33) {

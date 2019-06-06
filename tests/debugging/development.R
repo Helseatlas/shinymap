@@ -36,6 +36,8 @@ save(kols, file = "data/kols.RData")
 save(testdata, file = "data/testdata.RData")
 
 testmap <- geojsonio::geojson_read("tests/testthat/data/maps/test.geojson", what = "sp")
+
+testmap <- shinymap::utm33_to_leaflet(map = testmap)
 save(testmap, file = "data/testmap.RData")
 
 
