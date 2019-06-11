@@ -5,7 +5,7 @@ Authors@R: person("Arnfinn Hykkerud", "Steindal", email = "arnfinn.steindal@skde
 Author: Arnfinn Hykkerud Steindal [aut, cre]
 Maintainer: Arnfinn Hykkerud Steindal <arnfinn.steindal@skde.no>
 Description: Will be used to produce maps on the helseatlas.no web page.
-Depends: R (>= 3.4.0)
+Depends: R (>= 3.5.0)
 License: file LICENSE
 Encoding: UTF-8
 LazyData: true

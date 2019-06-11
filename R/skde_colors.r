@@ -19,7 +19,7 @@ skde_colors <- function(num = 4) {
   } else if (num == 5) {
     return(all_colors[c(1, 2, 4, 5, 6)])
   } else if (0 < num && num <= length(all_colors)) {
-    return(head(all_colors, num))
+    return(utils::head(all_colors, num))
   } else {
       warning(paste0("skde_colors should be run with num between 1 and ", length(all_colors)))
       return(all_colors)
