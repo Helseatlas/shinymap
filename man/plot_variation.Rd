@@ -5,7 +5,7 @@
 \title{Make a plot based on a data frame}
 \usage{
 plot_variation(input_data = NULL, xlab = "Opptaksomr", ylab = "Rate",
-  type = "histogram")
+  type = "histogram", num_groups = 4)
 }
 \arguments{
 \item{input_data}{Data to be plotted}
@@ -16,6 +16,8 @@ plot_variation(input_data = NULL, xlab = "Opptaksomr", ylab = "Rate",
 
 \item{type}{What kind of plot. Default and only choice, at the moment:
 "histogram"}
+
+\item{num_groups}{Number of natural break groups}
 }
 \description{
 Make a plot based on a data frame

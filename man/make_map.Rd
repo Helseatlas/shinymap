@@ -4,7 +4,7 @@
 \alias{make_map}
 \title{Function to make a map}
 \usage{
-make_map(data = NULL, map = NULL, type = "leaflet", utm33 = TRUE)
+make_map(data = NULL, map = NULL, type = "leaflet", utm33 = FALSE)
 }
 \arguments{
 \item{data}{Data to be plotted in the map}

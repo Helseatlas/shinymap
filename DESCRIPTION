@@ -27,7 +27,8 @@ Imports:
   ggthemes,
   geojsonio,
   rmapshaper,
-  rgdal
+  rgdal,
+  classInt
 Suggests: 
     testthat,
     shinytest
