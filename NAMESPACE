@@ -3,6 +3,7 @@
 export(filter_out)
 export(launch_app)
 export(make_map)
+export(natural_breaks)
 export(plot_variation)
 export(shp2geojson)
 export(skde_colors)

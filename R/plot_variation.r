@@ -18,11 +18,9 @@ plot_variation <- function(input_data = NULL, xlab = "Opptaksomr", ylab = "Rate"
   if (type == "histogram") {
     # barplot
     input_data$area_name <- factor(input_data$area_name, levels = input_data$area_name[order(input_data$value)])
-    rate_num <- as.numeric(input_data$value)
-    rate_num[is.na(rate_num)] <- 0
-    interv <- c(classInt::classIntervals(var = rate_num, n = num_groups, style = "jenks"))
-    brks <- unique(interv$brks)
-    input_data$brks <- cut(rate_num, breaks = brks, include.lowest = TRUE)
+    
+    # extract the natural breaks
+    input_data$brks <- shinymap::natural_breaks(data = input_data$value, num = num_groups)
 
     ggplot2::ggplot(data = input_data,
       ggplot2::aes(x = get("area_name"), y = get("value"), fill = brks)) +
