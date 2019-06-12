@@ -9,4 +9,6 @@ test_that("natural_breaks is OK", {
   expect_equal_to_reference(natural_breaks(data = test_data, num = 8), "data/natural_breaks_8.rds")
   expect_warning(natural_breaks(data = test_data, num = 20))
   expect_error(suppressWarnings(natural_breaks(num = 2)))
+  expect_error(suppressWarnings(natural_breaks(data = "qwerty")))
+  expect_error(suppressWarnings(natural_breaks(data = c("qwerty", "fsdf", "fsdfd", "fsdfsd", "fsdf"))))
 })
