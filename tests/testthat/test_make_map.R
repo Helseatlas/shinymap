@@ -2,7 +2,7 @@ context("make_map")
 
 test_that("make leaflet-map", {
   testdata <- readRDS("data/eldre.rds")
-  testmap <- geojsonio::geojson_read("data/maps/test.geojson", what = "sp")
+  testmap <- geojsonio::geojson_read("data/test.geojson", what = "sp")
   expect_equal_to_reference(make_map(data = testdata,
                                     map = testmap,
                                     type = "leaflet",
@@ -13,7 +13,7 @@ test_that("make leaflet-map", {
 
 test_that("make leaflet-map", {
   testdata <- readRDS("data/eldre.rds")
-  testmap <- geojsonio::geojson_read("data/maps/test.geojson", what = "sp")
+  testmap <- geojsonio::geojson_read("data/test.geojson", what = "sp")
   expect_equal_to_reference(make_map(data = testdata,
                                     map = testmap,
                                     type = "simple",
@@ -23,7 +23,7 @@ test_that("make leaflet-map", {
 
 test_that("make simple map", {
   testdata <- readRDS("data/eldre.rds")
-  testmap <- geojsonio::geojson_read("data/maps/test.geojson", what = "sp")
+  testmap <- geojsonio::geojson_read("data/test.geojson", what = "sp")
   expect_equal_to_reference(make_map(data = testdata,
                                      map = testmap,
                                      type = "simple",
@@ -33,7 +33,7 @@ test_that("make simple map", {
 
 test_that("default values", {
   testdata <- readRDS("data/eldre.rds")
-  testmap <- geojsonio::geojson_read("data/maps/test.geojson", what = "sp")
+  testmap <- geojsonio::geojson_read("data/test.geojson", what = "sp")
   expect_equal_to_reference(make_map(data = testdata,
                                      map = testmap),
                             "data/make_map4.rds")
@@ -48,7 +48,7 @@ test_that("make_map returns NULL if type is unknown", {
 })
 
 test_that("make_map returns NULL if type is unknown and map is given", {
-  testmap <- geojsonio::geojson_read("data/maps/test.geojson", what = "sp")
+  testmap <- geojsonio::geojson_read("data/test.geojson", what = "sp")
   expect_null(make_map(type = "siple", map = testmap))
 })
 
