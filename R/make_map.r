@@ -14,7 +14,7 @@ make_map <- function(data = NULL, map = NULL, type = "leaflet", utm33 = FALSE) {
 
   if (utm33) {
     # convert from utm33 to leaflet
-    map <- shinymap::utm33_to_leaflet(map = map)
+    map <- kart::utm33_to_leaflet(map = map)
   }
 
   switch(type,
