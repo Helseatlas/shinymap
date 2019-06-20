@@ -5,12 +5,13 @@ shiny::shinyServer(
       load("data/data.RData")
     }
 
+
     if (!exists("healthatlas_data")) {
-      healthatlas_data <- data::barn
+      healthatlas_data <- NULL
     }
 
     if (!exists("healthatlas_map")) {
-      healthatlas_map <- kart::barn
+      healthatlas_map <- NULL
     }
 
     if (isTRUE(getOption("shiny.testmode"))) {
@@ -37,10 +38,92 @@ shiny::shinyServer(
       webpage_title <- c("Helseatlas", "The Norwegian healthcare atlas")[lang]
     }
 
-    pickable_level1 <- c(levels(factor(healthatlas_data$level1_name)))
+    output$pick_atlas <- shiny::renderUI({
+      if (!is.data.frame(healthatlas_data)) {
+        shiny::selectInput(
+          inputId = "atlas",
+          label = c("Velg atlas:", "Pick an atlas")[lang],
+          choices = c("Dagkirurgi 2011-2013" = "dagkir",
+                      "Barn" = "barn",
+                      "Nyfødt" = "nyfodt",
+                      "Eldre" = "eldre",
+                      "Kols" = "kols",
+                      "Dagkirurgi 2013-2017" = "dagkir2",
+                      "Gynekologi" = "gyn",
+                      "Fødselshjelp" = "fodsel"
+          ),
+          selected = "dagkir"
+        )
+      }
+    })
+
+    atlas_data <- shiny::reactive({
+      if (!is.data.frame(healthatlas_data)) {
+        if (is.null(input$atlas)){return(NULL)}
+        if (input$atlas == "dagkir") {
+          return(data::dagkir)
+        } else if (input$atlas == "barn") {
+          return(data::barn)
+        } else if (input$atlas == "nyfodt") {
+          return(data::nyfodt)
+        } else if (input$atlas == "eldre") {
+          return(data::eldre)
+        } else if (input$atlas == "kols") {
+          return(data::kols)
+        } else if (input$atlas == "dagkir2") {
+          return(data::dagkir2)
+        } else if (input$atlas == "gyn") {
+          return(data::gyn)
+        } else if (input$atlas == "fodsel") {
+          return(data::fodsel)
+        } else {
+          return(NULL)
+        }
+      } else {
+        return(healthatlas_data)
+      }
+    })
+      
+    atlas_map <- shiny::reactive({
+      if (!is.data.frame(healthatlas_map)) {
+        if (is.null(input$atlas)){return(NULL)}
+        if (input$atlas == "dagkir") {
+          return(kart::utm33_to_leaflet(kart::dagkir))
+        } else if (input$atlas == "barn") {
+          return(kart::utm33_to_leaflet(kart::barn))
+        } else if (input$atlas == "nyfodt") {
+          return(kart::utm33_to_leaflet(kart::nyfodt))
+        } else if (input$atlas == "eldre") {
+          return(kart::utm33_to_leaflet(kart::eldre))
+        } else if (input$atlas == "kols") {
+          return(kart::utm33_to_leaflet(kart::kols))
+        } else if (input$atlas == "dagkir2") {
+          return(kart::utm33_to_leaflet(kart::dagkir2))
+        } else if (input$atlas == "gyn") {
+          return(kart::utm33_to_leaflet(kart::gyn))
+        } else if (input$atlas == "fodsel") {
+          return(kart::utm33_to_leaflet(kart::fodsel))
+        } else {
+          return(NULL)
+        }
+      } else {
+        return(healthatlas_map)
+      }
+    })
+
+    pickable_level1 <- shiny::reactive({
+      if (is.null(input$menu_level1)) {
+        return(NULL)
+      } else {
+        return(c(levels(factor(atlas_data()$level1_name))))
+      }
+    })
 
     pickable_level2 <- shiny::eventReactive(input$menu_level1, {
-      tmpdata <- dplyr::filter(healthatlas_data, healthatlas_data$level1_name == input$menu_level1)
+      if (is.null(input$menu_level1)) {
+        return()
+      }
+      tmpdata <- dplyr::filter(atlas_data(), atlas_data()$level1_name == input$menu_level1)
       return(c(levels(factor(tmpdata$level2_name))))
     })
 
@@ -48,7 +131,7 @@ shiny::shinyServer(
       if (is.null(input$menu_level2)) {
         return()
       }
-      tmpdata1 <- dplyr::filter(healthatlas_data, healthatlas_data$level1_name == input$menu_level1)
+      tmpdata1 <- dplyr::filter(atlas_data(), atlas_data()$level1_name == input$menu_level1)
       tmpdata2 <- dplyr::filter(tmpdata1, tmpdata1$level2_name == input$menu_level2)
       return(c(levels(factor(tmpdata2$level3_name))))
     })
@@ -57,13 +140,13 @@ shiny::shinyServer(
       shiny::selectInput(
         inputId = "menu_level1",
         label = c("Velg et tema:", "Pick a subject")[lang],
-        choices = pickable_level1,
-        selected = pickable_level1[1]
+        choices = pickable_level1(),
+        selected = pickable_level1()[1]
       )
     })
 
     output$pick_level2 <- shiny::renderUI({
-      if ("level2" %in% colnames(healthatlas_data)) {
+      if ("level2_name" %in% colnames(atlas_data())) {
         shiny::selectInput(
           inputId = "menu_level2",
           label = c("Velg et tema:", "Pick a subject")[lang],
@@ -74,7 +157,7 @@ shiny::shinyServer(
     })
 
     output$pick_level3 <- shiny::renderUI({
-      if ("level3" %in% colnames(healthatlas_data)) {
+      if ("level3_name" %in% colnames(atlas_data())) {
         shiny::selectInput(
           inputId = "menu_level3",
           label = c("Velg et tema:", "Pick a subject")[lang],
@@ -97,7 +180,7 @@ shiny::shinyServer(
               picked_data()
             }),
             leaflet::renderLeaflet({
-              shinymap::make_map(type = "leaflet", map = healthatlas_map)
+              shinymap::make_map(type = "leaflet", map = atlas_map())
             })
           ),
           shiny::splitLayout(
@@ -118,7 +201,7 @@ shiny::shinyServer(
     })
 
     kartlag_input <- reactive({
-      datasett <- shinymap::filter_out(healthatlas_data,
+      datasett <- shinymap::filter_out(atlas_data(),
         filter1 = input$menu_level1,
         filter2 = input$menu_level2,
         filter3 = input$menu_level3
@@ -189,7 +272,7 @@ shiny::shinyServer(
     })
 
     output$simplemap <- shiny::renderPlot({
-      shinymap::make_map(type = "simple", map = healthatlas_map)
+      shinymap::make_map(type = "simple", map = atlas_map())
     })
 
     output$histogram <- shiny::renderPlot({
@@ -201,7 +284,7 @@ shiny::shinyServer(
     })
 
     output$leafletmap <- leaflet::renderLeaflet({
-      shinymap::make_map(type = "leaflet", map = healthatlas_map, data = picked_data())
+      shinymap::make_map(type = "leaflet", map = atlas_map(), data = picked_data())
     })
   }
 )
