@@ -5,7 +5,6 @@ shiny::shinyServer(
       load("data/data.RData")
     }
 
-
     if (!exists("healthatlas_data")) {
       healthatlas_data <- NULL
     }
@@ -49,6 +48,7 @@ shiny::shinyServer(
                       "Eldre" = "eldre",
                       "Kols" = "kols",
                       "Dagkirurgi 2013-2017" = "dagkir2",
+                      "Ortopedi" = "ortopedi",
                       "Gynekologi" = "gyn",
                       "Fødselshjelp" = "fodsel"
           ),
@@ -59,8 +59,9 @@ shiny::shinyServer(
 
     atlas_data <- shiny::reactive({
       if (!is.data.frame(healthatlas_data)) {
-        if (is.null(input$atlas)){return(NULL)}
-        if (input$atlas == "dagkir") {
+        if (is.null(input$atlas)){
+          return(NULL)
+        } else if (input$atlas == "dagkir") {
           return(data::dagkir)
         } else if (input$atlas == "barn") {
           return(data::barn)
@@ -72,6 +73,8 @@ shiny::shinyServer(
           return(data::kols)
         } else if (input$atlas == "dagkir2") {
           return(data::dagkir2)
+        } else if (input$atlas == "ortopedi") {
+          return(data::ortopedi)
         } else if (input$atlas == "gyn") {
           return(data::gyn)
         } else if (input$atlas == "fodsel") {
@@ -83,11 +86,12 @@ shiny::shinyServer(
         return(healthatlas_data)
       }
     })
-      
+
     atlas_map <- shiny::reactive({
       if (!is.data.frame(healthatlas_map)) {
-        if (is.null(input$atlas)){return(NULL)}
-        if (input$atlas == "dagkir") {
+        if (is.null(input$atlas)){
+          return(NULL)
+        } else if (input$atlas == "dagkir") {
           return(kart::utm33_to_leaflet(kart::dagkir))
         } else if (input$atlas == "barn") {
           return(kart::utm33_to_leaflet(kart::barn))
@@ -112,11 +116,7 @@ shiny::shinyServer(
     })
 
     pickable_level1 <- shiny::reactive({
-      if (is.null(input$menu_level1)) {
-        return(NULL)
-      } else {
-        return(c(levels(factor(atlas_data()$level1_name))))
-      }
+      return(c(levels(factor(atlas_data()$level1_name))))
     })
 
     pickable_level2 <- shiny::eventReactive(input$menu_level1, {
