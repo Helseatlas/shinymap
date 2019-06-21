@@ -246,8 +246,8 @@ shiny::shinyServer(
       shiny::selectInput(
         inputId = "maptype",
         label = c("Velg karttype", "Choose map type")[lang],
-        choices = c("leaflet", "simple"),
-        selected = "leaflet"
+        choices = c("simple", "leaflet"),
+        selected = "simple"
       )
     })
     output$plot_map <- shiny::renderUI({
@@ -272,7 +272,7 @@ shiny::shinyServer(
     })
 
     output$simplemap <- shiny::renderPlot({
-      shinymap::make_map(type = "simple", map = atlas_map())
+      shinymap::make_map(type = "simple", map = atlas_map(), data = kartlag_input())
     })
 
     output$histogram <- shiny::renderPlot({
@@ -284,7 +284,7 @@ shiny::shinyServer(
     })
 
     output$leafletmap <- leaflet::renderLeaflet({
-      shinymap::make_map(type = "leaflet", map = atlas_map(), data = picked_data())
+      shinymap::make_map(type = "leaflet", map = atlas_map(), data = kartlag_input())
     })
   }
 )

@@ -35,12 +35,46 @@ saveRDS(start_plot, file = "~/repo/shinymap/tests/testthat/data/start_plot.rds")
 save(kols, file = "data/kols.RData")
 save(testdata, file = "data/testdata.RData")
 
-testmap <- geojsonio::geojson_read("tests/testthat/data/maps/test.geojson", what = "sp")
+# Make the testmap data
+testmap <- kart::barn
+usethis::use_data(testmap, overwrite = TRUE)
+plot(shinymap::testmap)
 
-testmap <- shinymap::utm33_to_leaflet(map = testmap)
-save(testmap, file = "data/testmap.RData")
+# Make the testdata
 
+testdata <- data::barn
 
+testdata$area_name <- as.factor(gsub("å", "aa", testdata$area_name))
+testdata$area_name <- as.factor(gsub("ø", "o", testdata$area_name))
+testdata$area_name <- as.factor(gsub("æ", "ae", testdata$area_name))
+testdata$area_name <- as.factor(gsub("Å", "AA", testdata$area_name))
+testdata$area_name <- as.factor(gsub("Ø", "O", testdata$area_name))
+testdata$area_name <- as.factor(gsub("Æ", "AE", testdata$area_name))
+
+testdata$level1_name <- as.factor(gsub("å", "aa", testdata$level1_name))
+testdata$level1_name <- as.factor(gsub("ø", "o", testdata$level1_name))
+testdata$level1_name <- as.factor(gsub("æ", "ae", testdata$level1_name))
+testdata$level1_name <- as.factor(gsub("Å", "AA", testdata$level1_name))
+testdata$level1_name <- as.factor(gsub("Ø", "O", testdata$level1_name))
+testdata$level1_name <- as.factor(gsub("Æ", "AE", testdata$level1_name))
+
+testdata$level2_name <- as.factor(gsub("å", "aa", testdata$level2_name))
+testdata$level2_name <- as.factor(gsub("ø", "o", testdata$level2_name))
+testdata$level2_name <- as.factor(gsub("æ", "ae", testdata$level2_name))
+testdata$level2_name <- as.factor(gsub("Å", "AA", testdata$level2_name))
+testdata$level2_name <- as.factor(gsub("Ø", "O", testdata$level2_name))
+testdata$level2_name <- as.factor(gsub("Æ", "AE", testdata$level2_name))
+
+testdata$level3_name <- as.factor(gsub("å", "aa", testdata$level3_name))
+testdata$level3_name <- as.factor(gsub("ø", "o", testdata$level3_name))
+testdata$level3_name <- as.factor(gsub("æ", "ae", testdata$level3_name))
+testdata$level3_name <- as.factor(gsub("Å", "AA", testdata$level3_name))
+testdata$level3_name <- as.factor(gsub("Ø", "O", testdata$level3_name))
+testdata$level3_name <- as.factor(gsub("Æ", "AE", testdata$level3_name))
+
+usethis::use_data(testdata, overwrite = TRUE)
+
+shinymap::testdata
 
 # How to run the app through launch_app
 
