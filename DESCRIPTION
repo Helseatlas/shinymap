@@ -12,9 +12,6 @@ LazyData: true
 RoxygenNote: 6.1.1
 BugReports: https://github.com/Helseatlas/shinymap/issues
 URL: https://helseatlas.github.io/shinymap
-Remotes: 
-  git::https://github.com/Helseatlas/kart.git,
-  git::https://github.com/Helseatlas/data.git
 Imports:
   shiny,
   shinythemes,
