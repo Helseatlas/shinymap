@@ -8,23 +8,39 @@ A working document on the process of going from IA to RShiny can be found [here]
 
 ## How to install the package
 
-```
+```r
+# Install the data package
+devtools::install_github("Helseatlas/data")
+# Install the maps package
+devtools::install_github("Helseatlas/kart")
+# Install the shinymap package
 devtools::install_github("Helseatlas/shinymap")
 ```
 
 ### Install the package behind a proxy
 
-```
+If you are behind a proxy, you have to run the following commands before the `devtools::install_github`-commands:
+
+```r
 Sys.setenv(http_proxy="your.proxy.url:port")
 Sys.setenv(https_proxy="your.proxy.url:port")
 ```
 
 Thus, if you are behind Helse Nord proxy, you do the following:
 
-```
+```r
 Sys.setenv(http_proxy="http://www-proxy.helsenord.no:8080")
 Sys.setenv(https_proxy="http://www-proxy.helsenord.no:8080")
 ```
+
+If you want to keep the proxy settings active when restarting R you can include the following in a file called `.Renviron`:
+
+```bash
+http_proxy="http://www-proxy.helsenord.no:8080"
+https_proxy="http://www-proxy.helsenord.no:8080"
+```
+
+This file has to be saved in your `$HOME` directory, which typically is something like `c:/Users/<username>` on Windows.
 
 ## How to use the package
 
@@ -51,7 +67,7 @@ The data from the previous health atlases can be found in the package `Helseatla
 Run the command
 
 ```r
-shinymap::launch_application(dataset = <dataset>)
+shinymap::launch_application()
 ```
 
 ### Submit to shinyapps.io
@@ -59,10 +75,10 @@ shinymap::launch_application(dataset = <dataset>)
 Run the command
 
 ```
-shinymap::launch_application(dataset = <r data frame>, publish_app = TRUE, name = <appName>, shiny_account = <publishing account>)
+shinymap::launch_application(publish_app = TRUE, name = <appName>, shiny_account = <publishing account>)
 ```
 
-Make sure that the version of shinymap installed and active in your Rsession is installed directly from github,
+Make sure that the version of `shinymap` installed and active in your Rsession is installed directly from github,
 since it also has to be installed on *shinyapps.io*. Also remember to connect to your *shinyapps.io* profile.
 
 ## Run a local copy of the package
@@ -96,7 +112,7 @@ shiny::runApp('inst/app')
 - [Fork me](https://github.com/Helseatlas/shinymap/fork)
 - Clone your fork (replace `<username` with your github user name), create a branch and push it
 
-```
+```bash
 git clone git@github.com:<username>/shinymap
 cd shinymap
 git checkout -b super-duper-idea
@@ -132,4 +148,4 @@ roxygen2::roxygenise()
 
 ### File endings
 
-This repository is using LF (unix-style) line endings. If you are using Windows, please use `git config --global core.autocrlf false` if you want full control (take a look at [this post](https://stackoverflow.com/a/20653073)). Files can be converted from Windows-style file endings to unix-style by `dos2unix filename` in *git bash*. In *RStudio* you can go into `Tools/Global options/Code/Saving` and choose *Line ending conversion* to *None*.
+This repository is mainly using LF (unix-style) line endings. If you are using Windows, please use `git config --global core.autocrlf false` if you want full control (take a look at [this post](https://stackoverflow.com/a/20653073)). Files can be converted from Windows-style file endings to unix-style by `dos2unix filename` in *git bash*. In *RStudio* you can go into `Tools/Global options/Code/Saving` and choose *Line ending conversion* to *None*.
