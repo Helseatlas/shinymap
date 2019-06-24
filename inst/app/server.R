@@ -142,7 +142,7 @@ shiny::shinyServer(
       tmpdata <- dplyr::filter(atlas_data(), atlas_data()$level1_name == input$menu_level1)
       return(c(levels(factor(tmpdata$level2_name))))
     })
-    
+
     output$pick_level3 <- shiny::renderUI({
       if ("level3_name" %in% colnames(atlas_data())) {
         shiny::selectInput(
@@ -162,13 +162,13 @@ shiny::shinyServer(
       tmpdata2 <- dplyr::filter(tmpdata1, tmpdata1$level2_name == input$menu_level2)
       return(c(levels(factor(tmpdata2$level3_name))))
     })
-    
+
     output$title <- shiny::renderUI({
       if (!exists("webpage_title") || is.null(webpage_title)) {
         # Define the atlas title, if not defined
         webpage_title <- c("Helseatlas", "The Norwegian healthcare atlas")[lang]
       }
-      
+
       return(shiny::HTML(paste0("<h1>", webpage_title, "</h1>")))
     })
 
@@ -191,7 +191,9 @@ shiny::shinyServer(
                                             filter3 = input$menu_level3)
 
       # Return null if data in invalid
-      if (is.null(nrow(filtered_data)) || nrow(filtered_data) == 0){return(NULL)}
+      if (is.null(nrow(filtered_data)) || nrow(filtered_data) == 0) {
+        return(NULL)
+      }
 
       map <- shinymap::make_map(type = "simple", map = atlas_map(), data = filtered_data)
       return(map)
@@ -216,7 +218,12 @@ shiny::shinyServer(
                                             filter1 = input$menu_level1,
                                             filter2 = input$menu_level2,
                                             filter3 = input$menu_level3)
-      
+
+      # Return null if data in invalid
+      if (is.null(nrow(filtered_data)) || nrow(filtered_data) == 0) {
+        return(NULL)
+      }
+
       tabular_data <- data.frame(filtered_data$area_name)
       colnames(tabular_data) <- c(c("Opptaksomr", "Area")[lang])
       tabular_data[c("Rate", "Rate")[lang]] <- filtered_data$value
@@ -224,6 +231,6 @@ shiny::shinyServer(
       tabular_data[c("Innbyggere", "Inhab")[lang]] <- filtered_data$denominator
       return(tabular_data)
     })
-    
+
   }
 )
