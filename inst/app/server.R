@@ -32,11 +32,6 @@ shiny::shinyServer(
       lang <- 1 # default language value
     }
 
-    if (!exists("webpage_title") || is.null(webpage_title)) {
-      # Define the atlas title, if not defined
-      webpage_title <- c("Helseatlas", "The Norwegian healthcare atlas")[lang]
-    }
-
     output$pick_atlas <- shiny::renderUI({
       if (!is.data.frame(healthatlas_data)) {
         shiny::selectInput(
@@ -58,6 +53,7 @@ shiny::shinyServer(
     })
 
     atlas_data <- shiny::reactive({
+      # Return the data for a given atlas.
       if (!is.data.frame(healthatlas_data)) {
         if (is.null(input$atlas)){
           return(NULL)
@@ -115,27 +111,6 @@ shiny::shinyServer(
       }
     })
 
-    pickable_level1 <- shiny::reactive({
-      return(c(levels(factor(atlas_data()$level1_name))))
-    })
-
-    pickable_level2 <- shiny::eventReactive(input$menu_level1, {
-      if (is.null(input$menu_level1)) {
-        return()
-      }
-      tmpdata <- dplyr::filter(atlas_data(), atlas_data()$level1_name == input$menu_level1)
-      return(c(levels(factor(tmpdata$level2_name))))
-    })
-
-    pickable_level3 <- shiny::eventReactive(c(input$menu_level1, input$menu_level2), {
-      if (is.null(input$menu_level2)) {
-        return()
-      }
-      tmpdata1 <- dplyr::filter(atlas_data(), atlas_data()$level1_name == input$menu_level1)
-      tmpdata2 <- dplyr::filter(tmpdata1, tmpdata1$level2_name == input$menu_level2)
-      return(c(levels(factor(tmpdata2$level3_name))))
-    })
-
     output$pick_level1 <- shiny::renderUI({
       shiny::selectInput(
         inputId = "menu_level1",
@@ -143,6 +118,10 @@ shiny::shinyServer(
         choices = pickable_level1(),
         selected = pickable_level1()[1]
       )
+    })
+
+    pickable_level1 <- shiny::reactive({
+      return(c(levels(factor(atlas_data()$level1_name))))
     })
 
     output$pick_level2 <- shiny::renderUI({
@@ -156,6 +135,14 @@ shiny::shinyServer(
       }
     })
 
+    pickable_level2 <- shiny::eventReactive(input$menu_level1, {
+      if (is.null(input$menu_level1)) {
+        return()
+      }
+      tmpdata <- dplyr::filter(atlas_data(), atlas_data()$level1_name == input$menu_level1)
+      return(c(levels(factor(tmpdata$level2_name))))
+    })
+    
     output$pick_level3 <- shiny::renderUI({
       if ("level3_name" %in% colnames(atlas_data())) {
         shiny::selectInput(
@@ -167,67 +154,22 @@ shiny::shinyServer(
       }
     })
 
-    output$make_overview <- shiny::renderUI({
-      if (isTRUE(getOption("shiny.testmode"))) {
-        # Show a regular table when testing
-        shiny::tableOutput("tabell")
-      } else {
-        shiny::verticalLayout(
-          shiny::splitLayout(
-            cellWidths = c("25%", "75%"),
-            cellArgs = list(style = "padding: 6px"),
-            shiny::renderTable({
-              picked_data()
-            }),
-            leaflet::renderLeaflet({
-              shinymap::make_map(type = "leaflet", map = atlas_map())
-            })
-          ),
-          shiny::splitLayout(
-            shiny::renderPlot({
-              shinymap::plot_variation(
-                input_data = kartlag_input(),
-                xlab = c("Opptaksomr\u00E5de", "Area")[lang],
-                ylab = input$menu_level1
-              )
-            })
-          )
-        )
+    pickable_level3 <- shiny::eventReactive(c(input$menu_level1, input$menu_level2), {
+      if (is.null(input$menu_level2)) {
+        return()
       }
+      tmpdata1 <- dplyr::filter(atlas_data(), atlas_data()$level1_name == input$menu_level1)
+      tmpdata2 <- dplyr::filter(tmpdata1, tmpdata1$level2_name == input$menu_level2)
+      return(c(levels(factor(tmpdata2$level3_name))))
     })
-
-    output$make_table <- shiny::renderUI({
-      shiny::tableOutput("tabell")
-    })
-
-    kartlag_input <- reactive({
-      datasett <- shinymap::filter_out(atlas_data(),
-        filter1 = input$menu_level1,
-        filter2 = input$menu_level2,
-        filter3 = input$menu_level3
-      )
-      return(datasett)
-    })
-
-    picked_data <- shiny::reactive({
-      new_tab <- data.frame(kartlag_input()$area_name)
-      colnames(new_tab) <- c(c("Opptaksomr", "Area")[lang])
-      new_tab[c("Rate", "Rate")[lang]] <- kartlag_input()$value
-      new_tab[c("Antall", "Num")[lang]] <- kartlag_input()$numerator
-      new_tab[c("Innbyggere", "Inhab")[lang]] <- kartlag_input()$denominator
-      return(new_tab)
-    })
-
-    output$tabell <- shiny::renderTable({
-      picked_data()
-    })
-
+    
     output$title <- shiny::renderUI({
+      if (!exists("webpage_title") || is.null(webpage_title)) {
+        # Define the atlas title, if not defined
+        webpage_title <- c("Helseatlas", "The Norwegian healthcare atlas")[lang]
+      }
+      
       return(shiny::HTML(paste0("<h1>", webpage_title, "</h1>")))
-    })
-
-    output$title_overview <- shiny::renderUI({
-      return(c("Oversikt", "Overview")[lang])
     })
 
     output$title_table <- shiny::renderUI({
@@ -242,34 +184,46 @@ shiny::shinyServer(
       return(c("Histogram", "Histogram")[lang])
     })
 
-    output$pick_map <- shiny::renderUI({
-      shiny::selectInput(
-        inputId = "maptype",
-        label = c("Velg karttype", "Choose map type")[lang],
-        choices = c("simple", "leaflet"),
-        selected = "simple"
-      )
-    })
-
-    output$plot_histogram <- shiny::renderUI({
-      # Make a histogram plot
-      shiny::plotOutput(outputId = "histogram")
-    })
-
     output$plot_map <- shiny::renderPlot({
-      shinymap::make_map(type = "simple", map = atlas_map(), data = kartlag_input())
+      filtered_data <- shinymap::filter_out(atlas_data(),
+                                            filter1 = input$menu_level1,
+                                            filter2 = input$menu_level2,
+                                            filter3 = input$menu_level3)
+
+      # Return null if data in invalid
+      if (is.null(nrow(filtered_data)) || nrow(filtered_data) == 0){return(NULL)}
+
+      map <- shinymap::make_map(type = "simple", map = atlas_map(), data = filtered_data)
+      return(map)
     })
 
-    output$histogram <- shiny::renderPlot({
-      shinymap::plot_variation(
-        input_data = kartlag_input(),
+    output$plot_histogram <- shiny::renderPlot({
+      filtered_data <- shinymap::filter_out(atlas_data(),
+                                            filter1 = input$menu_level1,
+                                            filter2 = input$menu_level2,
+                                            filter3 = input$menu_level3)
+
+      plot <- shinymap::plot_variation(
+        input_data = filtered_data,
         xlab = c("Opptaksomr\u00E5de", "Area")[lang],
         ylab = input$menu_level1
       )
+      return(plot)
     })
 
-    output$leafletmap <- leaflet::renderLeaflet({
-      shinymap::make_map(type = "leaflet", map = atlas_map(), data = kartlag_input())
+    output$make_table <- shiny::renderTable({
+      filtered_data <- shinymap::filter_out(atlas_data(),
+                                            filter1 = input$menu_level1,
+                                            filter2 = input$menu_level2,
+                                            filter3 = input$menu_level3)
+      
+      tabular_data <- data.frame(filtered_data$area_name)
+      colnames(tabular_data) <- c(c("Opptaksomr", "Area")[lang])
+      tabular_data[c("Rate", "Rate")[lang]] <- filtered_data$value
+      tabular_data[c("Antall", "Num")[lang]] <- filtered_data$numerator
+      tabular_data[c("Innbyggere", "Inhab")[lang]] <- filtered_data$denominator
+      return(tabular_data)
     })
+    
   }
 )
