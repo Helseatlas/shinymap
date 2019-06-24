@@ -23,14 +23,15 @@ make_map <- function(data = NULL, map = NULL, type = "leaflet", utm33 = FALSE) {
         map_data <- kart::utm33_to_leaflet(map = map_data, sf = TRUE)
       }
 
-      pal_fun <- leaflet::colorQuantile(shinymap::skde_colors(num = 4), NULL, n = 4)
       output <- leaflet::leaflet(map_data) %>%
         leaflet::addTiles() %>%
         leaflet::addPolygons(
           stroke = FALSE,
           smoothFactor = 0.3,
           fillOpacity = 0.2,
-          fillColor = ~pal_fun(value)
+          fillColor = ~leaflet::colorQuantile(shinymap::skde_colors(num = 4),
+                                              NULL,
+                                              n = 4)(value)
         )
     },
     simple = {
