@@ -250,28 +250,13 @@ shiny::shinyServer(
         selected = "simple"
       )
     })
-    output$plot_map <- shiny::renderUI({
-      # Make a leaflet map
-      type <- input$maptype
-      if (is.null(type)) {
-        return(NULL)
-      }
-      switch(type,
-        leaflet = {
-          leaflet::leafletOutput("leafletmap")
-        },
-        simple = {
-          shiny::plotOutput(outputId = "simplemap")
-        }
-      )
-    })
 
     output$plot_histogram <- shiny::renderUI({
       # Make a histogram plot
       shiny::plotOutput(outputId = "histogram")
     })
 
-    output$simplemap <- shiny::renderPlot({
+    output$plot_map <- shiny::renderPlot({
       shinymap::make_map(type = "simple", map = atlas_map(), data = kartlag_input())
     })
 

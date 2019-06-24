@@ -18,9 +18,9 @@ shinyUI(function(request) {
     ),
     mainPanel(
       tabsetPanel(
-        tabPanel(uiOutput("title_table"), uiOutput("make_table")),
-        tabPanel(uiOutput("title_map"), uiOutput("pick_map"), uiOutput("plot_map")),
-        tabPanel(uiOutput("title_hist"), uiOutput("plot_histogram"))
+        tabPanel(uiOutput("title_map"), plotOutput("plot_map")),
+        tabPanel(uiOutput("title_hist"), uiOutput("plot_histogram")),
+        tabPanel(uiOutput("title_table"), uiOutput("make_table"))
       )
     )
   )
