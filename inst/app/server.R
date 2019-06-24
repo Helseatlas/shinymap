@@ -112,55 +112,49 @@ shiny::shinyServer(
     })
 
     output$pick_level1 <- shiny::renderUI({
+      # Possible values for level 1
+      pickable_level1 <- c(levels(factor(atlas_data()$level1_name)))
+      # The selector
       shiny::selectInput(
         inputId = "menu_level1",
         label = c("Velg et tema:", "Pick a subject")[lang],
-        choices = pickable_level1(),
-        selected = pickable_level1()[1]
+        choices = pickable_level1,
+        selected = pickable_level1[1]
       )
-    })
-
-    pickable_level1 <- shiny::reactive({
-      return(c(levels(factor(atlas_data()$level1_name))))
     })
 
     output$pick_level2 <- shiny::renderUI({
       if ("level2_name" %in% colnames(atlas_data())) {
+        # Filter out data according to what is choosen for level 1
+        tmpdata <- dplyr::filter(atlas_data(), atlas_data()$level1_name == input$menu_level1)
+        # Possible values for level 2
+        pickable_level2 <- c(levels(factor(tmpdata$level2_name)))
+        # The selector
         shiny::selectInput(
           inputId = "menu_level2",
           label = c("Velg et tema:", "Pick a subject")[lang],
-          choices = pickable_level2(),
-          selected = pickable_level2()[1]
+          choices = pickable_level2,
+          selected = pickable_level2[1]
         )
       }
-    })
-
-    pickable_level2 <- shiny::eventReactive(input$menu_level1, {
-      if (is.null(input$menu_level1)) {
-        return()
-      }
-      tmpdata <- dplyr::filter(atlas_data(), atlas_data()$level1_name == input$menu_level1)
-      return(c(levels(factor(tmpdata$level2_name))))
     })
 
     output$pick_level3 <- shiny::renderUI({
       if ("level3_name" %in% colnames(atlas_data())) {
+        # Filter out data according to what is choosen for level 1
+        tmpdata1 <- dplyr::filter(atlas_data(), atlas_data()$level1_name == input$menu_level1)
+        # Filter out data according to what is choosen for level 2
+        tmpdata2 <- dplyr::filter(tmpdata1, tmpdata1$level2_name == input$menu_level2)
+        # Possible values for level 3
+        pickable_level3 <- c(levels(factor(tmpdata2$level3_name)))
+        # The selector
         shiny::selectInput(
           inputId = "menu_level3",
           label = c("Velg et tema:", "Pick a subject")[lang],
-          choices = pickable_level3(),
-          selected = pickable_level3()[1]
+          choices = pickable_level3,
+          selected = pickable_level3[1]
         )
       }
-    })
-
-    pickable_level3 <- shiny::eventReactive(c(input$menu_level1, input$menu_level2), {
-      if (is.null(input$menu_level2)) {
-        return()
-      }
-      tmpdata1 <- dplyr::filter(atlas_data(), atlas_data()$level1_name == input$menu_level1)
-      tmpdata2 <- dplyr::filter(tmpdata1, tmpdata1$level2_name == input$menu_level2)
-      return(c(levels(factor(tmpdata2$level3_name))))
     })
 
     output$title <- shiny::renderUI({
