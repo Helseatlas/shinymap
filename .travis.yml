@@ -29,18 +29,18 @@ env:
   global:
     - _R_CHECK_TESTS_NLINES_=0
 
-addons:
-  apt:
-    packages:
-      - libcurl4-gnutls-dev
-      - libgit2-dev
-      - libssl-dev
-      - libudunits2-dev
-      - libprotobuf-dev
-      - libv8-dev
-      - libjq-dev
-      - protobuf-compiler
-      - libgdal-dev
+#addons:
+#  apt:
+#    packages:
+#      - libcurl4-gnutls-dev
+#      - libgit2-dev
+#      - libssl-dev
+#      - libudunits2-dev
+#      - libprotobuf-dev
+#      - libv8-dev
+#      - libjq-dev
+#      - protobuf-compiler
+#      - libgdal-dev
 
 r_packages:
   - covr

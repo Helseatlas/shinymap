@@ -9,7 +9,6 @@ test_that("make_map returns error if type is unknown", {
 })
 
 test_that("make_map returns error if type is unknown and map is given", {
-  testmap <- geojsonio::geojson_read("data/test.geojson", what = "sp")
   expect_error(make_map(type = "siple", map = testmap))
 })
 

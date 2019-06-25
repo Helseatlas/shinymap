@@ -15,16 +15,12 @@ URL: https://helseatlas.github.io/shinymap
 Imports:
   shiny,
   shinythemes,
-  sp,
   rsconnect,
   ggplot2,
   leaflet,
   magrittr,
   dplyr,
   ggthemes,
-  geojsonio,
-  rmapshaper,
-  rgdal,
   classInt
 Suggests: 
     testthat,
