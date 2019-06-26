@@ -191,7 +191,8 @@ shiny::shinyServer(
 
       map <- shinymap::make_map(map = atlas_map(), data = filtered_data)
       return(map)
-    }, height = 800, width = 600)
+    }
+    , height = 800, width = 600)
 
     output$plot_histogram <- shiny::renderPlot({
       filtered_data <- shinymap::filter_out(atlas_data(),
@@ -205,7 +206,8 @@ shiny::shinyServer(
         ylab = input$menu_level1
       )
       return(plot)
-    }, height = 800, width = 600)
+    }
+    , height = 800, width = 600)
 
     output$make_table <- shiny::renderTable({
       filtered_data <- shinymap::filter_out(atlas_data(),
