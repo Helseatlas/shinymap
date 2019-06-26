@@ -48,6 +48,7 @@ before_install:
 script:
   - R CMD build .
   - R CMD check *tar.gz
+  - echo TRAVIS_EVENT_TYPE $TRAVIS_EVENT_TYPE
 
 after_script:
   - |
