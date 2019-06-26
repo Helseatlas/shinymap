@@ -4,14 +4,12 @@
 \alias{make_map}
 \title{Function to make a map}
 \usage{
-make_map(data = NULL, map = NULL, type = "leaflet", utm33 = FALSE)
+make_map(data = NULL, map = NULL, utm33 = FALSE)
 }
 \arguments{
 \item{data}{Data to be plotted in the map}
 
 \item{map}{The map itself}
-
-\item{type}{Type of map (default = "leaflet")}
 
 \item{utm33}{Convert from UTM 33 to Leaflet projection (default = TRUE)}
 }

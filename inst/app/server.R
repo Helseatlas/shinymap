@@ -184,14 +184,14 @@ shiny::shinyServer(
                                             filter2 = input$menu_level2,
                                             filter3 = input$menu_level3)
 
-      # Return null if data in invalid
       if (is.null(nrow(filtered_data)) || nrow(filtered_data) == 0) {
+        # Return null if data in invalid
         return(NULL)
       }
 
-      map <- shinymap::make_map(type = "simple", map = atlas_map(), data = filtered_data)
+      map <- shinymap::make_map(map = atlas_map(), data = filtered_data)
       return(map)
-    })
+    }, height = 800, width = 600)
 
     output$plot_histogram <- shiny::renderPlot({
       filtered_data <- shinymap::filter_out(atlas_data(),
@@ -205,7 +205,7 @@ shiny::shinyServer(
         ylab = input$menu_level1
       )
       return(plot)
-    })
+    }, height = 800, width = 600)
 
     output$make_table <- shiny::renderTable({
       filtered_data <- shinymap::filter_out(atlas_data(),
