@@ -51,13 +51,13 @@ script:
 
 after_script:
   - |
-    if [[ "$RUN_LINTR" = true ] && [ "$TRAVIS_EVENT_TYPE" = "push" ]]; then
+    if [[ "$RUN_LINTR" = true ]] && [[ "$TRAVIS_EVENT_TYPE" = "push" ]]; then
       Rscript -e 'lintr::lint_package()'
     fi
 
 after_success:
   - |
-    if [[ "$RUN_LINTR" = true ] && [ "$TRAVIS_EVENT_TYPE" = "push" ]]; then
+    if [[ "$RUN_LINTR" = true ]] && [[ "$TRAVIS_EVENT_TYPE" = "push" ]]; then
       Rscript -e 'covr::codecov()'
       Rscript -e 'roxygen2::roxygenise()'
       Rscript -e 'pkgdown::build_site()'
