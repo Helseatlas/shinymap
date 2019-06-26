@@ -9,12 +9,12 @@
 #'
 #' @export
 plot_variation <- function(input_data = NULL, xlab = "Opptaksomr", ylab = "Rate", type = "histogram", num_groups = 4) {
-  
+
   # Avoid errors if not everything is updated on the server side
   if (is.null(input_data) || length(input_data$value) == 0) {
     return(NULL)
-  } 
-  
+  }
+
   the_plot <- NULL
   if (type == "histogram") {
     # barplot

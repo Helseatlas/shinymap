@@ -10,18 +10,18 @@ matrix:
       r: release
       env: 
         - DIST=xenial
-        - RUN_LINTR=true
+        - AFTER_JOBS=true
     - os: linux
       dist: xenial
       r: devel
       env: 
         - DIST=xenial
-        - RUN_LINTR=false
+        - AFTER_JOBS=false
     - os: windows
       r: release
       env: 
         - DIST=windows
-        - RUN_LINTR=false
+        - AFTER_JOBS=false
   allow_failures:
     - os: windows
 
@@ -51,13 +51,13 @@ script:
 
 after_script:
   - |
-    if [[ "$RUN_LINTR" = true ]] && [[ "$TRAVIS_EVENT_TYPE" = "push" ]]; then
+    if [[ "$AFTER_JOBS" = true ]] && [[ "$TRAVIS_EVENT_TYPE" = "push" ]]; then
       Rscript -e 'lintr::lint_package()'
     fi
 
 after_success:
   - |
-    if [[ "$RUN_LINTR" = true ]] && [[ "$TRAVIS_EVENT_TYPE" = "push" ]]; then
+    if [[ "$AFTER_JOBS" = true ]] && [[ "$TRAVIS_EVENT_TYPE" = "push" ]]; then
       Rscript -e 'covr::codecov()'
       Rscript -e 'roxygen2::roxygenise()'
       Rscript -e 'pkgdown::build_site()'
@@ -70,9 +70,9 @@ deploy:
   local_dir: docs                         # Deploy the docs folder
   on: # Only deploy if master branch, xenial build and with latest released version of R.
     branch: master
-    condition: "$RUN_LINTR = true"
+    condition: "$AFTER_JOBS = true"
 
 notifications:
   email:
-    on_success: never # default: change
+    on_success: change # default: change
     on_failure: change # default: always 
