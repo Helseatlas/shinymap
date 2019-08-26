@@ -32,11 +32,22 @@ shiny::shinyServer(
       lang <- 1 # default language value
     }
 
+    output$pick_language <- shiny::renderUI({
+        shiny::selectInput(
+          inputId = "language",
+          label = "",
+          choices = c("Norsk" = 1,
+                      "English" = 2
+          ),
+          selected = 1
+        )
+    })
+    
     output$pick_atlas <- shiny::renderUI({
       if (!is.data.frame(healthatlas_data)) {
         shiny::selectInput(
           inputId = "atlas",
-          label = c("Velg atlas:", "Pick an atlas")[lang],
+          label = c("Velg atlas:", "Pick an atlas")[as.numeric(input$language)],
           choices = c("Dagkirurgi 2011-2013" = "dagkir",
                       "Barn" = "barn",
                       "Nyfødt" = "nyfodt",
@@ -117,7 +128,7 @@ shiny::shinyServer(
       # The selector
       shiny::selectInput(
         inputId = "menu_level1",
-        label = c("Velg et tema:", "Pick a subject")[lang],
+        label = c("Velg et tema:", "Pick a subject")[as.numeric(input$language)],
         choices = pickable_level1,
         selected = pickable_level1[1]
       )
@@ -132,7 +143,7 @@ shiny::shinyServer(
         # The selector
         shiny::selectInput(
           inputId = "menu_level2",
-          label = c("Velg et tema:", "Pick a subject")[lang],
+          label = c("Velg et tema:", "Pick a subject")[as.numeric(input$language)],
           choices = pickable_level2,
           selected = pickable_level2[1]
         )
@@ -150,7 +161,7 @@ shiny::shinyServer(
         # The selector
         shiny::selectInput(
           inputId = "menu_level3",
-          label = c("Velg et tema:", "Pick a subject")[lang],
+          label = c("Velg et tema:", "Pick a subject")[as.numeric(input$language)],
           choices = pickable_level3,
           selected = pickable_level3[1]
         )
@@ -167,15 +178,15 @@ shiny::shinyServer(
     })
 
     output$title_table <- shiny::renderUI({
-      return(c("Tabell", "Table")[lang])
+      return(c("Tabell", "Table")[as.numeric(input$language)])
     })
 
     output$title_map <- shiny::renderUI({
-      return(c("Kart", "Map")[lang])
+      return(c("Kart", "Map")[as.numeric(input$language)])
     })
 
     output$title_hist <- shiny::renderUI({
-      return(c("Histogram", "Histogram")[lang])
+      return(c("Histogram", "Histogram")[as.numeric(input$language)])
     })
 
     output$plot_map <- shiny::renderPlot({
@@ -202,7 +213,7 @@ shiny::shinyServer(
 
       plot <- shinymap::plot_variation(
         input_data = filtered_data,
-        xlab = c("Opptaksomr\u00E5de", "Area")[lang],
+        xlab = c("Opptaksomr\u00E5de", "Area")[as.numeric(input$language)],
         ylab = input$menu_level1
       )
       return(plot)
@@ -221,10 +232,10 @@ shiny::shinyServer(
       }
 
       tabular_data <- data.frame(filtered_data$area_name)
-      colnames(tabular_data) <- c(c("Opptaksomr", "Area")[lang])
-      tabular_data[c("Rate", "Rate")[lang]] <- filtered_data$value
-      tabular_data[c("Antall", "Num")[lang]] <- filtered_data$numerator
-      tabular_data[c("Innbyggere", "Inhab")[lang]] <- filtered_data$denominator
+      colnames(tabular_data) <- c(c("Opptaksomr", "Area")[as.numeric(input$language)])
+      tabular_data[c("Rate", "Rate")[as.numeric(input$language)]] <- filtered_data$value
+      tabular_data[c("Antall", "Num")[as.numeric(input$language)]] <- filtered_data$numerator
+      tabular_data[c("Innbyggere", "Inhab")[as.numeric(input$language)]] <- filtered_data$denominator
       return(tabular_data)
     })
 

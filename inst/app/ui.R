@@ -11,6 +11,7 @@ shinyUI(function(request) {
     )), uiOutput("title"),
 
     sidebarPanel(
+      uiOutput("pick_language"),
       uiOutput("pick_atlas"),
       uiOutput("pick_level1"),
       uiOutput("pick_level2"),
