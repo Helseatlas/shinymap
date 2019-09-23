@@ -226,13 +226,14 @@ shiny::shinyServer(
       tabular_data[c("Antall", "  Num.")[lang]] <- filtered_data$numerator
       tabular_data[c("Innb.", "Inhab.")[lang]] <- filtered_data$denominator
       # Format numbers
-      tabular_data[,-1] <- sapply(tabular_data[,-1], FUN=function(x) format(x,
+      tabular_data[, -1] <- sapply(tabular_data[, -1], FUN = function(x) format(x,
                                                                             digits = 2,
                                                                             decimal.mark = c(",", ".")[lang],
                                                                             big.mark = c(" ", ",")[lang]
                                                                             ))
       return(tabular_data)
-    }, align = 'lrrr')
+    }
+    , align = "lrrr")
 
   }
 )
