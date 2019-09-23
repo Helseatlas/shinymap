@@ -103,6 +103,8 @@ shiny::shinyServer(
           return(kart::utm33_to_leaflet(kart::gyn))
         } else if (input$atlas == "fodsel") {
           return(kart::utm33_to_leaflet(kart::fodsel))
+        } else if (input$atlas == "ortopedi") {
+          return(kart::utm33_to_leaflet(kart::fodsel)) # Wrong map!
         } else {
           return(NULL)
         }
