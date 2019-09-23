@@ -6,6 +6,7 @@ shiny::shinyServer(
     }
 
     if (!exists("healthatlas_data")) {
+      print("healthatlas_data does not exist")
       healthatlas_data <- NULL
     }
 
@@ -19,6 +20,10 @@ shiny::shinyServer(
       healthatlas_map <- shinymap::testmap
     }
 
+    if (exists("healthatlas_data")) {
+      listeDatasett <- names(healthatlas_data)
+    }
+    
     if (!exists("language") || is.null(language)) {
       # Define language to Norwegian, if not defined
       language <- "no"
@@ -37,17 +42,8 @@ shiny::shinyServer(
         shiny::selectInput(
           inputId = "atlas",
           label = c("Velg atlas:", "Pick an atlas")[lang],
-          choices = c("Dagkirurgi 2011-2013" = "dagkir",
-                      "Barn" = "barn",
-                      "Nyfødt" = "nyfodt",
-                      "Eldre" = "eldre",
-                      "Kols" = "kols",
-                      "Dagkirurgi 2013-2017" = "dagkir2",
-                      "Ortopedi" = "ortopedi",
-                      "Gynekologi" = "gyn",
-                      "Fødselshjelp" = "fodsel"
-          ),
-          selected = "dagkir"
+          choices = listeDatasett,
+          selected = listeDatasett[1]
         )
       }
     })
@@ -57,26 +53,8 @@ shiny::shinyServer(
       if (!is.data.frame(healthatlas_data)) {
         if (is.null(input$atlas)){
           return(NULL)
-        } else if (input$atlas == "dagkir") {
-          return(data::dagkir)
-        } else if (input$atlas == "barn") {
-          return(data::barn)
-        } else if (input$atlas == "nyfodt") {
-          return(data::nyfodt)
-        } else if (input$atlas == "eldre") {
-          return(data::eldre)
-        } else if (input$atlas == "kols") {
-          return(data::kols)
-        } else if (input$atlas == "dagkir2") {
-          return(data::dagkir2)
-        } else if (input$atlas == "ortopedi") {
-          return(data::ortopedi)
-        } else if (input$atlas == "gyn") {
-          return(data::gyn)
-        } else if (input$atlas == "fodsel") {
-          return(data::fodsel)
         } else {
-          return(NULL)
+          return(healthatlas_data[[input$atlas]])
         }
       } else {
         return(healthatlas_data)
