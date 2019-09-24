@@ -6,7 +6,6 @@ shiny::shinyServer(
     }
 
     if (!exists("healthatlas_data")) {
-      print("healthatlas_data does not exist")
       healthatlas_data <- NULL
     }
 

@@ -32,7 +32,8 @@ names(all_data) <- all_names
 devtools::install_github("Helseatlas/kart")
 devtools::install_github("Helseatlas/data")
 devtools::install_github("Helseatlas/shinymap")
-shinymap::launch_app(dataset = all_data,
+shinymap::launch_app(
+  dataset = all_data,
   publish_app = FALSE,
   title = "Helseatlas",
   language = "no"
@@ -43,6 +44,7 @@ devtools::install_github("Helseatlas/kart")
 devtools::install_github("Helseatlas/data")
 devtools::install_github("Helseatlas/shinymap")
 shinymap::launch_app(
+  dataset = all_data,
   publish_app = TRUE,
   name = "Helseatlas",
   language = "no"
