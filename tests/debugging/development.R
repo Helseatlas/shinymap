@@ -1,15 +1,8 @@
 library(magrittr)
 
-
-
 rm(list=ls())
 
-getwd()
-
-
-all_data = list()
-
-
+# Names of the atlases
 all_names = c("Dagkirurgi 2011-2013",
               "Barn",
               "Nyfødt",
@@ -21,22 +14,19 @@ all_names = c("Dagkirurgi 2011-2013",
               "Fødselshjelp"
           )
 
+# All atlas data and maps
 all_data <- list(
-              c(data::dagkir_en, kart::dagkir),
-              c(data::barn, kart::barn),
-              c(data::nyfodt, kart::nyfodt),
-              c(data::kols, kart::kols),
-              c(data::eldre, kart::eldre),
-              c(data::dagkir2, kart::dagkir2),
-              c(data::ortopedi, kart::gyn),
-              c(data::gyn, kart::gyn),
-              c(data::fodsel, kart::fodsel))
+              list(data::dagkir, kart::dagkir),
+              list(data::barn, kart::barn),
+              list(data::nyfodt, kart::nyfodt),
+              list(data::kols, kart::kols),
+              list(data::eldre, kart::eldre),
+              list(data::dagkir2, kart::dagkir2),
+              list(data::ortopedi, kart::gyn),
+              list(data::gyn, kart::gyn),
+              list(data::fodsel, kart::fodsel))
 
 names(all_data) <- all_names
-
-all_data[["Barn"]]
-
-test <- all_data$`Dagkirurgi 2011-2013`
 
 # How to run the app through launch_app
 devtools::install_github("Helseatlas/kart")
