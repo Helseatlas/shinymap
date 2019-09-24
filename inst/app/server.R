@@ -1,36 +1,34 @@
+# Settings before server session starts
+
+if (file.exists("data/data.RData")) {
+  # load information sent through "launch_application"
+  load("data/data.RData")
+}
+if (!exists("healthatlas_data")) {
+  healthatlas_data <- NULL
+}
+if (!exists("healthatlas_map")) {
+  healthatlas_map <- NULL
+}
+if (isTRUE(getOption("shiny.testmode"))) {
+  # Load static/dummy data if this is a test run
+  healthatlas_data <- shinymap::testdata
+  healthatlas_map <- shinymap::testmap
+}
+if (!exists("language") || is.null(language)) {
+  # Define language to Norwegian, if not defined
+  language <- "no"
+}
+if (language == "no") {
+  lang <- 1
+} else if (language == "en") {
+  lang <- 2
+} else {
+  lang <- 1 # default language value
+}
+
 shiny::shinyServer(
   function(input, output) {
-    if (file.exists("data/data.RData")) {
-      # load information sent through "launch_application"
-      load("data/data.RData")
-    }
-
-    if (!exists("healthatlas_data")) {
-      healthatlas_data <- NULL
-    }
-
-    if (!exists("healthatlas_map")) {
-      healthatlas_map <- NULL
-    }
-
-    if (isTRUE(getOption("shiny.testmode"))) {
-      # Load static/dummy data if this is a test run
-      healthatlas_data <- shinymap::testdata
-      healthatlas_map <- shinymap::testmap
-    }
-
-    if (!exists("language") || is.null(language)) {
-      # Define language to Norwegian, if not defined
-      language <- "no"
-    }
-
-    if (language == "no") {
-      lang <- 1
-    } else if (language == "en") {
-      lang <- 2
-    } else {
-      lang <- 1 # default language value
-    }
 
     output$pick_atlas <- shiny::renderUI({
       if (!is.data.frame(healthatlas_data)) {
