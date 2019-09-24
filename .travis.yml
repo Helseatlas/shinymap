@@ -29,6 +29,9 @@ env:
   global:
     - _R_CHECK_TESTS_NLINES_=0
 
+repos:
+  CRAN: https://cloud.r-project.org
+
 r_packages:
   - covr
   - lintr
