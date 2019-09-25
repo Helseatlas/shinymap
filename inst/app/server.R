@@ -131,7 +131,7 @@ shiny::shinyServer(
     output$title <- shiny::renderUI({
       if (!exists("webpage_title") || is.null(webpage_title)) {
         # Define the atlas title, if not defined
-        webpage_title <- c("Helseatlas", "The Norwegian healthcare atlas")[lang]
+        webpage_title <- c("Helseatlas", "The Norwegian healthcare atlas")[as.numeric(input$language)]
       }
 
       return(shiny::HTML(paste0("<h1>", webpage_title, "</h1>")))
