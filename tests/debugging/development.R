@@ -4,15 +4,15 @@ rm(list=ls())
 
 # All atlas data and maps
 all_data <- list(
-  "dagir"    = list("data_no" = data::dagkir,   "data_en" = data::dagkir_en,  "year" = "2011–2013", "title_no" = "Dagkirurgi 2011-2013", "title_en" = "Day surgey 2011-2013", "map" = kart::dagkir),
-  "barn"     = list("data_no" = data::barn,     "data_en" = data::barn_en,    "year" = "2011–2014", "title_no" = "Barn",                 "title_en" = "Children",             "map" = kart::barn),
-  "nyfodt"   = list("data_no" = data::nyfodt,   "data_en" = data::nyfodt_en,  "year" = "2009–2014", "title_no" = "Nyfødt",               "title_en" = "Neonatal",               "map" = kart::nyfodt),
-  "eldre"    = list("data_no" = data::kols,     "data_en" = data::kols_en,    "year" = "2013–2015", "title_no" = "Eldre",                "title_en" = "Elderly",              "map" = kart::kols),
-  "kols"     = list("data_no" = data::eldre,    "data_en" = data::eldre_en,   "year" = "2013–2015", "title_no" = "Kols",                 "title_en" = "COPD",                 "map" = kart::eldre),
-  "dagkir2"  = list("data_no" = data::dagkir2,  "data_en" = data::dagkir2_en, "year" = "2013–2017", "title_no" = "Dagkirurgi 2013–2017", "title_en" = "Day surgey 2013-2017", "map" = kart::dagkir2),
-  "ortopedi" = list("data_no" = data::ortopedi, "data_en" = data::ortopedi,   "year" = "2012–2016", "title_no" = "Ortopedi",             "title_en" = "Orthopaedic",             "map" = kart::gyn),
-  "gyn"      = list("data_no" = data::gyn,      "data_en" = data::gyn_en,     "year" = "2015–2017", "title_no" = "Gynekologi",           "title_en" = "Gynaecology",           "map" = kart::gyn),
-  "fodsel"   = list("data_no" = data::fodsel,   "data_en" = data::fodsel,     "year" = "2015–2017", "title_no" = "Fødselshjelp",         "title_en" = "Obstetrics",         "map" = kart::fodsel))
+  "fodsel"   = list("data_no" = data::fodsel,   "data_en" = data::fodsel,     "year" = "2015–2017", "title_no" = "Fødselshjelp", "title_en" = "Obstetrics",  "map" = kart::fodsel))
+  "gyn"      = list("data_no" = data::gyn,      "data_en" = data::gyn_en,     "year" = "2015–2017", "title_no" = "Gynekologi",   "title_en" = "Gynaecology", "map" = kart::gyn),
+  "ortopedi" = list("data_no" = data::ortopedi, "data_en" = data::ortopedi,   "year" = "2012–2016", "title_no" = "Ortopedi",     "title_en" = "Orthopaedic", "map" = kart::gyn),
+  "dagkir2"  = list("data_no" = data::dagkir2,  "data_en" = data::dagkir2_en, "year" = "2013–2017", "title_no" = "Dagkirurgi",   "title_en" = "Day surgey",  "map" = kart::dagkir2),
+  "kols"     = list("data_no" = data::eldre,    "data_en" = data::eldre_en,   "year" = "2013–2015", "title_no" = "Kols",         "title_en" = "COPD",        "map" = kart::eldre),
+  "eldre"    = list("data_no" = data::kols,     "data_en" = data::kols_en,    "year" = "2013–2015", "title_no" = "Eldre",        "title_en" = "Elderly",     "map" = kart::kols),
+  "nyfodt"   = list("data_no" = data::nyfodt,   "data_en" = data::nyfodt_en,  "year" = "2009–2014", "title_no" = "Nyfødt",       "title_en" = "Neonatal",    "map" = kart::nyfodt),
+  "barn"     = list("data_no" = data::barn,     "data_en" = data::barn_en,    "year" = "2011–2014", "title_no" = "Barn",         "title_en" = "Children",    "map" = kart::barn),
+  "dagir"    = list("data_no" = data::dagkir,   "data_en" = data::dagkir_en,  "year" = "2011–2013", "title_no" = "Dagkirurgi",   "title_en" = "Day surgey",  "map" = kart::dagkir),
 
 # How to run the app through launch_app
 devtools::install_github("Helseatlas/kart")
