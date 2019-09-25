@@ -32,7 +32,7 @@ shiny::shinyServer(
           selected = 1
         )
     })
-    
+
     output$pick_atlas <- shiny::renderUI({
       if (!is.data.frame(healthatlas_data)) {
         if (is.null(input$language)) {
@@ -49,7 +49,7 @@ shiny::shinyServer(
           }
         }
         names(atlasnames) <- mytitle
-        
+
         shiny::selectInput(
           inputId = "atlas",
           label = c("Velg atlas:", "Pick an atlas")[as.numeric(input$language)],
@@ -199,11 +199,13 @@ shiny::shinyServer(
       tabular_data[c("Antall", "  Num.")[as.numeric(input$language)]] <- filtered_data$numerator
       tabular_data[c("Innb.", "Inhab.")[as.numeric(input$language)]] <- filtered_data$denominator
       # Format numbers
-      tabular_data[, -1] <- sapply(tabular_data[, -1], FUN = function(x) format(x,
-                                                                            digits = 2,
-                                                                            decimal.mark = c(",", ".")[as.numeric(input$language)],
-                                                                            big.mark = c(" ", ",")[as.numeric(input$language)]
-                                                                            ))
+      tabular_data[, -1] <- sapply(tabular_data[, -1],
+                                   FUN = function(x) format(x,
+                                                            digits = 2,
+                                                            decimal.mark = c(",", ".")[as.numeric(input$language)],
+                                                            big.mark = c(" ", ",")[as.numeric(input$language)]
+                                                            )
+                                   )
       return(tabular_data)
     }
     , align = "lrrr")
