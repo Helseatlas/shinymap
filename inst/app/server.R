@@ -43,9 +43,9 @@ shiny::shinyServer(
         atlasnames <- names(healthatlas_data)
         for (i in atlasnames) {
           if (input$language == "1") {
-            mytitle <- c(mytitle, healthatlas_data[[i]]$title_no)
+            mytitle <- c(mytitle, paste(healthatlas_data[[i]]$title_no, healthatlas_data[[i]]$year, sep = " "))
           } else if (input$language == "2") {
-            mytitle <- c(mytitle, healthatlas_data[[i]]$title_en)
+            mytitle <- c(mytitle, paste(healthatlas_data[[i]]$title_en, healthatlas_data[[i]]$year, sep = " "))
           }
         }
         names(atlasnames) <- mytitle
