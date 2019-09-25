@@ -16,7 +16,7 @@ make_map <- function(data = NULL, map = NULL, utm33 = FALSE) {
   map_data <- merge(x = map, y = simple_data, by.x = "area_num", by.y = "area")
   map_data$area_num <- NULL
   map_data$area_name <- NULL
-  
+
   if (utm33) {
     # convert from utm33 to leaflet
     map_data <- kart::utm33_to_leaflet(map = map_data, sf = TRUE)

@@ -29,6 +29,9 @@ env:
   global:
     - _R_CHECK_TESTS_NLINES_=0
 
+repos:
+  CRAN: https://cloud.r-project.org
+
 r_packages:
   - covr
   - lintr
@@ -51,24 +54,24 @@ script:
 
 after_script:
   - |
-    if [[ "$AFTER_JOBS" = true ]] && [[ "$TRAVIS_EVENT_TYPE" = "push" ]]; then
+    if [[ "$AFTER_JOBS" == "true" ]] && [[ "$TRAVIS_EVENT_TYPE" == "push" ]]; then
       Rscript -e 'lintr::lint_package()'
     fi
 
 after_success:
-  - |
-    if [[ "$AFTER_JOBS" = true ]] && [[ "$TRAVIS_EVENT_TYPE" = "push" ]]; then
-      Rscript -e 'covr::codecov()'
-      Rscript -e 'roxygen2::roxygenise()'
-      Rscript -e 'pkgdown::build_site()'
-    fi
+  - Rscript -e 'covr::codecov()'
+  - Rscript -e 'roxygen2::roxygenise()'
+  - Rscript -e 'pkgdown::build_site()'
 
 deploy:
   provider: pages                         # Specify the gh-pages deployment method
   skip_cleanup: true                      # Don't remove files
   github_token: $GITHUB_TOKEN             # Set in travis-ci.org dashboard
   local_dir: docs                         # Deploy the docs folder
-  if: branch = master AND type = push AND os = linux AND dist = xenial AND r = release
+  on:
+    branch: master
+    condition: "$AFTER_JOBS = true"
+    type: push
 
 notifications:
   email:

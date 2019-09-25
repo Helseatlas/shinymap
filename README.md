@@ -26,18 +26,11 @@ Sys.setenv(http_proxy="your.proxy.url:port")
 Sys.setenv(https_proxy="your.proxy.url:port")
 ```
 
-Thus, if you are behind Helse Nord proxy, you do the following:
-
-```r
-Sys.setenv(http_proxy="http://www-proxy.helsenord.no:8080")
-Sys.setenv(https_proxy="http://www-proxy.helsenord.no:8080")
-```
-
 If you want to keep the proxy settings active when restarting R you can include the following in a file called `.Renviron`:
 
 ```bash
-http_proxy="http://www-proxy.helsenord.no:8080"
-https_proxy="http://www-proxy.helsenord.no:8080"
+http_proxy="your.proxy.url:port"
+https_proxy="your.proxy.url:port"
 ```
 
 This file has to be saved in your `$HOME` directory, which typically is something like `c:/Users/<username>` on Windows.

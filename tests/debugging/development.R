@@ -1,10 +1,39 @@
 library(magrittr)
 
+rm(list=ls())
+
+# Names of the atlases
+all_names = c("Dagkirurgi 2011-2013",
+              "Barn",
+              "Nyfødt",
+              "Eldre",
+              "Kols",
+              "Dagkirurgi 2013-2017",
+              "Ortopedi",
+              "Gynekologi",
+              "Fødselshjelp"
+          )
+
+# All atlas data and maps
+all_data <- list(
+              list(data::dagkir, kart::dagkir),
+              list(data::barn, kart::barn),
+              list(data::nyfodt, kart::nyfodt),
+              list(data::kols, kart::kols),
+              list(data::eldre, kart::eldre),
+              list(data::dagkir2, kart::dagkir2),
+              list(data::ortopedi, kart::gyn),
+              list(data::gyn, kart::gyn),
+              list(data::fodsel, kart::fodsel))
+
+names(all_data) <- all_names
+
 # How to run the app through launch_app
 devtools::install_github("Helseatlas/kart")
 devtools::install_github("Helseatlas/data")
 devtools::install_github("Helseatlas/shinymap")
 shinymap::launch_app(
+  dataset = all_data,
   publish_app = FALSE,
   title = "Helseatlas",
   language = "no"
@@ -15,6 +44,7 @@ devtools::install_github("Helseatlas/kart")
 devtools::install_github("Helseatlas/data")
 devtools::install_github("Helseatlas/shinymap")
 shinymap::launch_app(
+  dataset = all_data,
   publish_app = TRUE,
   name = "Helseatlas",
   language = "no"
