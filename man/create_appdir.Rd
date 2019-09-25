@@ -5,14 +5,12 @@
 \title{Create an appDir for shiny::runApp and rsconnect::deployApp}
 \usage{
 create_appdir(healthatlas_data = NULL, healthatlas_map = NULL,
-  language = NULL, webpage_title = NULL)
+  webpage_title = NULL)
 }
 \arguments{
 \item{healthatlas_data}{The data to be saved in the directory, to be used by the app}
 
 \item{healthatlas_map}{The map}
-
-\item{language}{The language of the atlas ("en" or "no")}
 
 \item{webpage_title}{The title of the atlas}
 }
