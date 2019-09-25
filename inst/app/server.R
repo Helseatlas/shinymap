@@ -22,19 +22,6 @@ shiny::shinyServer(
       healthatlas_map <- shinymap::testmap
     }
 
-    if (!exists("language") || is.null(language)) {
-      # Define language to Norwegian, if not defined
-      language <- "no"
-    }
-
-    if (language == "no") {
-      lang <- 1
-    } else if (language == "en") {
-      lang <- 2
-    } else {
-      lang <- 1 # default language value
-    }
-
     output$pick_language <- shiny::renderUI({
         shiny::selectInput(
           inputId = "language",
@@ -48,11 +35,26 @@ shiny::shinyServer(
     
     output$pick_atlas <- shiny::renderUI({
       if (!is.data.frame(healthatlas_data)) {
+        if (is.null(input$language)) {
+          return(NULL)
+        }
+
+        mytitle <- c()
+        atlasnames <- names(healthatlas_data)
+        for (i in atlasnames) {
+          if (input$language == "1") {
+            mytitle <- c(mytitle, healthatlas_data[[i]]$title_no)
+          } else if (input$language == "2") {
+            mytitle <- c(mytitle, healthatlas_data[[i]]$title_en)
+          }
+        }
+        names(atlasnames) <- mytitle
+        
         shiny::selectInput(
           inputId = "atlas",
           label = c("Velg atlas:", "Pick an atlas")[as.numeric(input$language)],
-          choices = names(healthatlas_data),
-          selected = names(healthatlas_data)[1]
+          choices = atlasnames,
+          selected = atlasnames[1]
         )
       }
     })
@@ -63,7 +65,7 @@ shiny::shinyServer(
         if (is.null(input$atlas)){
           return(NULL)
         } else {
-          return(healthatlas_data[[input$atlas]][[1]])
+          return(healthatlas_data[[input$atlas]][[as.numeric(input$language)]])
         }
       } else {
         return(healthatlas_data)
@@ -75,7 +77,7 @@ shiny::shinyServer(
         if (is.null(input$atlas)){
           return(NULL)
         } else {
-          return(kart::utm33_to_leaflet(healthatlas_data[[input$atlas]][[2]]))
+          return(kart::utm33_to_leaflet(healthatlas_data[[input$atlas]][["map"]]))
         }
       } else {
         return(healthatlas_map)
