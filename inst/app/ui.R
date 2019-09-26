@@ -20,18 +20,17 @@ shinyUI(function(request) {
                     
                   ),
                   fluidRow(
-                    column(3,
+                    column(4,
                            uiOutput("pick_atlas"),
                            uiOutput("pick_level1"),
                            uiOutput("pick_level2"),
                            uiOutput("pick_level3"),
                            tableOutput("make_table")
                     ),
-                    column(5,
-                           plotOutput("plot_map")
-                    ),
-                    column(4,
-                           plotOutput("plot_histogram"))
-                  )
-  )
+                    column(8,
+                           tabsetPanel(
+                             tabPanel(uiOutput("title_map"), plotOutput("plot_map")),
+                             tabPanel(uiOutput("title_hist"), plotOutput("plot_histogram"))
+                           ))
+                    ))
 })
