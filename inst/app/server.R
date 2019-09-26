@@ -80,7 +80,7 @@ shiny::shinyServer(
           return(kart::utm33_to_leaflet(healthatlas_data[[input$atlas]][["map"]]))
         }
       } else {
-        return(healthatlas_map)
+        return(kart::utm33_to_leaflet(healthatlas_map))
       }
     })
 
