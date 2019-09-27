@@ -26,8 +26,8 @@ shiny::shinyServer(
         shiny::selectInput(
           inputId = "language",
           label = "",
-          choices = c("🇳🇴 No" = 1,
-                      "🇬🇧 En" = 2
+          choices = c("NO" = 1,
+                      "EN" = 2
           ),
           selected = 1
         )
