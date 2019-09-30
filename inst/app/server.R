@@ -50,6 +50,7 @@ shiny::shinyServer(
         names(atlasnames) <- mytitle
 
         shiny::selectInput(
+          selectize = FALSE,
           inputId = "atlas",
           label = c("Velg atlas:", "Pick an atlas")[as.numeric(input$language)],
           choices = atlasnames,
