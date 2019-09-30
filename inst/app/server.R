@@ -89,6 +89,7 @@ shiny::shinyServer(
       pickable_level1 <- unique(factor(atlas_data()$level1_name))
       # The selector
       shiny::selectInput(
+        selectize = FALSE,
         inputId = "menu_level1",
         label = c("Velg et tema:", "Pick a subject")[as.numeric(input$language)],
         choices = pickable_level1,
@@ -107,6 +108,7 @@ shiny::shinyServer(
         pickable_level2 <- unique(factor(tmpdata$level2_name))
         # The selector
         shiny::selectInput(
+          selectize = FALSE,
           inputId = "menu_level2",
           label = c("Velg et tema:", "Pick a subject")[as.numeric(input$language)],
           choices = pickable_level2,
@@ -128,6 +130,7 @@ shiny::shinyServer(
         pickable_level3 <- unique(factor(tmpdata2$level3_name))
         # The selector
         shiny::selectInput(
+          selectize = FALSE,
           inputId = "menu_level3",
           label = c("Velg et tema:", "Pick a subject")[as.numeric(input$language)],
           choices = pickable_level3,

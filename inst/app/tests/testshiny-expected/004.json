@@ -2,11 +2,8 @@
   "input": {
     "language": "1",
     "menu_level1": "Kirurgiske tilstander, spesialisthelsetjenesten",
-    "menu_level1-selectized": "",
     "menu_level2": "Utvalgte prosedyrer",
-    "menu_level2-selectized": "",
-    "menu_level3": "Fjerning av mandler",
-    "menu_level3-selectized": ""
+    "menu_level3": "Fjerning av mandler"
   },
   "output": {
     "make_table": "<table  class = 'table shiny-table table- spacing-s' style = 'width:auto;'>\n<thead> <tr> <th style='text-align: left;'> Opptaksomr <\/th> <th style='text-align: right;'> Rate <\/th> <th style='text-align: right;'> Antall <\/th> <th style='text-align: right;'> Innb. <\/th>  <\/tr> <\/thead> <tbody>\n  <tr> <td> Finnmark <\/td> <td align=\"right\">  71 <\/td> <td align=\"right\">    11 <\/td> <td align=\"right\">    15 332 <\/td> <\/tr>\n  <tr> <td> UNN <\/td> <td align=\"right\">  98 <\/td> <td align=\"right\">    38 <\/td> <td align=\"right\">    37 609 <\/td> <\/tr>\n  <tr> <td> Nordland <\/td> <td align=\"right\"> 103 <\/td> <td align=\"right\">    47 <\/td> <td align=\"right\">    43 186 <\/td> <\/tr>\n  <tr> <td> Nord-Trondelag <\/td> <td align=\"right\">  79 <\/td> <td align=\"right\">    24 <\/td> <td align=\"right\">    29 056 <\/td> <\/tr>\n  <tr> <td> St. Olavs <\/td> <td align=\"right\"> 114 <\/td> <td align=\"right\">    71 <\/td> <td align=\"right\">    62 253 <\/td> <\/tr>\n  <tr> <td> More og Romsdal <\/td> <td align=\"right\">  93 <\/td> <td align=\"right\">    52 <\/td> <td align=\"right\">    54 199 <\/td> <\/tr>\n  <tr> <td> Forde <\/td> <td align=\"right\"> 124 <\/td> <td align=\"right\">    30 <\/td> <td align=\"right\">    23 330 <\/td> <\/tr>\n  <tr> <td> Bergen <\/td> <td align=\"right\"> 101 <\/td> <td align=\"right\">    92 <\/td> <td align=\"right\">    91 673 <\/td> <\/tr>\n  <tr> <td> Fonna <\/td> <td align=\"right\"> 105 <\/td> <td align=\"right\">    43 <\/td> <td align=\"right\">    39 744 <\/td> <\/tr>\n  <tr> <td> Stavanger <\/td> <td align=\"right\">  92 <\/td> <td align=\"right\">    74 <\/td> <td align=\"right\">    81 507 <\/td> <\/tr>\n  <tr> <td> Ostfold <\/td> <td align=\"right\"> 116 <\/td> <td align=\"right\">    69 <\/td> <td align=\"right\">    57 341 <\/td> <\/tr>\n  <tr> <td> Akershus <\/td> <td align=\"right\">  97 <\/td> <td align=\"right\">   105 <\/td> <td align=\"right\">   108 469 <\/td> <\/tr>\n  <tr> <td> OUS <\/td> <td align=\"right\">  98 <\/td> <td align=\"right\">    82 <\/td> <td align=\"right\">    95 564 <\/td> <\/tr>\n  <tr> <td> Innlandet <\/td> <td align=\"right\">  98 <\/td> <td align=\"right\">    78 <\/td> <td align=\"right\">    75 231 <\/td> <\/tr>\n  <tr> <td> Vestre Viken <\/td> <td align=\"right\"> 105 <\/td> <td align=\"right\">   107 <\/td> <td align=\"right\">   100 582 <\/td> <\/tr>\n  <tr> <td> Vestfold <\/td> <td align=\"right\"> 116 <\/td> <td align=\"right\">    54 <\/td> <td align=\"right\">    45 330 <\/td> <\/tr>\n  <tr> <td> Telemark <\/td> <td align=\"right\"> 113 <\/td> <td align=\"right\">    40 <\/td> <td align=\"right\">    33 344 <\/td> <\/tr>\n  <tr> <td> Sorlandet <\/td> <td align=\"right\">  93 <\/td> <td align=\"right\">    60 <\/td> <td align=\"right\">    63 768 <\/td> <\/tr>\n  <tr> <td> Norge <\/td> <td align=\"right\"> 101 <\/td> <td align=\"right\"> 1 075 <\/td> <td align=\"right\"> 1 057 514 <\/td> <\/tr>\n   <\/tbody> <\/table>",
@@ -18,60 +15,21 @@
       ]
     },
     "pick_level1": {
-      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"menu_level1\">Velg et tema:<\/label>\n  <div>\n    <select id=\"menu_level1\"><option value=\"Barn 0-16 aar, totalt\" selected>Barn 0-16 aar, totalt<\/option>\n<option value=\"Medisinske tilstander, spesialisthelsetjenesten\">Medisinske tilstander, spesialisthelsetjenesten<\/option>\n<option value=\"Kirurgiske tilstander, spesialisthelsetjenesten\">Kirurgiske tilstander, spesialisthelsetjenesten<\/option><\/select>\n    <script type=\"application/json\" data-for=\"menu_level1\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"menu_level1\">Velg et tema:<\/label>\n  <div>\n    <select id=\"menu_level1\" class=\"form-control\"><option value=\"Barn 0-16 aar, totalt\" selected>Barn 0-16 aar, totalt<\/option>\n<option value=\"Medisinske tilstander, spesialisthelsetjenesten\">Medisinske tilstander, spesialisthelsetjenesten<\/option>\n<option value=\"Kirurgiske tilstander, spesialisthelsetjenesten\">Kirurgiske tilstander, spesialisthelsetjenesten<\/option><\/select>\n  <\/div>\n<\/div>",
       "deps": [
-        {
-          "name": "selectize",
-          "version": "0.11.2",
-          "src": {
-            "href": "shared/selectize"
-          },
-          "meta": null,
-          "script": null,
-          "stylesheet": "css/selectize.bootstrap3.css",
-          "head": "<!--[if lt IE 9]>\n<script src=\"shared/selectize/js/es5-shim.min.js\"><\/script>\n<![endif]-->\n<script src=\"shared/selectize/js/selectize.min.js\"><\/script>",
-          "attachment": null,
-          "package": null,
-          "all_files": true
-        }
+
       ]
     },
     "pick_level2": {
-      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"menu_level2\">Velg et tema:<\/label>\n  <div>\n    <select id=\"menu_level2\"><option value=\"Kontakttype\" selected>Kontakttype<\/option>\n<option value=\"Utvalgte prosedyrer\">Utvalgte prosedyrer<\/option><\/select>\n    <script type=\"application/json\" data-for=\"menu_level2\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"menu_level2\">Velg et tema:<\/label>\n  <div>\n    <select id=\"menu_level2\" class=\"form-control\"><option value=\"Kontakttype\" selected>Kontakttype<\/option>\n<option value=\"Utvalgte prosedyrer\">Utvalgte prosedyrer<\/option><\/select>\n  <\/div>\n<\/div>",
       "deps": [
-        {
-          "name": "selectize",
-          "version": "0.11.2",
-          "src": {
-            "href": "shared/selectize"
-          },
-          "meta": null,
-          "script": null,
-          "stylesheet": "css/selectize.bootstrap3.css",
-          "head": "<!--[if lt IE 9]>\n<script src=\"shared/selectize/js/es5-shim.min.js\"><\/script>\n<![endif]-->\n<script src=\"shared/selectize/js/selectize.min.js\"><\/script>",
-          "attachment": null,
-          "package": null,
-          "all_files": true
-        }
+
       ]
     },
     "pick_level3": {
-      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"menu_level3\">Velg et tema:<\/label>\n  <div>\n    <select id=\"menu_level3\"><option value=\"Fjerning av mandler\" selected>Fjerning av mandler<\/option>\n<option value=\"Innsetting av oredren\">Innsetting av oredren<\/option>\n<option value=\"Fjerning av blindtarmen\">Fjerning av blindtarmen<\/option><\/select>\n    <script type=\"application/json\" data-for=\"menu_level3\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"menu_level3\">Velg et tema:<\/label>\n  <div>\n    <select id=\"menu_level3\" class=\"form-control\"><option value=\"Fjerning av mandler\" selected>Fjerning av mandler<\/option>\n<option value=\"Innsetting av oredren\">Innsetting av oredren<\/option>\n<option value=\"Fjerning av blindtarmen\">Fjerning av blindtarmen<\/option><\/select>\n  <\/div>\n<\/div>",
       "deps": [
-        {
-          "name": "selectize",
-          "version": "0.11.2",
-          "src": {
-            "href": "shared/selectize"
-          },
-          "meta": null,
-          "script": null,
-          "stylesheet": "css/selectize.bootstrap3.css",
-          "head": "<!--[if lt IE 9]>\n<script src=\"shared/selectize/js/es5-shim.min.js\"><\/script>\n<![endif]-->\n<script src=\"shared/selectize/js/selectize.min.js\"><\/script>",
-          "attachment": null,
-          "package": null,
-          "all_files": true
-        }
+
       ]
     },
     "plot_map": {
