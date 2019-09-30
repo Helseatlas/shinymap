@@ -7,7 +7,7 @@ shinyUI(function(request) {
                     tags$title("Helseatlas"),
                     tags$style(type = "text/css", "a{color: #808080;}"), # Link and inactive tab color
                     tags$style(type = "text/css", "h1{color: #003A8C;}") # , # Title color
-                  )), 
+                  )),
                   fluidRow(
                     column(8,
                            uiOutput("title")
@@ -15,9 +15,6 @@ shinyUI(function(request) {
                     column(2, offset = 2,
                            uiOutput("pick_language")
                     )
-                  ),
-                  fluidRow(
-                    
                   ),
                   fluidRow(
                     column(4,

@@ -157,7 +157,7 @@ shiny::shinyServer(
     })
 
     output$plot_map <- shiny::renderPlot({
-      if (is.null(input$menu_level1)) {
+      if (is.null(input$menu_level1) | isTRUE(getOption("shiny.testmode")) ) {
         return(NULL)
       }
       filtered_data <- shinymap::filter_out(atlas_data(),
@@ -191,6 +191,9 @@ shiny::shinyServer(
     , height = 800, width = 600)
 
     output$make_table <- shiny::renderTable({
+      if (is.null(input$menu_level1)) {
+        return(NULL)
+      }
       filtered_data <- shinymap::filter_out(atlas_data(),
                                             filter1 = input$menu_level1,
                                             filter2 = input$menu_level2,
