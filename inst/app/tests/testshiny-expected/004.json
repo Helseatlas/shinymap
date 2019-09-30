@@ -13,7 +13,7 @@
     "make_table": "<table  class = 'table shiny-table table- spacing-s' style = 'width:auto;'>\n<thead> <tr> <th style='text-align: left;'> Opptaksomr <\/th> <th style='text-align: right;'> Rate <\/th> <th style='text-align: right;'> Antall <\/th> <th style='text-align: right;'> Innb. <\/th>  <\/tr> <\/thead> <tbody>\n  <tr> <td> Finnmark <\/td> <td align=\"right\">  71 <\/td> <td align=\"right\">    11 <\/td> <td align=\"right\">    15 332 <\/td> <\/tr>\n  <tr> <td> UNN <\/td> <td align=\"right\">  98 <\/td> <td align=\"right\">    38 <\/td> <td align=\"right\">    37 609 <\/td> <\/tr>\n  <tr> <td> Nordland <\/td> <td align=\"right\"> 103 <\/td> <td align=\"right\">    47 <\/td> <td align=\"right\">    43 186 <\/td> <\/tr>\n  <tr> <td> Nord-Trondelag <\/td> <td align=\"right\">  79 <\/td> <td align=\"right\">    24 <\/td> <td align=\"right\">    29 056 <\/td> <\/tr>\n  <tr> <td> St. Olavs <\/td> <td align=\"right\"> 114 <\/td> <td align=\"right\">    71 <\/td> <td align=\"right\">    62 253 <\/td> <\/tr>\n  <tr> <td> More og Romsdal <\/td> <td align=\"right\">  93 <\/td> <td align=\"right\">    52 <\/td> <td align=\"right\">    54 199 <\/td> <\/tr>\n  <tr> <td> Forde <\/td> <td align=\"right\"> 124 <\/td> <td align=\"right\">    30 <\/td> <td align=\"right\">    23 330 <\/td> <\/tr>\n  <tr> <td> Bergen <\/td> <td align=\"right\"> 101 <\/td> <td align=\"right\">    92 <\/td> <td align=\"right\">    91 673 <\/td> <\/tr>\n  <tr> <td> Fonna <\/td> <td align=\"right\"> 105 <\/td> <td align=\"right\">    43 <\/td> <td align=\"right\">    39 744 <\/td> <\/tr>\n  <tr> <td> Stavanger <\/td> <td align=\"right\">  92 <\/td> <td align=\"right\">    74 <\/td> <td align=\"right\">    81 507 <\/td> <\/tr>\n  <tr> <td> Ostfold <\/td> <td align=\"right\"> 116 <\/td> <td align=\"right\">    69 <\/td> <td align=\"right\">    57 341 <\/td> <\/tr>\n  <tr> <td> Akershus <\/td> <td align=\"right\">  97 <\/td> <td align=\"right\">   105 <\/td> <td align=\"right\">   108 469 <\/td> <\/tr>\n  <tr> <td> OUS <\/td> <td align=\"right\">  98 <\/td> <td align=\"right\">    82 <\/td> <td align=\"right\">    95 564 <\/td> <\/tr>\n  <tr> <td> Innlandet <\/td> <td align=\"right\">  98 <\/td> <td align=\"right\">    78 <\/td> <td align=\"right\">    75 231 <\/td> <\/tr>\n  <tr> <td> Vestre Viken <\/td> <td align=\"right\"> 105 <\/td> <td align=\"right\">   107 <\/td> <td align=\"right\">   100 582 <\/td> <\/tr>\n  <tr> <td> Vestfold <\/td> <td align=\"right\"> 116 <\/td> <td align=\"right\">    54 <\/td> <td align=\"right\">    45 330 <\/td> <\/tr>\n  <tr> <td> Telemark <\/td> <td align=\"right\"> 113 <\/td> <td align=\"right\">    40 <\/td> <td align=\"right\">    33 344 <\/td> <\/tr>\n  <tr> <td> Sorlandet <\/td> <td align=\"right\">  93 <\/td> <td align=\"right\">    60 <\/td> <td align=\"right\">    63 768 <\/td> <\/tr>\n  <tr> <td> Norge <\/td> <td align=\"right\"> 101 <\/td> <td align=\"right\"> 1 075 <\/td> <td align=\"right\"> 1 057 514 <\/td> <\/tr>\n   <\/tbody> <\/table>",
     "pick_atlas": null,
     "pick_language": {
-      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"language\"><\/label>\n  <div>\n    <select id=\"language\"><option value=\"1\" selected>Norsk<\/option>\n<option value=\"2\">English<\/option><\/select>\n    <script type=\"application/json\" data-for=\"language\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" for=\"language\"><\/label>\n  <div>\n    <select id=\"language\"><option value=\"1\" selected>NO<\/option>\n<option value=\"2\">EN<\/option><\/select>\n    <script type=\"application/json\" data-for=\"language\" data-nonempty=\"\">{}<\/script>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "selectize",
@@ -88,6 +88,40 @@
         }
       ]
     },
+    "plot_map": {
+      "src": "[image data sha1: 24c9a347a2bd68696a70fc317537469ce8f79c14]",
+      "width": 600,
+      "height": 800,
+      "coordmap": {
+        "panels": [
+          {
+            "domain": {
+              "left": -0.04,
+              "right": 1.04,
+              "bottom": -0.04,
+              "top": 1.04
+            },
+            "range": {
+              "left": 59.04,
+              "right": 569.76,
+              "bottom": 725.56,
+              "top": 58.0399999999999
+            },
+            "log": {
+              "x": null,
+              "y": null
+            },
+            "mapping": {
+
+            }
+          }
+        ],
+        "dims": {
+          "width": 600,
+          "height": 800
+        }
+      }
+    },
     "title": {
       "html": "<h1>Helseatlas<\/h1>",
       "deps": [
@@ -102,12 +136,6 @@
     },
     "title_map": {
       "html": "Kart",
-      "deps": [
-
-      ]
-    },
-    "title_table": {
-      "html": "Tabell",
       "deps": [
 
       ]

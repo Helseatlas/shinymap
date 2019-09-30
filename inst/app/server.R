@@ -38,7 +38,6 @@ shiny::shinyServer(
         if (is.null(input$language)) {
           return(NULL)
         }
-
         mytitle <- c()
         atlasnames <- names(healthatlas_data)
         for (i in atlasnames) {
@@ -98,6 +97,9 @@ shiny::shinyServer(
 
     output$pick_level2 <- shiny::renderUI({
       if ("level2_name" %in% colnames(atlas_data())) {
+        if (is.null(input$menu_level1)) {
+          return(NULL)
+        }
         # Filter out data according to what is choosen for level 1
         tmpdata <- dplyr::filter(atlas_data(), atlas_data()$level1_name == input$menu_level1)
         # Possible values for level 2
@@ -114,6 +116,9 @@ shiny::shinyServer(
 
     output$pick_level3 <- shiny::renderUI({
       if ("level3_name" %in% colnames(atlas_data())) {
+        if (is.null(input$menu_level2)) {
+          return(NULL)
+        }
         # Filter out data according to what is choosen for level 1
         tmpdata1 <- dplyr::filter(atlas_data(), atlas_data()$level1_name == input$menu_level1)
         # Filter out data according to what is choosen for level 2
@@ -152,6 +157,9 @@ shiny::shinyServer(
     })
 
     output$plot_map <- shiny::renderPlot({
+      if (is.null(input$menu_level1)) {
+        return(NULL)
+      }
       filtered_data <- shinymap::filter_out(atlas_data(),
                                             filter1 = input$menu_level1,
                                             filter2 = input$menu_level2,
