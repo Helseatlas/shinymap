@@ -85,7 +85,7 @@ shiny::shinyServer(
 
     output$pick_level1 <- shiny::renderUI({
       # Possible values for level 1
-      pickable_level1 <- c(levels(factor(atlas_data()$level1_name)))
+      pickable_level1 <- unique(factor(atlas_data()$level1_name))
       # The selector
       shiny::selectInput(
         inputId = "menu_level1",
@@ -103,7 +103,7 @@ shiny::shinyServer(
         # Filter out data according to what is choosen for level 1
         tmpdata <- dplyr::filter(atlas_data(), atlas_data()$level1_name == input$menu_level1)
         # Possible values for level 2
-        pickable_level2 <- c(levels(factor(tmpdata$level2_name)))
+        pickable_level2 <- unique(factor(tmpdata$level2_name))
         # The selector
         shiny::selectInput(
           inputId = "menu_level2",
@@ -124,7 +124,7 @@ shiny::shinyServer(
         # Filter out data according to what is choosen for level 2
         tmpdata2 <- dplyr::filter(tmpdata1, tmpdata1$level2_name == input$menu_level2)
         # Possible values for level 3
-        pickable_level3 <- c(levels(factor(tmpdata2$level3_name)))
+        pickable_level3 <- unique(factor(tmpdata2$level3_name))
         # The selector
         shiny::selectInput(
           inputId = "menu_level3",
