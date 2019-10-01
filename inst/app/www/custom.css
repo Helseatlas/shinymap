@@ -5,3 +5,16 @@ h1 {
     color: #003A8C;
 }
 
+.year-slider .irs-bar {
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.year-slider .irs-bar-edge {
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.year-slider .irs-grid-pol.small {
+    height: 0px;
+}

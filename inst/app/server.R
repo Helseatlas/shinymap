@@ -106,14 +106,33 @@ shiny::shinyServer(
         tmpdata <- dplyr::filter(atlas_data(), atlas_data()$level1_name == input$menu_level1)
         # Possible values for level 2
         pickable_level2 <- unique(factor(tmpdata$level2_name))
-        # The selector
-        shiny::selectInput(
-          selectize = FALSE,
-          inputId = "menu_level2",
-          label = c("Velg et tema:", "Pick a subject")[as.numeric(input$language)],
-          choices = pickable_level2,
-          selected = pickable_level2[1]
-        )
+        if (suppressWarnings(all(!is.na(as.numeric(as.character(pickable_level2)))))) {
+          # If all the pickable values are integers then it is probably year
+          years <- as.numeric(as.character(pickable_level2))
+          if (is.null(years) | length(years) == 0) {
+            return(NULL)
+          }
+          tags$div(class = "year-slider", shiny::sliderInput(
+            inputId = "menu_level2",
+            label = c("År:", "Year")[as.numeric(input$language)],
+            min = min(years),
+            max = max(years),
+            step = 1,
+            sep = "",
+            ticks = TRUE,
+            animate = TRUE,
+            value = max(years)
+          ))
+        } else {
+          # The selector
+          shiny::selectInput(
+            selectize = FALSE,
+            inputId = "menu_level2",
+            label = c("Velg et tema:", "Pick a subject")[as.numeric(input$language)],
+            choices = pickable_level2,
+            selected = pickable_level2[1]
+          )
+        }
       }
     })
 
