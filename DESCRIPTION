@@ -15,6 +15,7 @@ URL: https://helseatlas.github.io/shinymap
 Imports:
   shiny,
   shinythemes,
+  shinyWidgets,
   rsconnect,
   ggplot2,
   leaflet,
