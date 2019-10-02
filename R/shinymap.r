@@ -23,9 +23,9 @@ NULL
 NULL
 
 #' Map
-#' 
+#'
 #' To be used for testing of the package
-#' 
+#'
 #' @docType data
 #' @keywords datasets
 #' @name testmap

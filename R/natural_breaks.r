@@ -1,4 +1,4 @@
-#' Get the jenks natural breaks from a data set 
+#' Get the jenks natural breaks from a data set
 #'
 #' @param data Input data
 #' @param num Number of groups
