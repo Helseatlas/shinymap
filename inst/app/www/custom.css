@@ -19,5 +19,10 @@ h1 {
     height: 0px;
 }
 
-.year-slider   .irs-min {visibility:hidden !important;}
-.year-slider   .irs-max {visibility:hidden !important;}
+.year-slider .irs-min {
+    visibility:hidden !important;
+}
+
+.year-slider .irs-max {
+    visibility:hidden !important;
+}
