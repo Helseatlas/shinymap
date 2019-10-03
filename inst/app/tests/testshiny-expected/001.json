@@ -6,7 +6,6 @@
     "menu_level3": "Alle kontakter"
   },
   "output": {
-    "make_table": "<table  class = 'table shiny-table table- spacing-s' style = 'width:auto;'>\n<thead> <tr> <th style='text-align: left;'> Opptaksomr <\/th> <th style='text-align: right;'> Rate <\/th> <th style='text-align: right;'> Antall <\/th> <th style='text-align: right;'> Innb. <\/th>  <\/tr> <\/thead> <tbody>\n  <tr> <td> Finnmark <\/td> <td align=\"right\"> 72 062 <\/td> <td align=\"right\">  11 026 <\/td> <td align=\"right\">    15 332 <\/td> <\/tr>\n  <tr> <td> UNN <\/td> <td align=\"right\"> 72 337 <\/td> <td align=\"right\">  27 187 <\/td> <td align=\"right\">    37 609 <\/td> <\/tr>\n  <tr> <td> Nordland <\/td> <td align=\"right\"> 76 965 <\/td> <td align=\"right\">  33 056 <\/td> <td align=\"right\">    43 186 <\/td> <\/tr>\n  <tr> <td> Nord-Trondelag <\/td> <td align=\"right\"> 92 527 <\/td> <td align=\"right\">  26 802 <\/td> <td align=\"right\">    29 056 <\/td> <\/tr>\n  <tr> <td> St. Olavs <\/td> <td align=\"right\"> 85 418 <\/td> <td align=\"right\">  53 287 <\/td> <td align=\"right\">    62 253 <\/td> <\/tr>\n  <tr> <td> More og Romsdal <\/td> <td align=\"right\"> 83 777 <\/td> <td align=\"right\">  45 280 <\/td> <td align=\"right\">    54 199 <\/td> <\/tr>\n  <tr> <td> Forde <\/td> <td align=\"right\"> 86 411 <\/td> <td align=\"right\">  20 073 <\/td> <td align=\"right\">    23 330 <\/td> <\/tr>\n  <tr> <td> Bergen <\/td> <td align=\"right\"> 86 385 <\/td> <td align=\"right\">  79 433 <\/td> <td align=\"right\">    91 673 <\/td> <\/tr>\n  <tr> <td> Fonna <\/td> <td align=\"right\"> 73 029 <\/td> <td align=\"right\">  28 979 <\/td> <td align=\"right\">    39 744 <\/td> <\/tr>\n  <tr> <td> Stavanger <\/td> <td align=\"right\"> 66 872 <\/td> <td align=\"right\">  55 077 <\/td> <td align=\"right\">    81 507 <\/td> <\/tr>\n  <tr> <td> Ostfold <\/td> <td align=\"right\"> 82 009 <\/td> <td align=\"right\">  46 864 <\/td> <td align=\"right\">    57 341 <\/td> <\/tr>\n  <tr> <td> Akershus <\/td> <td align=\"right\"> 87 167 <\/td> <td align=\"right\">  94 540 <\/td> <td align=\"right\">   108 469 <\/td> <\/tr>\n  <tr> <td> OUS <\/td> <td align=\"right\"> 89 548 <\/td> <td align=\"right\">  86 036 <\/td> <td align=\"right\">    95 564 <\/td> <\/tr>\n  <tr> <td> Innlandet <\/td> <td align=\"right\"> 76 079 <\/td> <td align=\"right\">  57 060 <\/td> <td align=\"right\">    75 231 <\/td> <\/tr>\n  <tr> <td> Vestre Viken <\/td> <td align=\"right\"> 78 673 <\/td> <td align=\"right\">  78 955 <\/td> <td align=\"right\">   100 582 <\/td> <\/tr>\n  <tr> <td> Vestfold <\/td> <td align=\"right\"> 76 506 <\/td> <td align=\"right\">  34 508 <\/td> <td align=\"right\">    45 330 <\/td> <\/tr>\n  <tr> <td> Telemark <\/td> <td align=\"right\"> 79 504 <\/td> <td align=\"right\">  26 364 <\/td> <td align=\"right\">    33 344 <\/td> <\/tr>\n  <tr> <td> Sorlandet <\/td> <td align=\"right\"> 94 737 <\/td> <td align=\"right\">  60 343 <\/td> <td align=\"right\">    63 768 <\/td> <\/tr>\n  <tr> <td> Norge <\/td> <td align=\"right\"> 81 759 <\/td> <td align=\"right\"> 864 867 <\/td> <td align=\"right\"> 1 057 514 <\/td> <\/tr>\n   <\/tbody> <\/table>",
     "pick_atlas": null,
     "pick_language": {
       "html": "<div class=\"form-group shiny-input-container shiny-input-radiogroup shiny-input-container-inline\">\n  <label class=\"control-label\" for=\"language\"><\/label>\n  <br/>\n  <div id=\"language\" class=\"radioGroupButtons\">\n    <div aria-label=\"...\" class=\"btn-group-vertical btn-group-sm btn-group-container-sw\" data-toggle=\"buttons\" role=\"group\">\n      <div class=\"btn-group btn-group-toggle btn-group-sm\" role=\"group\">\n        <button class=\"btn radiobtn btn- active\">\n          <input type=\"radio\" autocomplete=\"off\" name=\"language\" value=\"1\" checked=\"checked\"/>\n          NO\n        <\/button>\n      <\/div>\n      <div class=\"btn-group btn-group-toggle btn-group-sm\" role=\"group\">\n        <button class=\"btn radiobtn btn-\">\n          <input type=\"radio\" autocomplete=\"off\" name=\"language\" value=\"2\"/>\n          EN\n        <\/button>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
@@ -86,15 +85,66 @@
       ]
     },
     "title_hist": {
-      "html": "Histogram",
+      "html": "<i class=\"fa fa-chart-bar\"><\/i>",
       "deps": [
-
+        {
+          "name": "font-awesome",
+          "version": "5.3.1",
+          "src": {
+            "href": "font-awesome-5.3.1"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": [
+            "css/all.min.css",
+            "css/v4-shims.min.css"
+          ],
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        }
       ]
     },
     "title_map": {
-      "html": "Kart",
+      "html": "<i class=\"fa fa-globe\"><\/i>",
       "deps": [
-
+        {
+          "name": "font-awesome",
+          "version": "5.3.1",
+          "src": {
+            "href": "font-awesome-5.3.1"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": [
+            "css/all.min.css",
+            "css/v4-shims.min.css"
+          ],
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        }
+      ]
+    },
+    "title_table": {
+      "html": "<i class=\"fa fa-table\"><\/i>",
+      "deps": [
+        {
+          "name": "font-awesome",
+          "version": "5.3.1",
+          "src": {
+            "href": "font-awesome-5.3.1"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": [
+            "css/all.min.css",
+            "css/v4-shims.min.css"
+          ],
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        }
       ]
     }
   },

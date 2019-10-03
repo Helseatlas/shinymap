@@ -171,15 +171,15 @@ shiny::shinyServer(
     })
 
     output$title_table <- shiny::renderUI({
-      return(c("Tabell", "Table")[as.numeric(input$language)])
+      return(icon("table"))
     })
 
     output$title_map <- shiny::renderUI({
-      return(c("Kart", "Map")[as.numeric(input$language)])
+      return(icon("globe"))
     })
 
     output$title_hist <- shiny::renderUI({
-      return(c("Histogram", "Histogram")[as.numeric(input$language)])
+      return(icon("chart-bar"))
     })
 
     output$plot_map <- shiny::renderPlot({
