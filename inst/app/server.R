@@ -232,9 +232,14 @@ shiny::shinyServer(
 
       tabular_data <- data.frame(filtered_data$area_name)
       colnames(tabular_data) <- c(c("Opptaksomr", "Area")[as.numeric(input$language)])
-      tabular_data[c("Rate", "  Rate")[as.numeric(input$language)]] <- filtered_data$value
-      tabular_data[c("Antall", "  Num.")[as.numeric(input$language)]] <- filtered_data$numerator
-      tabular_data[c("Innb.", "Inhab.")[as.numeric(input$language)]] <- filtered_data$denominator
+      value_name <- as.character(unique(filtered_data$type))
+      tabular_data[value_name] <- filtered_data$value
+      numerator_name <- as.character(unique(filtered_data$numerator_name))
+      tabular_data[numerator_name] <- filtered_data$numerator
+      denominator_name <- as.character(unique(filtered_data$denominator_name))
+      tabular_data[denominator_name] <- filtered_data$denominator
+      # Sort data
+      tabular_data <- tabular_data[order(tabular_data[,2], na.last = TRUE, decreasing = TRUE),]
       # Format numbers
       tabular_data[, -1] <- sapply(tabular_data[, -1],
                                    FUN = function(x) format(x,
