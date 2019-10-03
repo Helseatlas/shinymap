@@ -26,7 +26,7 @@ shiny::shinyServer(
         shinyWidgets::radioGroupButtons(
           size = "sm",
           direction = "vertical",
-          status = "",
+          status = "default",
           inputId = "language",
           label = "",
           choices = c("NO" = 1,
