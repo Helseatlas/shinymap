@@ -62,7 +62,7 @@ script:
   - R CMD build .
   - R CMD check *tar.gz
   - |
-    if [[ "$AFTER_JOBS" == "true" ]] && [[ "$TRAVIS_EVENT_TYPE" == "push" ]] && [[ "$TRAVIS_BRANCH" = "master" ]]; then
+    if [[ "$AFTER_JOBS" == "true" ]] && [[ "$TRAVIS_EVENT_TYPE" == "push" ]]; then
       R -f tests/scripts/deploy.R
     fi
 

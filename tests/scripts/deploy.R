@@ -67,8 +67,16 @@ rsconnect::setAccountInfo(name   = Sys.getenv("shinyapps_name"),
                           secret = Sys.getenv("shinyapps_secret")
                           )
 
-shinymap::launch_app(
-  dataset = all_data,
-  publish_app = TRUE,
-  name = "helseatlas"
-)
+if (Sys.getenv("TRAVIS_BRANCH") == "master") {
+  shinymap::launch_app(
+    dataset = all_data,
+    publish_app = TRUE,
+    name = "helseatlas"
+  )
+} else {
+  shinymap::launch_app(
+    dataset = all_data,
+    publish_app = TRUE
+  )
+}
+
