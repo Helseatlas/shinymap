@@ -42,6 +42,9 @@ env:
 repos:
   CRAN: https://cloud.r-project.org
 
+r_binary_packages:
+  - later
+
 r_packages:
   - covr
   - lintr

@@ -1,9 +1,11 @@
-install.packages("devtools")
+install.packages("remotes")
 
-devtools::install_github("Helseatlas/kart")
-devtools::install_github("Helseatlas/data")
-#devtools::install_github("Helseatlas/shinymap",
+#remotes::install_github("r-lib/later")
+remotes::install_github("Helseatlas/kart")
+remotes::install_github("Helseatlas/data")
+#remotes::install_github("Helseatlas/shinymap",
 #                         ref = Sys.getenv("TRAVIS_BRANCH"))
+
 
 # All atlas data and maps
 all_data <- list(
