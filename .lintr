@@ -1,3 +1,4 @@
 linters: with_defaults(line_length_linter(120),
-                       camel_case_linter = NULL)
+                       camel_case_linter = NULL,
+                       cyclocomp_linter = NULL)
 exclusions: list("tests/debugging/development.R")
