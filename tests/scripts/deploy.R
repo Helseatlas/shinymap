@@ -2,7 +2,8 @@ install.packages("devtools")
 
 devtools::install_github("Helseatlas/kart")
 devtools::install_github("Helseatlas/data")
-devtools::install_github("Helseatlas/shinymap")
+#devtools::install_github("Helseatlas/shinymap",
+#                         ref = Sys.getenv("TRAVIS_BRANCH"))
 
 # All atlas data and maps
 all_data <- list(
