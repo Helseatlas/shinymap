@@ -6,6 +6,8 @@
 #' @param publish_app If TRUE: deploy app to shinyapps.io (default = FALSE)
 #' @param name The appName of the deployed shiny application (default = "experimental")
 #' @param shiny_account Which shiny account on shinyapps.io (default = "skde")
+#' @param git_hash Current git sha1 hash
+#' @param github_repo Current github repository
 #'
 #' @export
 launch_app <- function(dataset = NULL,
@@ -14,13 +16,15 @@ launch_app <- function(dataset = NULL,
                        publish_app = FALSE,
                        name = "experimental",
                        shiny_account = "skde",
-                       git_hash = NULL) {
+                       git_hash = NULL,
+                       github_repo = NULL) {
 
   # Create a directory with all necessary data.
   shinydir <- create_appdir(healthatlas_data = dataset,
                             healthatlas_map = map,
                             webpage_title = title,
-                            hash = git_hash)
+                            git_hash = git_hash,
+                            github_repo = github_repo)
 
   # Run the app
   if (publish_app) {
@@ -39,13 +43,16 @@ launch_app <- function(dataset = NULL,
 #' @param healthatlas_data The data to be saved in the directory, to be used by the app
 #' @param healthatlas_map The map
 #' @param webpage_title The title of the atlas
+#' @param git_hash Current git sha1 hash
+#' @param github_repo Current github repository
 #'
 #' @return The created directory
 #'
 create_appdir <- function(healthatlas_data = NULL,
                           healthatlas_map = NULL,
                           webpage_title = NULL,
-                          hash = NULL) {
+                          git_hash = NULL,
+                          github_repo = NULL) {
   # Name the directory
   tmpshinydir <- paste0(tempdir(), "/", "shiny")
   # Delete old content in directory
@@ -60,7 +67,8 @@ create_appdir <- function(healthatlas_data = NULL,
   save(healthatlas_data,
        healthatlas_map,
        webpage_title,
-       hash,
+       git_hash,
+       github_repo,
        file = paste0(tmpshinydir, "/", "app/data/data.RData"))
   # Return the name of the main directory
   return(paste0(tmpshinydir, "/", "app"))

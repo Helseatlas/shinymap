@@ -5,7 +5,7 @@
 \title{Create an appDir for shiny::runApp and rsconnect::deployApp}
 \usage{
 create_appdir(healthatlas_data = NULL, healthatlas_map = NULL,
-  webpage_title = NULL)
+  webpage_title = NULL, git_hash = NULL, github_repo = NULL)
 }
 \arguments{
 \item{healthatlas_data}{The data to be saved in the directory, to be used by the app}
@@ -13,6 +13,10 @@ create_appdir(healthatlas_data = NULL, healthatlas_map = NULL,
 \item{healthatlas_map}{The map}
 
 \item{webpage_title}{The title of the atlas}
+
+\item{git_hash}{Current git sha1 hash}
+
+\item{github_repo}{Current github repository}
 }
 \value{
 The created directory
