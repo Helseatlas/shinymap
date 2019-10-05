@@ -20,7 +20,8 @@ shinyUI(function(request) {
                            uiOutput("pick_atlas"),
                            uiOutput("pick_level1"),
                            uiOutput("pick_level2"),
-                           uiOutput("pick_level3")
+                           uiOutput("pick_level3"),
+                           uiOutput("git_version")
                     ),
                     column(9,
                            tabsetPanel(

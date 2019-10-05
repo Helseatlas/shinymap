@@ -162,6 +162,14 @@ shiny::shinyServer(
       }
     })
 
+    output$git_version <- shiny::renderUI({
+
+      if (!is.null(hash) {
+        # Hash on web page, if given
+        return(shiny::HTML(paste0("Version: ", hash)))
+      }
+    })
+
     output$title <- shiny::renderUI({
       if (!exists("webpage_title") || is.null(webpage_title)) {
         # Define the atlas title, if not defined

@@ -13,12 +13,14 @@ launch_app <- function(dataset = NULL,
                        title = NULL,
                        publish_app = FALSE,
                        name = "experimental",
-                       shiny_account = "skde") {
+                       shiny_account = "skde",
+                       git_hash = NULL) {
 
   # Create a directory with all necessary data.
   shinydir <- create_appdir(healthatlas_data = dataset,
                             healthatlas_map = map,
-                            webpage_title = title)
+                            webpage_title = title,
+                            hash = git_hash)
 
   # Run the app
   if (publish_app) {
@@ -40,7 +42,10 @@ launch_app <- function(dataset = NULL,
 #'
 #' @return The created directory
 #'
-create_appdir <- function(healthatlas_data = NULL, healthatlas_map = NULL, webpage_title = NULL) {
+create_appdir <- function(healthatlas_data = NULL,
+                          healthatlas_map = NULL,
+                          webpage_title = NULL,
+                          hash = NULL) {
   # Name the directory
   tmpshinydir <- paste0(tempdir(), "/", "shiny")
   # Delete old content in directory
@@ -55,6 +60,7 @@ create_appdir <- function(healthatlas_data = NULL, healthatlas_map = NULL, webpa
   save(healthatlas_data,
        healthatlas_map,
        webpage_title,
+       hash,
        file = paste0(tmpshinydir, "/", "app/data/data.RData"))
   # Return the name of the main directory
   return(paste0(tmpshinydir, "/", "app"))

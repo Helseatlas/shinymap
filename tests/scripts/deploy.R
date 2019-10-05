@@ -67,15 +67,20 @@ rsconnect::setAccountInfo(name   = Sys.getenv("shinyapps_name"),
                           secret = Sys.getenv("shinyapps_secret")
                           )
 
+git_hash <- Sys.getenv("TRAVIS_COMMIT")
+
 if (Sys.getenv("TRAVIS_BRANCH") == "master") {
   shinymap::launch_app(
     dataset = all_data,
     publish_app = TRUE,
-    name = "helseatlas"
+    name = "helseatlas",
+    git_hash = git_hash
   )
 } else {
   shinymap::launch_app(
     dataset = all_data,
-    publish_app = TRUE
+    publish_app = TRUE,
+    name = "experimental",
+    git_hash = git_hash
   )
 }
