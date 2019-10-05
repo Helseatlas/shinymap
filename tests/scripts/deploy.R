@@ -67,7 +67,8 @@ rsconnect::setAccountInfo(name   = Sys.getenv("shinyapps_name"),
                           secret = Sys.getenv("shinyapps_secret")
                           )
 
-git_hash <- substr(Sys.getenv("TRAVIS_COMMIT"), 1, 8)
+git_hash <- Sys.getenv("TRAVIS_COMMIT")
+
 
 if (Sys.getenv("TRAVIS_BRANCH") == "master") {
   shinymap::launch_app(
