@@ -16,6 +16,10 @@ shiny::shinyServer(
       healthatlas_map <- NULL
     }
 
+    if (!exists("hash")) {
+      hash <- NULL
+    }
+
     if (isTRUE(getOption("shiny.testmode"))) {
       # Load static/dummy data if this is a test run
       healthatlas_data <- shinymap::testdata
@@ -164,7 +168,7 @@ shiny::shinyServer(
 
     output$git_version <- shiny::renderUI({
 
-      if (!is.null(hash) {
+      if (!is.null(hash)) {
         # Hash on web page, if given
         return(shiny::HTML(paste0("Version: ", hash)))
       }
