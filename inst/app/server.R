@@ -80,11 +80,10 @@ shiny::shinyServer(
         if (is.null(input$atlas)) {
           return(NULL)
         } else {
-          # using UTM 33 for now (32633)
-          return(sf::st_transform(healthatlas_data[[input$atlas]][["map"]], 32633))
+          return(healthatlas_data[[input$atlas]][["map"]])
         }
       } else {
-        return(kart::utm33_to_leaflet(healthatlas_map))
+        return(healthatlas_map)
       }
     })
 
