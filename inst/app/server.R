@@ -170,7 +170,7 @@ shiny::shinyServer(
 
       if (!is.null(hash)) {
         # Hash on web page, if given
-        return(shiny::HTML(paste0("Version: <a href='https://github.com/Helseatlas/shinymap/commit/",
+        return(shiny::HTML(paste0("Version: <a href='https://github.com/Helseatlas/shinymap/tree/",
                                   hash,
                                   "'>",
                                   substr(hash, 1, 8),
