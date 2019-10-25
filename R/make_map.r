@@ -25,7 +25,7 @@ make_map <- function(data = NULL, map = NULL, utm33 = FALSE) {
   output <- graphics::plot(map_data,
                            main = "",
                            breaks = "quantile", nbreaks = 4,
-                           pal = shinymap::skde_colors(num = 4)
+                           pal = SKDEr::skde_colors(num = 4)
                  )
 
   return(output)

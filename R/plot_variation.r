@@ -26,7 +26,7 @@ plot_variation <- function(input_data = NULL, xlab = "Opptaksomr", ylab = "Rate"
     the_plot <- ggplot2::ggplot(data = input_data,
       ggplot2::aes(x = get("area_name"), y = get("value"), fill = brks)) +
       ggplot2::geom_bar(stat = "identity") +
-      ggplot2::scale_fill_manual(values = shinymap::skde_colors(num = num_groups)) +
+      ggplot2::scale_fill_manual(values = SKDEr::skde_colors(num = num_groups)) +
       ggplot2::labs(x = xlab, y = ylab) +
       ggplot2::coord_flip() +
       ggthemes::theme_tufte()

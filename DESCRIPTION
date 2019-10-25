@@ -22,7 +22,10 @@ Imports:
   magrittr,
   dplyr,
   ggthemes,
-  classInt
+  classInt,
+  SKDEr (>= 0.2.0)
 Suggests: 
     testthat,
     shinytest
+Remotes: 
+    SKDE-Felles/SKDEr
