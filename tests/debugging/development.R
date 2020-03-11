@@ -7,7 +7,7 @@ devtools::install_github("Helseatlas/kart")
 devtools::install_github("Helseatlas/data")
 
 # All atlas data and maps
-all_data <- list(
+healthatlas_data <- list(
   "fodsel"   = list("data_no" = data::fodsel,   "data_en" = data::fodsel_en,  "year" = "2015–2017", "title_no" = "Fødselshjelp", "title_en" = "Obstetrics",  "map" = kart::fodsel),
   "gyn"      = list("data_no" = data::gyn,      "data_en" = data::gyn_en,     "year" = "2015–2017", "title_no" = "Gynekologi",   "title_en" = "Gynaecology", "map" = kart::gyn),
   "ortopedi" = list("data_no" = data::ortopedi, "data_en" = data::ortopedi,   "year" = "2012–2016", "title_no" = "Ortopedi",     "title_en" = "Orthopaedic", "map" = kart::ortopedi),
@@ -19,6 +19,7 @@ all_data <- list(
   "dagir"    = list("data_no" = data::dagkir,   "data_en" = data::dagkir_en,  "year" = "2011–2013", "title_no" = "Dagkirurgi",   "title_en" = "Day surgey",  "map" = kart::dagkir)
 )
 
+shinymap::run_app()
 
 #########################################
 # How to run the app through launch_app #
