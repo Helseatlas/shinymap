@@ -4,8 +4,13 @@
 \alias{plot_variation}
 \title{Make a plot based on a data frame}
 \usage{
-plot_variation(input_data = NULL, xlab = "Opptaksomr", ylab = "Rate",
-  type = "histogram", num_groups = 4)
+plot_variation(
+  input_data = NULL,
+  xlab = "Opptaksomr",
+  ylab = "Rate",
+  type = "histogram",
+  num_groups = 4
+)
 }
 \arguments{
 \item{input_data}{Data to be plotted}

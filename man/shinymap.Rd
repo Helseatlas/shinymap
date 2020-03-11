@@ -3,7 +3,6 @@
 \docType{package}
 \name{shinymap}
 \alias{shinymap}
-\alias{shinymap-package}
 \title{shinymap.}
 \description{
 shinymap.
