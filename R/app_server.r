@@ -197,15 +197,15 @@ app_server <- function(input, output, session) {
     })
 
     output$title_table <- shiny::renderUI({
-      return(icon("table"))
+      return(shiny::icon("table"))
     })
 
     output$title_map <- shiny::renderUI({
-      return(icon("globe"))
+      return(shiny::icon("globe"))
     })
 
     output$title_hist <- shiny::renderUI({
-      return(icon("chart-bar"))
+      return(shiny::icon("chart-bar"))
     })
 
     output$plot_map <- shiny::renderPlot({
