@@ -17,13 +17,6 @@ matrix:
       env: 
         - DIST=xenial
         - AFTER_JOBS=false
-    - os: windows
-      r: release
-      env: 
-        - DIST=windows
-        - AFTER_JOBS=false
-  allow_failures:
-    - os: windows
 
 addons:
   apt:
@@ -51,16 +44,6 @@ r_packages:
   - roxygen2
   - pkgdown
 
-before_install:
-  - |
-    if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-      brew update
-      brew install v8
-      brew install udunits
-      brew tap homebrew/cask
-      brew cask install phantomjs
-    fi
-
 script:
   - R CMD build .
   - R CMD check *tar.gz
@@ -79,7 +62,7 @@ after_success:
 deploy:
   provider: pages                         # Specify the gh-pages deployment method
   skip_cleanup: true                      # Don't remove files
-  github_token: $GITHUB_TOKEN             # Set in travis-ci.org dashboard
+  token: $GH_TOKEN             # Set in travis-ci.org dashboard
   local_dir: docs                         # Deploy the docs folder
   on:
     branch: master
