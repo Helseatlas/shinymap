@@ -3,9 +3,6 @@
 #' @return user interface
 #' @export
 app_ui <- function() {
-  shiny::addResourcePath(
-    "www", system.file("app/www", package = "shinymap")
-  )
     fluidPage(theme = shinythemes::shinytheme("cerulean"),
                   titlePanel(tags$head(
                     tags$link(rel = "icon", type = "image/png", href = "www/hn.png"),
