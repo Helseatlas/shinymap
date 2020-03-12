@@ -6,7 +6,7 @@
 #' @return Natural breaks
 #' @export
 #'
-natural_breaks <- function(data = NULL, num = 4) {
+natural_breaks2 <- function(data = NULL, num = 4) {
     rate_num <- as.numeric(data)
     rate_num[is.na(rate_num)] <- 0
     interv <- c(classInt::classIntervals(var = rate_num, n = num, style = "jenks"))
