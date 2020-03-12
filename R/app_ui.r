@@ -3,11 +3,14 @@
 #' @return user interface
 #' @export
 app_ui <- function() {
+  shiny::addResourcePath(
+    "www", system.file("app/www", package = "shinymap")
+  )
     fluidPage(theme = shinythemes::shinytheme("cerulean"),
                   titlePanel(tags$head(
-                    tags$link(rel = "icon", type = "image/png", href = "hn.png"),
+                    tags$link(rel = "icon", type = "image/png", href = "www/hn.png"),
                     tags$title("Helseatlas"),
-                    tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")
+                    tags$link(rel = "stylesheet", type = "text/css", href = "www/custom.css")
                   )),
                   fluidRow(
                     column(8,
