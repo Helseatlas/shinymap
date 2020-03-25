@@ -24,7 +24,7 @@ plot_variation <- function(input_data = NULL, xlab = "Opptaksomr", ylab = "Rate"
     input_data$brks <- shinymap::natural_breaks(data = input_data$value, num = num_groups)
 
     the_plot <- ggplot2::ggplot(data = input_data,
-      ggplot2::aes(x = get("area_name"), y = get("value"), fill = brks)) +
+      ggplot2::aes(x = get("area_name"), y = get("value"), fill = get("brks"))) +
       ggplot2::geom_bar(stat = "identity") +
       ggplot2::scale_fill_manual(values = SKDEr::skde_colors(num = num_groups)) +
       ggplot2::labs(x = xlab, y = ylab) +

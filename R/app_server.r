@@ -83,7 +83,7 @@ app_server <- function(input, output, session) {
     })
 
     atlas_map <- shiny::reactive({
-      if (!is.data.frame(healthatlas_map)) {
+      if (!exists("healthatlas_map")) {
         if (is.null(input$atlas)) {
           return(NULL)
         } else {
@@ -124,7 +124,7 @@ app_server <- function(input, output, session) {
           if (is.null(years) | length(years) == 0) {
             return(NULL)
           }
-          tags$div(class = "year-slider", shiny::sliderInput(
+          shiny::tags$div(class = "year-slider", shiny::sliderInput(
             inputId = "menu_level2",
             label = config$menus$year[[input$language]],
             min = min(years),

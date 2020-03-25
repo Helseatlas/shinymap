@@ -24,6 +24,7 @@ Imports:
   ggthemes,
   classInt,
   yaml,
+  sf,
   SKDEr (>= 0.2.0),
   kart,
   data
