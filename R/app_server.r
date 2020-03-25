@@ -7,7 +7,7 @@
 #' @return ignored
 #' @export
 app_server <- function(input, output, session) {
-  config <- get_config()
+  config <- get_config() # nolint
     if (!exists("healthatlas_data")) {
       healthatlas_data <- NULL
     }
