@@ -4,6 +4,7 @@
 #' shipped with helseatlas package.
 #'
 #' @param dir Folder to put config file
+#' @param force Overwrite current config file
 #'
 #' @export
 create_config <- function(dir = ".", force = FALSE) {

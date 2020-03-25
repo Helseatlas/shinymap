@@ -8,6 +8,8 @@ create_config(dir = ".", force = FALSE)
 }
 \arguments{
 \item{dir}{Folder to put config file}
+
+\item{force}{Overwrite current config file}
 }
 \description{
 Creates a configuration file based on the default
