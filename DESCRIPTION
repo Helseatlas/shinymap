@@ -23,9 +23,13 @@ Imports:
   dplyr,
   ggthemes,
   classInt,
-  SKDEr (>= 0.2.0)
+  SKDEr (>= 0.2.0),
+  kart,
+  data
 Suggests: 
     testthat,
     shinytest
 Remotes: 
-    SKDE-Felles/SKDEr
+    SKDE-Felles/SKDEr,
+    helseatlas/kart,
+    helseatlas/data

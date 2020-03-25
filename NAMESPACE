@@ -3,6 +3,7 @@
 export(app_server)
 export(app_ui)
 export(filter_out)
+export(get_data)
 export(make_map)
 export(natural_breaks)
 export(plot_variation)

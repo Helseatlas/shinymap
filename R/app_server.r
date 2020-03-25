@@ -7,7 +7,8 @@
 #' @return ignored
 #' @export
 app_server <- function(input, output, session) {
-        if (!exists("healthatlas_data")) {
+    healthatlas_data <- get_data()
+    if (!exists("healthatlas_data")) {
       healthatlas_data <- NULL
     }
 
