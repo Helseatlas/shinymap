@@ -7,7 +7,8 @@
 #' @return ignored
 #' @export
 app_server <- function(input, output, session) {
-    healthatlas_data <- get_data()
+    healthatlas_data <- get_data() # nolint
+    config <- get_config() # nolint
 
     if (!exists("git_hash")) {
       git_hash <- NULL
@@ -30,24 +31,22 @@ app_server <- function(input, output, session) {
           status = "default",
           inputId = "language",
           label = "",
-          choices = c("NO" = 1,
-                      "EN" = 2
+          choices = c("NO" = "nb",
+                      "EN" = "en"
           ),
-          selected = 1
+          selected = "nb"
         )
     })
 
     output$pick_atlas <- shiny::renderUI({
+      shiny::req(input$language)
       if (!is.data.frame(healthatlas_data)) {
-        if (is.null(input$language)) {
-          return(NULL)
-        }
         mytitle <- c()
         atlasnames <- names(healthatlas_data)
         for (i in atlasnames) {
-          if (input$language == "1") {
+          if (input$language == "nb") {
             mytitle <- c(mytitle, paste(healthatlas_data[[i]]$title_no, healthatlas_data[[i]]$year, sep = " "))
-          } else if (input$language == "2") {
+          } else if (input$language == "en") {
             mytitle <- c(mytitle, paste(healthatlas_data[[i]]$title_en, healthatlas_data[[i]]$year, sep = " "))
           }
         }
@@ -56,7 +55,7 @@ app_server <- function(input, output, session) {
         shiny::selectInput(
           selectize = FALSE,
           inputId = "atlas",
-          label = c("Velg atlas:", "Pick an atlas")[as.numeric(input$language)],
+          label = config$menus$atlas[[input$language]],
           choices = atlasnames,
           selected = atlasnames[1]
         )
@@ -64,12 +63,19 @@ app_server <- function(input, output, session) {
     })
 
     atlas_data <- shiny::reactive({
+      shiny::req(input$language)
+      if (input$language == "nb") {
+        num_atlas <- 1
+      } else if (input$language == "en") {
+        num_atlas <- 2
+      }
+
       # Return the data for a given atlas.
       if (!is.data.frame(healthatlas_data)) {
         if (is.null(input$atlas)) {
           return(NULL)
         } else {
-          return(healthatlas_data[[input$atlas]][[as.numeric(input$language)]])
+          return(healthatlas_data[[input$atlas]][[num_atlas]])
         }
       } else {
         return(healthatlas_data)
@@ -90,13 +96,14 @@ app_server <- function(input, output, session) {
     })
 
     output$pick_level1 <- shiny::renderUI({
+      shiny::req(input$language)
       # Possible values for level 1
       pickable_level1 <- unique(factor(atlas_data()$level1_name))
       # The selector
       shiny::selectInput(
         selectize = FALSE,
         inputId = "menu_level1",
-        label = c("Velg et tema:", "Pick a subject")[as.numeric(input$language)],
+        label = config$menus$level[[input$language]],
         choices = pickable_level1,
         selected = pickable_level1[1]
       )
@@ -119,7 +126,7 @@ app_server <- function(input, output, session) {
           }
           tags$div(class = "year-slider", shiny::sliderInput(
             inputId = "menu_level2",
-            label = c("År:", "Year")[as.numeric(input$language)],
+            label = config$menus$year[[input$language]],
             min = min(years),
             max = max(years),
             step = 1,
@@ -133,7 +140,7 @@ app_server <- function(input, output, session) {
           shiny::selectInput(
             selectize = FALSE,
             inputId = "menu_level2",
-            label = c("Velg et tema:", "Pick a subject")[as.numeric(input$language)],
+            label = config$menus$level[[input$language]],
             choices = pickable_level2,
             selected = pickable_level2[1]
           )
@@ -156,7 +163,7 @@ app_server <- function(input, output, session) {
         shiny::selectInput(
           selectize = FALSE,
           inputId = "menu_level3",
-          label = c("Velg et tema:", "Pick a subject")[as.numeric(input$language)],
+          label = config$menus$level[[input$language]],
           choices = pickable_level3,
           selected = pickable_level3[1]
         )
@@ -182,9 +189,10 @@ app_server <- function(input, output, session) {
     })
 
     output$title <- shiny::renderUI({
+      shiny::req(input$language)
       if (!exists("webpage_title") || is.null(webpage_title)) {
         # Define the atlas title, if not defined
-        webpage_title <- c("Helseatlas", "The Norwegian healthcare atlas")[as.numeric(input$language)]
+        webpage_title <- config$title[[input$language]]
       }
 
       return(shiny::HTML(paste0("<h1>", webpage_title, "</h1>")))
@@ -229,7 +237,7 @@ app_server <- function(input, output, session) {
 
       plot <- shinymap::plot_variation(
         input_data = filtered_data,
-        xlab = c("Opptaksomr\u00E5de", "Area")[as.numeric(input$language)],
+        xlab = config$plot$xlab[[input$language]],
         ylab = input$menu_level1
       )
       return(plot)
@@ -251,7 +259,7 @@ app_server <- function(input, output, session) {
       }
 
       tabular_data <- data.frame(filtered_data$area_name)
-      colnames(tabular_data) <- c(c("Opptaksomr", "Area")[as.numeric(input$language)])
+      colnames(tabular_data) <- c(config$plot$xlab[[input$language]])
       value_name <- as.character(unique(filtered_data$type))
       tabular_data[value_name] <- filtered_data$value
       numerator_name <- as.character(unique(filtered_data$numerator_name))
@@ -264,8 +272,8 @@ app_server <- function(input, output, session) {
       tabular_data[, -1] <- sapply(tabular_data[, -1],
                                    FUN = function(x) format(x,
                                                             digits = 2,
-                                                            decimal.mark = c(",", ".")[as.numeric(input$language)],
-                                                            big.mark = c(" ", ",")[as.numeric(input$language)]
+                                                            decimal.mark = config$num$decimal[[input$language]],
+                                                            big.mark = config$num$big[[input$language]]
                                                             )
                                    )
       return(tabular_data)

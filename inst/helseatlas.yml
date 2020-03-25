@@ -1,0 +1,27 @@
+title:
+  nb: "Helseatlas"
+  en: "The Norwegian healthcare atlas"
+menus:
+  atlas:
+    nb: "Velg atlas"
+    en: "Pick an atlas"
+  level:
+    nb: "Velg et tema"
+    en: "Pick a subject"
+  year:
+    nb: "År"
+    en: "Year"
+  version:
+    nb: "Versjon"
+    en: "Version"
+plot:
+  xlab:
+    nb: "Opptaksområde"
+    en: "Area"
+num:
+  decimal:
+    nb: ","
+    en: "."
+  big:
+    nb: " "
+    en: ","

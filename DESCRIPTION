@@ -23,6 +23,7 @@ Imports:
   dplyr,
   ggthemes,
   classInt,
+  yaml,
   SKDEr (>= 0.2.0),
   kart,
   data
