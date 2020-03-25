@@ -8,13 +8,6 @@
 #' @export
 app_server <- function(input, output, session) {
     healthatlas_data <- get_data()
-    if (!exists("healthatlas_data")) {
-      healthatlas_data <- NULL
-    }
-
-    if (!exists("healthatlas_map")) {
-      healthatlas_map <- NULL
-    }
 
     if (!exists("git_hash")) {
       git_hash <- NULL
