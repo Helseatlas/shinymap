@@ -2,7 +2,9 @@
 
 export(app_server)
 export(app_ui)
+export(create_config)
 export(filter_out)
+export(get_config)
 export(make_map)
 export(natural_breaks)
 export(plot_variation)
