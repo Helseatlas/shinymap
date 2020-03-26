@@ -11,7 +11,7 @@
 
 version_info <- function(newline = "<br>") {
 
-  conf <- get_config()
+  conf <- get_config() # nolint
   pkg <- conf$info$version$app
   m <- utils::installed.packages()[pkg, c(1, 3)]
   paste0(pkg, " v", m[pkg, "Version"], newline, collapse = "")
