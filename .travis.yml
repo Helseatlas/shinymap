@@ -14,6 +14,7 @@ addons:
   apt:
     packages:
       - libudunits2-dev # for R package "units"
+      - libprotobuf-dev # for R package "protolite"
 
 r_packages:
   - covr
