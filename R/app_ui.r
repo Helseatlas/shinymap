@@ -4,6 +4,7 @@
 #' @export
 app_ui <- function() {
   shiny::fluidPage(theme = shinythemes::shinytheme("cerulean"),
+                   shinyalert::useShinyalert(),
                    shiny::titlePanel(shiny::tags$head(
                      shiny::tags$link(rel = "icon", type = "image/png", href = "www/hn.png"),
                      shiny::tags$title("Helseatlas"),
@@ -23,6 +24,7 @@ app_ui <- function() {
                                   shiny::uiOutput("pick_level1"),
                                   shiny::uiOutput("pick_level2"),
                                   shiny::uiOutput("pick_level3"),
+                                  shiny::uiOutput("app_info"),
                                   shiny::uiOutput("git_version")
                     ),
                     shiny::column(9,

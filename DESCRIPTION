@@ -1,6 +1,6 @@
 Package: shinymap
 Title: R-package to produce shiny maps of Norway
-Version: 0.8.0
+Version: 0.8.0.9000
 Authors@R: person("Arnfinn Hykkerud", "Steindal", email = "arnfinn.steindal@skde.no", role = c("aut", "cre"))
 Author: Arnfinn Hykkerud Steindal [aut, cre]
 Maintainer: Arnfinn Hykkerud Steindal <arnfinn.steindal@skde.no>
@@ -16,6 +16,7 @@ Imports:
   shiny,
   shinythemes,
   shinyWidgets,
+  shinyalert,
   rsconnect,
   ggplot2,
   leaflet,
