@@ -1,11 +1,10 @@
 language: r
 cache: packages
-dist: bionic
 
 r:
-#  - oldrel
+  - oldrel
   - release
-#  - devel
+  - devel
 
 addons:
   apt:
