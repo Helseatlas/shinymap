@@ -287,12 +287,14 @@ app_server <- function(input, output, session) {
       icon = shiny::icon("info")
     )
   })
+
   shiny::observeEvent(input$app_info, {
-    shinyalert::shinyalert(title = config$info$title,
+    shinyalert::shinyalert(title = config$info$title[[input$language]],
                            text = version_info(),
                            type = "",
                            closeOnEsc = TRUE, closeOnClickOutside = TRUE,
                            html = TRUE,
-                           confirmButtonText = sample(config$info$action_button$no_opt_out_ok, 1))
+                           confirmButtonText =
+                             sample(config$info$action_button$no_opt_out_ok[[input$language]], 1))
   })
 }

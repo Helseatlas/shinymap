@@ -26,7 +26,9 @@ num:
     nb: " "
     en: ","
 info:
-  title: "Informasjon"
+  title:
+    nb: "Informasjon"
+    en: "Information"
   version:
     app:
       - shinymap
@@ -35,14 +37,24 @@ info:
       - SKDEr
   action_button:
     no_opt_out_ok:
-      - Den er grei
-      - Om du sier det, så
-      - Ok, da
-      - Javel, da
-      - Ja, da er det vel sånn
-      - Fint
-      - Flott!
-      - Klart
-      - Mottatt
-      - Akkurat
-      - Livet er herlig!
+      nb:
+        - Den er grei
+        - Om du sier det, så
+        - Ok, da
+        - Javel, da
+        - Ja, da er det vel sånn
+        - Fint
+        - Flott!
+        - Klart
+        - Mottatt
+        - Akkurat
+        - Livet er herlig!
+      en:
+        - OK
+        - Roger that
+        - Great!
+        - Okay
+        - Cool
+        - All right!
+        - Hep
+        - All hunky-dory.
