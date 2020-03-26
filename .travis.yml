@@ -1,9 +1,7 @@
 language: r
 cache: packages
 os: linux
-dist:
-  - bionic
-  - xenial
+dist: bionic
 
 r:
 #  - oldrel
