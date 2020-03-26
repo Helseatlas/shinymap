@@ -6,17 +6,6 @@ r:
   - release
   - devel
 
-
-addons:
-  apt:
-    packages:
-      - libudunits2-dev
-      - libprotobuf-dev
-      - libv8-dev
-      - libjq-dev
-      - protobuf-compiler
-      - libgdal-dev
-
 env:
   global:
     - _R_CHECK_TESTS_NLINES_=0
