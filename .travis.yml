@@ -10,8 +10,10 @@ env:
   global:
     - _R_CHECK_TESTS_NLINES_=0
       
-#r_binary_packages:
-#  - later
+addons:
+  apt:
+    packages:
+      - libudunits2-dev # for R package "units"
 
 r_packages:
   - covr
