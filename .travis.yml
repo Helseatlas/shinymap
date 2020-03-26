@@ -6,16 +6,17 @@ r:
   - release
 #  - devel
 
-env:
-  global:
-    - _R_CHECK_TESTS_NLINES_=0
-      
 addons:
   apt:
     packages:
       - libudunits2-dev # for R package "units"
       - libprotobuf-dev # for R package "protolite"
+      - protobuf-compiler # for R package "protolite"
 
+env:
+  global:
+    - _R_CHECK_TESTS_NLINES_=0
+      
 r_packages:
   - covr
   - lintr
