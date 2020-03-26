@@ -13,6 +13,7 @@ addons:
       - libprotobuf-dev # for R package "protolite"
       - protobuf-compiler # for R package "protolite"
       - libjq-dev # for R package "jqr"
+      - libv8-dev # for R package "V8"
 
 env:
   global:
