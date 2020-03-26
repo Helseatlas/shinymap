@@ -14,6 +14,7 @@ addons:
       - protobuf-compiler # for R package "protolite"
       - libjq-dev # for R package "jqr"
       - libv8-dev # for R package "V8"
+      - libgdal-dev # for R package "rgdal"
 
 env:
   global:
