@@ -6,6 +6,9 @@ r:
   - release
   - devel
 
+services:
+  - docker
+
 addons:
   apt:
     packages:
@@ -26,6 +29,20 @@ r_packages:
   - roxygen2
   - pkgdown
 
+before_install:
+  - R CMD build .
+  - docker build -t hnskde/helseatlas .
+  - |
+    if [[ "$TRAVIS_R_VERSION_STRING" == "release" ]] && [[ "$TRAVIS_EVENT_TYPE" == "push" ]]; then
+      docker build -t hnskde/helseatlas_test .
+    fi
+  - rm helseatlas_*.tar.gz
+  - docker run -d -p 127.0.0.1:3838:3838 --name helseatlas hnskde/helseatlas
+
+before_script:
+  - docker ps | grep -q helseatlas
+  - curl -IsSf 127.0.0.1:3838 > /dev/null
+
 after_success:
   - |
     if [[ "$TRAVIS_R_VERSION_STRING" == "release" ]] && [[ "$TRAVIS_EVENT_TYPE" == "push" ]]; then
@@ -41,6 +58,20 @@ deploy:
     token: $GH_TOKEN
     keep_history: false
     local_dir: docs
+    on:
+      branch: master
+      condition: $TRAVIS_R_VERSION_STRING == "release"
+  # our image to dockerhub for tags
+  - provider: script
+    script: bash docker_push helseatlas
+    skip_cleanup: true
+    on:
+      tags: true
+      condition: $TRAVIS_R_VERSION_STRING == "release"
+  # our image to dockerhub for commits to master
+  - provider: script
+    script: bash docker_push helseatlas_test
+    skip_cleanup: true
     on:
       branch: master
       condition: $TRAVIS_R_VERSION_STRING == "release"
