@@ -32,7 +32,7 @@ r_packages:
 before_install:
   - R CMD build .
   - docker build -t hnskde/helseatlas .
-  - rm helseatlas_*.tar.gz
+  - rm shinymap_*.tar.gz
   - docker run -d -p 127.0.0.1:3838:3838 --name helseatlas hnskde/helseatlas
   - docker tag hnskde/helseatlas hnskde/helseatlas_test
 
