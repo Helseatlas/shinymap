@@ -34,7 +34,6 @@ before_install:
   - docker build -t hnskde/helseatlas .
   - rm shinymap_*.tar.gz
   - docker run -d -p 127.0.0.1:3838:3838 --name helseatlas hnskde/helseatlas
-  - docker tag hnskde/helseatlas hnskde/helseatlas_test
 
 before_script:
   - docker ps | grep -q helseatlas
@@ -58,16 +57,9 @@ deploy:
     on:
       branch: master
       condition: $TRAVIS_R_VERSION_STRING == "release"
-  # our image to dockerhub for tags
+  # deploy our image to dockerhub for commits to master
   - provider: script
-    script: bash docker_push helseatlas
-    skip_cleanup: true
-    on:
-      tags: true
-      condition: $TRAVIS_R_VERSION_STRING == "release"
-  # our image to dockerhub for commits to master
-  - provider: script
-    script: bash docker_push helseatlas_test
+    script: bash docker_push
     skip_cleanup: true
     on:
       branch: master

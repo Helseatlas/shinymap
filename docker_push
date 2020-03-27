@@ -1,0 +1,9 @@
+#!/bin/bash
+echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+if [[ "$TRAVIS_TAG" == "true" ]]; then
+  docker push hnskde/helseatlas
+else
+  docker tag hnskde/helseatlas hnskde/helseatlas:test
+  docker push hnskde/helseatlas:test
+fi
