@@ -21,7 +21,7 @@ plot_variation <- function(input_data = NULL, xlab = "Opptaksomr", ylab = "Rate"
     input_data$area_name <- factor(input_data$area_name, levels = input_data$area_name[order(input_data$value)])
 
     # extract the natural breaks
-    input_data$brks <- shinymap::natural_breaks(data = input_data$value, num = num_groups)
+    input_data$brks <- helseatlas::natural_breaks(data = input_data$value, num = num_groups)
 
     the_plot <- ggplot2::ggplot(data = input_data,
       ggplot2::aes(x = get("area_name"), y = get("value"), fill = get("brks"))) +

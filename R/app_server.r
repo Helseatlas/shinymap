@@ -20,8 +20,8 @@ app_server <- function(input, output, session) {
 
     if (isTRUE(getOption("shiny.testmode"))) {
       # Load static/dummy data if this is a test run
-      healthatlas_data <- shinymap::testdata
-      healthatlas_map <- shinymap::testmap
+      healthatlas_data <- helseatlas::testdata
+      healthatlas_map <- helseatlas::testmap
     }
 
     output$pick_language <- shiny::renderUI({
@@ -214,7 +214,7 @@ app_server <- function(input, output, session) {
       if (is.null(input$menu_level1) | isTRUE(getOption("shiny.testmode"))) {
         return(NULL)
       }
-      filtered_data <- shinymap::filter_out(atlas_data(),
+      filtered_data <- helseatlas::filter_out(atlas_data(),
                                             filter1 = input$menu_level1,
                                             filter2 = input$menu_level2,
                                             filter3 = input$menu_level3)
@@ -224,18 +224,18 @@ app_server <- function(input, output, session) {
         return(NULL)
       }
 
-      map <- shinymap::make_map(map = atlas_map(), data = filtered_data)
+      map <- helseatlas::make_map(map = atlas_map(), data = filtered_data)
       return(map)
     }
     , height = 800, width = 600)
 
     output$plot_histogram <- shiny::renderPlot({
-      filtered_data <- shinymap::filter_out(atlas_data(),
+      filtered_data <- helseatlas::filter_out(atlas_data(),
                                             filter1 = input$menu_level1,
                                             filter2 = input$menu_level2,
                                             filter3 = input$menu_level3)
 
-      plot <- shinymap::plot_variation(
+      plot <- helseatlas::plot_variation(
         input_data = filtered_data,
         xlab = config$plot$xlab[[input$language]],
         ylab = input$menu_level1
@@ -248,7 +248,7 @@ app_server <- function(input, output, session) {
       if (is.null(input$menu_level1)) {
         return(NULL)
       }
-      filtered_data <- shinymap::filter_out(atlas_data(),
+      filtered_data <- helseatlas::filter_out(atlas_data(),
                                             filter1 = input$menu_level1,
                                             filter2 = input$menu_level2,
                                             filter3 = input$menu_level3)

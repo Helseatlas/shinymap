@@ -1,5 +1,5 @@
-[![Status](https://travis-ci.org/Helseatlas/shinymap.svg?branch=master)](https://travis-ci.org/Helseatlas/shinymap/builds)[![Coverage Status](https://img.shields.io/codecov/c/github/Helseatlas/shinymap/master.svg)](https://codecov.io/github/Helseatlas/shinymap?branch=master)
-[![Doc](https://img.shields.io/badge/Doc--grey.svg)](https://helseatlas.github.io/shinymap/)
+[![Status](https://travis-ci.org/helseatlas/helseatlas.svg?branch=master)](https://travis-ci.org/helseatlas/helseatlas/builds)[![Coverage Status](https://img.shields.io/codecov/c/github/helseatlas/helseatlas/master.svg)](https://codecov.io/github/helseatlas/helseatlas?branch=master)
+[![Doc](https://img.shields.io/badge/Doc--grey.svg)](https://helseatlas.github.io/helseatlas/)
 
 # Shinymap
 
@@ -9,11 +9,11 @@ R-package to be used to produce maps on the [helseatlas.no](https://helseatlas.n
 
 ```r
 # Install the data package
-devtools::install_github("Helseatlas/data")
+devtools::install_github("helseatlas/data")
 # Install the maps package
-devtools::install_github("Helseatlas/kart")
-# Install the shinymap package
-devtools::install_github("Helseatlas/shinymap")
+devtools::install_github("helseatlas/kart")
+# Install the helseatlas package
+devtools::install_github("helseatlas/helseatlas")
 ```
 
 ### Install the package behind a proxy
@@ -39,7 +39,7 @@ This file has to be saved in your `$HOME` directory, which typically is somethin
 ### Run the app
 
 ```R
-shinymap::run_app()
+helseatlas::run_app()
 ```
 
 ## Run a local copy of the package
@@ -47,21 +47,21 @@ shinymap::run_app()
 - Download the package from github
 
 ```bash
-git clone git@github.com:helseatlas/shinymap
+git clone git@github.com:helseatlas/helseatlas
 ```
 
-- Open the `shinymap` folder in *RStudio*
-- Install required packages, if not installed already. This can be done by `devtools::install_github("Helseatlas/shinymap")`. This will install the shinymap package from github and at the same time install all the required packages.
+- Open the `helseatlas` folder in *RStudio*
+- Install required packages, if not installed already. This can be done by `devtools::install_github("helseatlas/helseatlas")`. This will install the helseatlas package from github and at the same time install all the required packages.
 - Build the package (Ctrl+Shift+B on Windows/Linux or &#8984;-&#8679;-B on Mac).
 
 ## Contribute
 
-- [Fork me](https://github.com/Helseatlas/shinymap/fork)
+- [Fork me](https://github.com/helseatlas/helseatlas/fork)
 - Clone your fork (replace `<username` with your github user name), create a branch and push it
 
 ```bash
-git clone git@github.com:<username>/shinymap
-cd shinymap
+git clone git@github.com:<username>/helseatlas
+cd helseatlas
 git checkout -b super-duper-idea
 git push -u origin super-duper-idea
 ```
@@ -74,12 +74,12 @@ git commit -m 'My super duper idea'
 git push
 ```
 
-- Create a [pull request](https://github.com/Helseatlas/shinymap/compare) (PR).
+- Create a [pull request](https://github.com/helseatlas/helseatlas/compare) (PR).
 - Wait for PR to me reviewed and tested.
 
 ### Test the package locally
 
-The packages `testhat` and `shinytest` have to be installed if you want to test your local version of `shinymap`. In addition, you must install `PhantomJS`. The latter can be installed with the following R command:
+The packages `testhat` and `shinytest` have to be installed if you want to test your local version of `helseatlas`. In addition, you must install `PhantomJS`. The latter can be installed with the following R command:
 
 ```r
 shinytest::installDependencies()

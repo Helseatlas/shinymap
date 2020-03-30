@@ -32,7 +32,7 @@ r_packages:
 before_install:
   - R CMD build .
   - docker build -t $DOCKER_ORG/$IMAGE_NAME .
-  - rm shinymap_*.tar.gz
+  - rm helseatlas_*.tar.gz
   - docker run -d -p 127.0.0.1:3838:3838 --name $IMAGE_NAME $DOCKER_ORG/$IMAGE_NAME
 
 before_script:

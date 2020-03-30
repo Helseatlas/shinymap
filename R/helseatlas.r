@@ -1,6 +1,6 @@
-#' shinymap.
+#' helseatlas.
 #'
-#' @name shinymap
+#' @name helseatlas
 #' @docType package
 NULL
 

@@ -1,8 +1,8 @@
 install.packages("remotes")
 
-remotes::install_github("Helseatlas/kart")
-remotes::install_github("Helseatlas/data")
-remotes::install_github("Helseatlas/shinymap", ref = Sys.getenv("TRAVIS_BRANCH"))
+remotes::install_github("helseatlas/kart")
+remotes::install_github("helseatlas/data")
+remotes::install_github("helseatlas/helseatlas", ref = Sys.getenv("TRAVIS_BRANCH"))
 
 # All atlas data and maps
 all_data <- list(
@@ -71,7 +71,7 @@ git_hash <- Sys.getenv("TRAVIS_COMMIT")
 github_account <- Sys.getenv("TRAVIS_REPO_SLUG")
 
 if (Sys.getenv("TRAVIS_BRANCH") == "master") {
-  shinymap::launch_app(
+  helseatlas::launch_app(
     dataset = all_data,
     publish_app = TRUE,
     name = "helseatlas",
@@ -79,7 +79,7 @@ if (Sys.getenv("TRAVIS_BRANCH") == "master") {
     github_repo = github_account
   )
 } else {
-  shinymap::launch_app(
+  helseatlas::launch_app(
     dataset = all_data,
     publish_app = TRUE,
     name = "experimental",

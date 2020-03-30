@@ -31,7 +31,7 @@ info:
     en: "Information"
   version:
     app:
-      - shinymap
+      - helseatlas
       - kart
       - data
       - SKDEr

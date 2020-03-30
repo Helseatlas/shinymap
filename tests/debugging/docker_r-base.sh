@@ -17,8 +17,8 @@ apt-get update
 apt-get install git
 
 cd /home/docker
-git clone https://github.com/Helseatlas/shinymap.git
-cd shinymap
+git clone https://github.com/helseatlas/helseatlas.git
+cd helseatlas
 
 # Install apt-get packages
 apt-get install libcurl4-gnutls-dev libgit2-dev libssl-dev libudunits2-dev libv8-dev libjq-dev protobuf-compiler libgdal-dev

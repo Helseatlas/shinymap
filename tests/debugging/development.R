@@ -3,8 +3,8 @@ library(magrittr)
 rm(list=ls())
 
 # Install packages with data and maps
-devtools::install_github("Helseatlas/kart")
-devtools::install_github("Helseatlas/data")
+devtools::install_github("helseatlas/kart")
+devtools::install_github("helseatlas/data")
 
 # All atlas data and maps
 healthatlas_data <- list(
@@ -19,13 +19,13 @@ healthatlas_data <- list(
   "dagir"    = list("data_no" = data::dagkir,   "data_en" = data::dagkir_en,  "year" = "2011–2013", "title_no" = "Dagkirurgi",   "title_en" = "Day surgey",  "map" = kart::dagkir)
 )
 
-shinymap::run_app()
+helseatlas::run_app()
 
 #########################################
 # How to run the app through launch_app #
 #########################################
 
-shinymap::launch_app(
+helseatlas::launch_app(
   dataset = all_data,
   publish_app = FALSE
 )
@@ -34,12 +34,12 @@ shinymap::launch_app(
 # How to submit to shinyapps.io through launch_app #
 ####################################################
 
-# Install the shinymap package
-devtools::install_github("Helseatlas/shinymap")
+# Install the helseatlas package
+devtools::install_github("helseatlas/helseatlas")
 # Restart R session
 .rs.restartR()
 # Launch app
-shinymap::launch_app(
+helseatlas::launch_app(
   dataset = all_data,
   publish_app = TRUE,
   name = "helseatlas"
@@ -49,7 +49,7 @@ shinymap::launch_app(
 
 healthatlas_data <- all_data
 
-healthatlas_data <- shinymap::kols # or another dataset to use
+healthatlas_data <- helseatlas::kols # or another dataset to use
 healthatlas_map <- geojsonio::geojson_read("tests/testthat/data/maps/test.geojson", what = "sp")
 
 language <- "no"
@@ -59,16 +59,16 @@ runApp("inst/app")
 rm(list = ls())
 
 getwd()
-setwd("/Users/arnfinn/repo/shinymap")
+setwd("/Users/arnfinn/repo/helseatlas")
 
-# Example on how to update package data, which will be loadable by shinymaps::testdata
+# Example on how to update package data, which will be loadable by helseatlass::testdata
 
-testdata <- readRDS("~/repo/shinymap/tests/testthat/data/kols.rds")
+testdata <- readRDS("~/repo/helseatlas/tests/testthat/data/kols.rds")
 save(testdata, file = "data/testdata.RData")
 
 testdata <- get(load("data/kols.RData"))
 
-testdata <- readRDS("~/repo/shinymap/tests/testthat/data/start_plot.rds")
+testdata <- readRDS("~/repo/helseatlas/tests/testthat/data/start_plot.rds")
 
 testdata$area_name <- testdata$area
 testdata$level1_name <- testdata$level1
@@ -84,7 +84,7 @@ testdata$numerator <- testdata$numerater
 testdata <- within(testdata, rm(numerater))
 
 start_plot <- testdata
-saveRDS(start_plot, file = "~/repo/shinymap/tests/testthat/data/start_plot.rds")
+saveRDS(start_plot, file = "~/repo/helseatlas/tests/testthat/data/start_plot.rds")
 
 save(kols, file = "data/kols.RData")
 save(testdata, file = "data/testdata.RData")
@@ -92,7 +92,7 @@ save(testdata, file = "data/testdata.RData")
 # Make the testmap data
 testmap <- kart::barn
 usethis::use_data(testmap, overwrite = TRUE)
-plot(shinymap::testmap)
+plot(helseatlas::testmap)
 
 # Make the testdata
 
@@ -128,7 +128,7 @@ testdata$level3_name <- as.factor(gsub("Æ", "AE", testdata$level3_name))
 
 usethis::use_data(testdata, overwrite = TRUE)
 
-shinymap::testdata
+helseatlas::testdata
 
 
 # How two extra test maps were made

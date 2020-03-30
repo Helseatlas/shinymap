@@ -1,3 +1,3 @@
-library(shinymap)
+library(helseatlas)
 
-testthat::test_check("shinymap")
+testthat::test_check("helseatlas")

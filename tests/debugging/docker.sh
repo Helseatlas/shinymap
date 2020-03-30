@@ -35,8 +35,8 @@ curl -fLo /tmp/pandoc-2.2-1-amd64.deb https://github.com/jgm/pandoc/releases/dow
 sudo dpkg -i /tmp/pandoc-2.2-1-amd64.deb
 sudo apt-get install -f
 rm /tmp/pandoc-2.2-1-amd64.deb
-git clone --depth=50 --branch=master https://github.com/Helseatlas/shinymap.git Helseatlas/shinymap
-cd Helseatlas/shinymap
+git clone --depth=50 --branch=master https://github.com/helseatlas/helseatlas.git helseatlas/helseatlas
+cd helseatlas/helseatlas
 git checkout -qf eda6b53d905564f345a43f8a677714f069ccc3c1
 export CASHER_DIR=${TRAVIS_HOME}/.casher
 sudo apt-get install r-base-core
