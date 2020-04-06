@@ -6,10 +6,10 @@
 \usage{
 plot_variation(
   input_data = NULL,
-  xlab = "Opptaksomr",
+  xlab = "Area",
   ylab = "Rate",
   type = "histogram",
-  num_groups = 4
+  num_groups = 5
 )
 }
 \arguments{
