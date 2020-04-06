@@ -5,11 +5,11 @@ Authors@R: person("Arnfinn Hykkerud", "Steindal", email = "arnfinn.steindal@skde
 Author: Arnfinn Hykkerud Steindal [aut, cre]
 Maintainer: Arnfinn Hykkerud Steindal <arnfinn.steindal@skde.no>
 Description: Will be used to produce maps on the helseatlas.no web page.
-Depends: R (>= 3.3.3)
+Depends: R (>= 3.5.0)
 License: file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 BugReports: https://github.com/helseatlas/helseatlas/issues
 URL: https://helseatlas.github.io/helseatlas
 Imports:

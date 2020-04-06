@@ -5,5 +5,5 @@
 \alias{helseatlas}
 \title{helseatlas.}
 \description{
-helseatlas.
+The helseatlas R package
 }

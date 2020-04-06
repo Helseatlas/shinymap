@@ -1,6 +1,7 @@
 #' helseatlas.
 #'
 #' @name helseatlas
+#' @description The helseatlas R package
 #' @docType package
 NULL
 
