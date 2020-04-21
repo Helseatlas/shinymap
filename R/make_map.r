@@ -15,19 +15,16 @@ make_map <- function(data = NULL, map = NULL, utm33 = TRUE) {
   library(leaflet)
   library(leaflet.extras)
   library(htmltools)
-  
-  simple_data <- data[c("area", "value")]
-  map_data <- dplyr::inner_join(map, simple_data, by = c("area_num" = "area"))
-  
-  #map_data$area_num <- NULL
-  #map_data$area_name <- NULL
 
+  
   if (utm33) {
     # convert from utm33 to leaflet
-    map_data <- kart::utm33_to_leaflet(map = map_data, sf = TRUE)
+    map_data <- kart::utm33_to_leaflet(map = map, sf = TRUE)
   }
-
+  
   map_data <- as(map_data, Class = "Spatial")
+  simple_data <- data[c("area", "value")]
+  map_data@data <- map_data@data %>% dplyr::left_join(simple_data, by = c("area_num" = "area"))
   pal <- leaflet::colorBin(palette = SKDEr::skde_colors(num=5), domain = map_data@data$value, bins = 5, pretty = FALSE)
   
   output <- 
