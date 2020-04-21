@@ -29,7 +29,7 @@ app_ui <- function() {
                     ),
                     shiny::column(9,
                                   shiny::tabsetPanel(
-                                    shiny::tabPanel(shiny::uiOutput("title_map"), shiny::plotOutput("plot_map")),
+                                    shiny::tabPanel(shiny::uiOutput("title_map"), leaflet::leafletOutput("plot_map")),
                                     shiny::tabPanel(shiny::uiOutput("title_hist"), shiny::plotOutput("plot_histogram")),
                                     shiny::tabPanel(shiny::uiOutput("title_table"), shiny::tableOutput("make_table"))
                            ))

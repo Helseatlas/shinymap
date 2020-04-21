@@ -210,7 +210,7 @@ app_server <- function(input, output, session) {
       return(shiny::icon("chart-bar"))
     })
 
-    output$plot_map <- shiny::renderPlot({
+    output$plot_map <- leaflet::renderLeaflet({
       if (is.null(input$menu_level1) | isTRUE(getOption("shiny.testmode"))) {
         return(NULL)
       }
@@ -227,7 +227,7 @@ app_server <- function(input, output, session) {
       map <- helseatlas::make_map(map = atlas_map(), data = filtered_data)
       return(map)
     }
-    , height = 800, width = 600)
+    )
 
     output$plot_histogram <- shiny::renderPlot({
       filtered_data <- helseatlas::filter_out(atlas_data(),
