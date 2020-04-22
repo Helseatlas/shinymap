@@ -29,7 +29,8 @@ Imports:
   data,
   leaflet,
   htmltools,
-  leaflet.extras
+  leaflet.extras,
+  methods
 Suggests: 
     testthat
 Remotes: 
