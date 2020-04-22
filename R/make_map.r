@@ -12,11 +12,6 @@ make_map <- function(data = NULL, map = NULL, utm33 = TRUE) {
 
   output <- NULL
   
-  library(leaflet)
-  library(leaflet.extras)
-  library(htmltools)
-
-  
   if (utm33) {
     # convert from utm33 to leaflet
     map_data <- kart::utm33_to_leaflet(map = map, sf = TRUE)
@@ -30,17 +25,17 @@ make_map <- function(data = NULL, map = NULL, utm33 = TRUE) {
   output <- 
     
     map_data %>% 
-    leaflet(options = leafletOptions(minZoom = 5, maxZoom = 5)) %>% 
-    addPolygons(weight = 1, 
+    leaflet::leaflet(options = leafletOptions(minZoom = 5, maxZoom = 5)) %>% 
+    leaflet::addPolygons(weight = 1, 
                 color  = "black",
                 fillColor = ~pal(value),
                 fillOpacity = 0.8,
                 label = sprintf("<strong>%s</strong></br> %g", map_data@data$area_name, round(map_data@data$value,0)) %>% lapply(htmltools::HTML) ,
                 popupOptions = popupOptions(closeButton = TRUE), stroke = TRUE, smoothFactor = 1,
                 highlight = highlightOptions(weight = 2, color = "white", bringToFront = TRUE)) %>% 
-    addLegend(position =  "bottomright", pal = pal, values = ~value, title = "Antall per 100 000 innbygger", 
+    leaflet::addLegend(position =  "bottomright", pal = pal, values = ~value, title = "Antall per 100 000 innbygger", 
               labFormat = labelFormat(digits = 0)) %>% 
-    setMapWidgetStyle(list(background= "white")
+    leaflet.extras::setMapWidgetStyle(list(background= "white")
     )
 
   return(output)

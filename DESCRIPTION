@@ -26,7 +26,10 @@ Imports:
   sf,
   SKDEr (>= 0.2.0),
   kart,
-  data
+  data,
+  leaflet,
+  htmltools,
+  leaflet.extras
 Suggests: 
     testthat
 Remotes: 
