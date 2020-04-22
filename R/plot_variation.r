@@ -35,15 +35,18 @@ plot_variation <- function(input_data = NULL, xlab = "Area", ylab = "Rate", type
       ggplot2::geom_bar(stat = "identity") +
       ggplot2::geom_bar(data = norway_avg, fill = "grey", stat = "identity") +
 
-      ggplot2::scale_fill_manual(values = SKDEr::skde_colors(num = num_groups)) +
-      ggplot2::labs(x = xlab, y = ylab, fill = "breaks", caption = "Kilde: NPR/SSB") +
+      ggplot2::scale_fill_manual("", 
+                                 values = SKDEr::skde_colors(num = num_groups), 
+                                 guide = ggplot2::guide_colorsteps(ticks=FALSE,
+                                                          show.limits = TRUE)) +
+      ggplot2::labs(x = NULL, y = NULL, fill = "breaks", caption = "Kilde: NPR/SSB") +
       ggplot2::coord_flip() +
 
-      # theme
       ggthemes::theme_tufte() +
       ggplot2::theme(text = ggplot2::element_text(size = 14),
                      axis.line = ggplot2::element_line(color = "black"),
-                     axis.ticks.y = ggplot2::element_blank()) +
+                     axis.ticks.y = ggplot2::element_blank(),
+                     plot.caption = ggplot2::element_text(hjust = 1)) +
       ggplot2::scale_y_continuous(expand = c(0, 0))
   }
   return(the_plot)
