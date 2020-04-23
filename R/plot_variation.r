@@ -38,7 +38,7 @@ plot_variation <- function(input_data = NULL, xlab = "Area", ylab = "Rate", type
       ggplot2::scale_fill_manual("", 
                                  values = SKDEr::skde_colors(num = num_groups), 
                                  guide = ggplot2::guide_colorsteps(ticks=FALSE,
-                                                          show.limits = TRUE)) +
+                                                                  show.limits = TRUE)) +
       ggplot2::labs(x = NULL, y = NULL, fill = "breaks", caption = "Kilde: NPR/SSB") +
       ggplot2::coord_flip() +
 
