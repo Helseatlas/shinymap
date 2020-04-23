@@ -5,6 +5,9 @@ LABEL no.mongr.cd.enable="true"
 
 ARG GITHUB_PAT
 
+# Install missing dependencies not yet in helseatlas-base-r
+RUN R -e "install.packages(c('htmltools', 'leaflet.extras', 'methods'))"
+
 RUN R -e "remotes::install_github('helseatlas/kart')"
 RUN R -e "remotes::install_github('helseatlas/data')"
 
