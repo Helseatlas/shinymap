@@ -17,7 +17,7 @@ make_map <- function(data = NULL, map = NULL) {
   # Only keep columns that we want to use
   simple_data <- data[c("area", "value", "area_name", "type")]
   # Join data with map
-  map_data@data <- map_data@data %>% dplyr::left_join(simple_data, by = c("area_num" = "area"))
+  map_data@data <- dplyr::left_join(map_data@data, simple_data, by = c("area_num" = "area"))
   pal <- leaflet::colorBin(palette = SKDEr::skde_colors(num = 5),
                            domain = map_data@data$value,
                            bins = 5,
