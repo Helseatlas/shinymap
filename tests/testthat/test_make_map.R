@@ -1,5 +1,3 @@
-context("make_map")
-
 test_that("make_map returns error if map is not given", {
   expect_error(suppressWarnings(make_map(type = "simple")))
 })

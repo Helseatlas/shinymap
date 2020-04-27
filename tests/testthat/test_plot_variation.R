@@ -1,5 +1,3 @@
-context("plot_variation")
-
 test_that("plot_variation is OK", {
   expect_null(plot_variation())
 

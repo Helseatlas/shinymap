@@ -1,5 +1,3 @@
-context("natural_breaks")
-
 test_that("natural_breaks is OK", {
   test_data <- c(158098, 160652, 154949, 172279, 160625,
                  164622, 165661, 153231, 162108, 166592,

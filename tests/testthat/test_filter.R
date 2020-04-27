@@ -1,5 +1,3 @@
-context("filter_out")
-
 test_that("eldre can be filtered correctly", {
   file <- readRDS("data/eldre.rds")
   tmp <- filter_out(file,
