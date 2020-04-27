@@ -1,0 +1,60 @@
+title:
+  nb: "Helseatlas"
+  en: "The Norwegian healthcare atlas"
+menus:
+  atlas:
+    nb: "Velg atlas"
+    en: "Pick an atlas"
+  level:
+    nb: "Velg et tema"
+    en: "Pick a subject"
+  year:
+    nb: "År"
+    en: "Year"
+  version:
+    nb: "Versjon"
+    en: "Version"
+plot:
+  xlab:
+    nb: "Opptaksområde"
+    en: "Area"
+num:
+  decimal:
+    nb: ","
+    en: "."
+  big:
+    nb: " "
+    en: ","
+info:
+  title:
+    nb: "Informasjon"
+    en: "Information"
+  version:
+    app:
+      - helseatlas
+      - kart
+      - data
+      - SKDEr
+  action_button:
+    no_opt_out_ok:
+      nb:
+        - Den er grei
+        - Om du sier det, så
+        - Ok, da
+        - Javel, da
+        - Ja, da er det vel sånn
+        - Fint
+        - Flott!
+        - Klart
+        - Mottatt
+        - Akkurat
+        - Livet er herlig!
+      en:
+        - OK
+        - Roger that
+        - Great!
+        - Okay
+        - Cool
+        - All right!
+        - Hep
+        - All hunky-dory.

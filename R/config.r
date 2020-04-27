@@ -14,7 +14,7 @@ create_config <- function(dir = ".", force = FALSE) {
     file.copy(ref_file, to = new_file)
     return(paste0(new_file, " file created: fill it in"))
   } else {
-    return(paste0("Cannot create ", new_file, " config file: already exists.",
+    return(paste0("Cannot create ", new_file, " config file: already exists. ",
     "(run with force = TRUE if you want to overwrite file)"))
   }
 }
@@ -42,5 +42,8 @@ get_config <- function(dir = ".") {
 #' @param config Config file to check
 #'
 check_config <- function(config) {
+  if ((class(config) != "list") | (!("title" %in% attributes(config)$names))) {
+    stop("Complete the config file: _qmongr.yml")
+  }
   invisible()
 }
