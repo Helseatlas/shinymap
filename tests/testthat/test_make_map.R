@@ -30,7 +30,7 @@ test_that("make_map can plot testmap/testdata", {
   expect_equal(test_map$x$options$maxZoom, 5)
 
   expect_equal(round(test_map$x$limits$lat, 5), c(57.96052, 71.18488))
-  expect_equal(round(test_map$x$limits$lng, 5), c(4.50865, 31.16453))
+  expect_equal(round(test_map$x$limits$lng, 6), c(4.508655, 31.164534))
 
   expect_equal(test_map$sizingPolicy$defaultHeight, 400)
   expect_equal(test_map$sizingPolicy$defaultWidth, "100%")
