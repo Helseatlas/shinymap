@@ -45,6 +45,7 @@ Imports:
   leaflet.extras,
   methods
 Suggests: 
+    purrr,
     testthat
 Remotes: 
     SKDE-Felles/SKDEr,
