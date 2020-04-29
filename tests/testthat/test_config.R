@@ -3,8 +3,11 @@ test_that("create_config", {
                                                    "already exists. ",
                                                    "(run with force = TRUE if you want to overwrite file)"))
 
+  expect_false(file.exists("_helseatlas.yml"))
   expect_equal(create_config(), "./_helseatlas.yml file created: fill it in")
+  expect_true(file.exists("_helseatlas.yml"))
   file.remove("_helseatlas.yml")
+  expect_false(file.exists("_helseatlas.yml"))
 })
 
 test_that("check_config", {
