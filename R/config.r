@@ -42,7 +42,13 @@ get_config <- function(dir = ".") {
 #' @param config Config file to check
 #'
 check_config <- function(config) {
-  if ((class(config) != "list") | (!("title" %in% attributes(config)$names))) {
+  if ((class(config) != "list") |
+  (!("title" %in% attributes(config)$names)) |
+  (!("menus" %in% attributes(config)$names)) |
+  (!("plot" %in% attributes(config)$names)) |
+  (!("num" %in% attributes(config)$names)) |
+  (!("info" %in% attributes(config)$names))
+  ) {
     stop("Complete the config file: _qmongr.yml")
   }
   invisible()
