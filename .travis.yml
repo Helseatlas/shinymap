@@ -1,7 +1,7 @@
 language: r
 cache: packages
 os: linux
-dist: bionic
+dist: xenial
 
 r:
   - 3.5
