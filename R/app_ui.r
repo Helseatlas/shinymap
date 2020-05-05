@@ -29,9 +29,8 @@ app_ui <- function() {
                     ),
                     shiny::column(9,
                                   shiny::tabsetPanel(
-                                    shiny::tabPanel("Map", tabModuleUI("map"))),
-                                    shiny::tabPanel("Barchart", tabModuleUI("barchart"))),
-                                    shiny::tabPanel("Table", tabModuleUI("table")))
-                           
-                    )
+                                    shiny::tagList(
+                                      tab_ui("tab_ui1")
+                                    )
+                    ))))
 }

@@ -200,9 +200,8 @@ app_server <- function(input, output, session) {
 
     
     # tabs
-    shiny::serverModule(tabModule, "map", map_data)
-    shiny::serverModule(tabModule, "barchart", bar_data)
-    shiny::serverModule(tabModule, "table", table_data)
+    tab_server("tab_ui1")
+    
     
     
     
