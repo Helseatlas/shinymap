@@ -199,12 +199,9 @@ app_server <- function(input, output, session) {
     })
 
     
+    
     # tabs
-    tab_server("tab_ui1")
-    
-    
-    
-    
+    tab_server("plots")
     
   output$app_info <- shiny::renderUI({
     shiny::actionButton(

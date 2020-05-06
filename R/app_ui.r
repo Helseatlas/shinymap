@@ -27,10 +27,9 @@ app_ui <- function() {
                                   shiny::uiOutput("app_info"),
                                   shiny::uiOutput("git_version")
                     ),
-                    shiny::column(9,
-                                  shiny::tabsetPanel(
-                                    shiny::tagList(
-                                      tab_ui("tab_ui1")
-                                    )
-                    ))))
+                    
+                    # tabs
+                    tab_ui("plots")
+                                    
+                    ))
 }
