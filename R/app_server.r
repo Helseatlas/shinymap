@@ -198,24 +198,12 @@ app_server <- function(input, output, session) {
       return(shiny::HTML(paste0("<h1>", webpage_title, "</h1>")))
     })
 
-    output$plot_map <- leaflet::renderLeaflet({
-      if (is.null(input$menu_level1) | isTRUE(getOption("shiny.testmode"))) {
-        return(NULL)
-      }
-      filtered_data <- helseatlas::filter_out(atlas_data(),
+    filtered_data <- shiny::reactive(helseatlas::filter_out(atlas_data(),
                                             filter1 = input$menu_level1,
                                             filter2 = input$menu_level2,
-                                            filter3 = input$menu_level3)
-
-      if (is.null(nrow(filtered_data)) || nrow(filtered_data) == 0) {
-        # Return null if data in invalid
-        return(NULL)
-      }
-
-      map <- helseatlas::make_map(map = atlas_map(), data = filtered_data)
-      return(map)
-    }
-    )
+                                            filter3 = input$menu_level3))
+    
+    map_server(id = "map", map = atlas_map(), data = filtered_data())
 
     output$plot_histogram <- shiny::renderPlot({
       filtered_data <- helseatlas::filter_out(atlas_data(),
