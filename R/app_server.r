@@ -198,18 +198,6 @@ app_server <- function(input, output, session) {
       return(shiny::HTML(paste0("<h1>", webpage_title, "</h1>")))
     })
 
-    output$title_table <- shiny::renderUI({
-      return(shiny::icon("table"))
-    })
-
-    output$title_map <- shiny::renderUI({
-      return(shiny::icon("globe"))
-    })
-
-    output$title_hist <- shiny::renderUI({
-      return(shiny::icon("chart-bar"))
-    })
-
     output$plot_map <- leaflet::renderLeaflet({
       if (is.null(input$menu_level1) | isTRUE(getOption("shiny.testmode"))) {
         return(NULL)
