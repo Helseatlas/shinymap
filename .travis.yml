@@ -1,8 +1,11 @@
 language: r
 cache: packages
+os: linux
+dist: xenial
 
 r:
-  - oldrel
+  - 3.5
+  - 3.6
   - release
   - devel
 
