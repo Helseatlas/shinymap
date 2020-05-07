@@ -9,6 +9,7 @@ select_ui <- function(id) {
 }
 
 select_server <- function(id, language, healthatlas_data, config) {
+  stopifnot(is.reactive(language))
   shiny::moduleServer(id, function(input, output, session) {
 
     output$pick_atlas <- shiny::renderUI({
@@ -34,17 +35,7 @@ select_server <- function(id, language, healthatlas_data, config) {
         )
       }
     })
-    
-    observeEvent(language, {
-      shiny::req(language())
-#      shiny::req(input$atlas)
-      if (language() == "nb") {
-        num_atlas <- 1
-      } else if (language() == "en") {
-        num_atlas <- 2
-      }
-    })
-    
+
     atlas_data <- reactive({
       shiny::req(language())
       shiny::req(input$atlas)
@@ -130,5 +121,16 @@ select_server <- function(id, language, healthatlas_data, config) {
       }
     })
     
+    filtered_data <- shiny::reactive({
+      helseatlas::filter_out(atlas_data(),
+                             filter1 = input$menu_level1,
+                             filter2 = input$menu_level2,
+                             filter3 = input$menu_level3)
+      
+    })
+    return(list(atlas = shiny::reactive(input$atlas), data = filtered_data))
+#    return(filtered_data)
+#    return(shiny::reactive(input$atlas))
+    #    return(list(input$atlas, filtered_data))
   })
 }

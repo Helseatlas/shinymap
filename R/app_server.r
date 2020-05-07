@@ -10,7 +10,7 @@ app_server <- function(input, output, session) {
     healthatlas_data <- get_data() # nolint
     config <- get_config() # nolint
 
-    select_server("test1",
+    filtered_data <- select_server("test1",
                   language = reactive(input$language),
                   healthatlas_data = healthatlas_data,
                   config = config
@@ -65,13 +65,9 @@ app_server <- function(input, output, session) {
     })
 
     atlas_map <- shiny::reactive({
+      shiny::req(filtered_data)
       if (!exists("healthatlas_map")) {
-        if (is.null(input$atlas)) {
-          return(NULL)
-        } else {
-          # using UTM 33 for now (32633)
-          return(sf::st_transform(healthatlas_data[[input$atlas]][["map"]], 32633))
-        }
+        return(sf::st_transform(healthatlas_data[[filtered_data$atlas()]][["map"]], 32633))
       } else {
         return(sf::st_transform(healthatlas_map, 32633))
       }
@@ -107,61 +103,39 @@ app_server <- function(input, output, session) {
     })
 
     output$plot_map <- leaflet::renderLeaflet({
-      if (is.null(input$menu_level1) | isTRUE(getOption("shiny.testmode"))) {
-        return(NULL)
-      }
-      filtered_data <- helseatlas::filter_out(atlas_data(),
-                                            filter1 = input$menu_level1,
-                                            filter2 = input$menu_level2,
-                                            filter3 = input$menu_level3)
-
-      if (is.null(nrow(filtered_data)) || nrow(filtered_data) == 0) {
-        # Return null if data in invalid
-        return(NULL)
-      }
-
-      map <- helseatlas::make_map(map = atlas_map(), data = filtered_data)
+      shiny::req(filtered_data)
+      map <- helseatlas::make_map(map = atlas_map(), data = filtered_data$data())
       return(map)
-    }
-    )
+    })
 
     output$plot_histogram <- shiny::renderPlot({
-      filtered_data <- helseatlas::filter_out(atlas_data(),
-                                            filter1 = input$menu_level1,
-                                            filter2 = input$menu_level2,
-                                            filter3 = input$menu_level3)
-
+      shiny::req(filtered_data)
       plot <- helseatlas::plot_variation(
-        input_data = filtered_data,
+        input_data = filtered_data$data(),
         xlab = config$plot$xlab[[input$language]],
-        ylab = input$menu_level1
+        ylab = "TBA"
       )
       return(plot)
     }
     , height = 800, width = 600)
 
     output$make_table <- shiny::renderTable({
-      if (is.null(input$menu_level1)) {
-        return(NULL)
-      }
-      filtered_data <- helseatlas::filter_out(atlas_data(),
-                                            filter1 = input$menu_level1,
-                                            filter2 = input$menu_level2,
-                                            filter3 = input$menu_level3)
+      shiny::req(filtered_data)
+      data_to_tabulate <- filtered_data$data()
 
       # Return null if data in invalid
-      if (is.null(nrow(filtered_data)) || nrow(filtered_data) == 0) {
+      if (is.null(nrow(data_to_tabulate)) || nrow(data_to_tabulate) == 0) {
         return(NULL)
       }
 
-      tabular_data <- data.frame(filtered_data$area_name)
+      tabular_data <- data.frame(data_to_tabulate$area_name)
       colnames(tabular_data) <- c(config$plot$xlab[[input$language]])
-      value_name <- as.character(unique(filtered_data$type))
-      tabular_data[value_name] <- filtered_data$value
-      numerator_name <- as.character(unique(filtered_data$numerator_name))
-      tabular_data[numerator_name] <- filtered_data$numerator
-      denominator_name <- as.character(unique(filtered_data$denominator_name))
-      tabular_data[denominator_name] <- filtered_data$denominator
+      value_name <- as.character(unique(data_to_tabulate$type))
+      tabular_data[value_name] <- data_to_tabulate$value
+      numerator_name <- as.character(unique(data_to_tabulate$numerator_name))
+      tabular_data[numerator_name] <- data_to_tabulate$numerator
+      denominator_name <- as.character(unique(data_to_tabulate$denominator_name))
+      tabular_data[denominator_name] <- data_to_tabulate$denominator
       # Sort data
       tabular_data <- tabular_data[order(tabular_data[, 2], na.last = TRUE, decreasing = TRUE), ]
       # Format numbers
