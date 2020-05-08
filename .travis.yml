@@ -32,6 +32,9 @@ r_packages:
   - roxygen2
   - pkgdown
 
+r_github_packages:
+  - rstudio/shiny
+
 before_install:
   - R CMD build .
   - docker build --build-arg GITHUB_PAT=${GITHUB_PAT} -t $DOCKER_ORG/$IMAGE_NAME .
