@@ -47,26 +47,6 @@ app_server <- function(input, output, session) {
         )
     })
 
-    atlas_data <- shiny::reactive({
-      shiny::req(input$language)
-      if (input$language == "nb") {
-        num_atlas <- 1
-      } else if (input$language == "en") {
-        num_atlas <- 2
-      }
-
-      # Return the data for a given atlas.
-      if (!is.data.frame(healthatlas_data)) {
-        if (is.null(input$atlas)) {
-          return(NULL)
-        } else {
-          return(healthatlas_data[[input$atlas]][[num_atlas]])
-        }
-      } else {
-        return(healthatlas_data)
-      }
-    })
-
     atlas_map <- shiny::reactive({
       shiny::req(filtered_data)
       if (!exists("healthatlas_map")) {

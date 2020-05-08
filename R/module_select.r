@@ -9,7 +9,6 @@ select_ui <- function(id) {
 }
 
 select_server <- function(id, language, data, config) {
-  stopifnot(shiny::is.reactive(language))
   shiny::moduleServer(id, function(input, output, session) {
 
     output$pick_atlas <- shiny::renderUI({
@@ -74,9 +73,6 @@ select_server <- function(id, language, data, config) {
         if (suppressWarnings(all(!is.na(as.numeric(as.character(pickable_level2)))))) {
           # If all the pickable values are integers then it is probably year
           years <- as.numeric(as.character(pickable_level2))
-          if (is.null(years) | length(years) == 0) {
-            return(NULL)
-          }
           shiny::tags$div(class = "year-slider", shiny::sliderInput(
             inputId = session$ns("menu_level2"),
             label = config$menus$year[[language()]],
