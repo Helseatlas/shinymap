@@ -13,11 +13,11 @@ app_server <- function(input, output, session) {
     # Run the select_server shiny module
     # User pick atlas and sample
     # Module returns name of choosen atlas and data from choosen sample
-    filtered_data <- select_server("atlas",
-                  language = shiny::reactive(input$language),
-                  data = healthatlas_data,
-                  config = config
-                  )
+    selection <- select_server("atlas",
+                               language = shiny::reactive(input$language),
+                               data = healthatlas_data,
+                               config = config
+                               )
 
     if (!exists("git_hash")) {
       git_hash <- NULL
@@ -25,12 +25,6 @@ app_server <- function(input, output, session) {
 
     if (!exists("github_repo")) {
       github_repo <- NULL
-    }
-
-    if (isTRUE(getOption("shiny.testmode"))) {
-      # Load static/dummy data if this is a test run
-      healthatlas_data <- helseatlas::testdata
-      healthatlas_map <- helseatlas::testmap
     }
 
     output$pick_language <- shiny::renderUI({
@@ -46,16 +40,6 @@ app_server <- function(input, output, session) {
           selected = "nb"
         )
     })
-
-    atlas_map <- shiny::reactive({
-      shiny::req(filtered_data)
-      if (!exists("healthatlas_map")) {
-        return(sf::st_transform(healthatlas_data[[filtered_data$atlas()]][["map"]], 32633))
-      } else {
-        return(sf::st_transform(healthatlas_map, 32633))
-      }
-    })
-
 
     output$git_version <- shiny::renderUI({
       if (!is.null(git_hash)) {
@@ -86,15 +70,16 @@ app_server <- function(input, output, session) {
     })
 
     output$plot_map <- leaflet::renderLeaflet({
-      shiny::req(filtered_data)
-      map <- helseatlas::make_map(map = atlas_map(), data = filtered_data$data())
+      shiny::req(selection)
+      map_to_plot <- sf::st_transform(healthatlas_data[[selection$atlas()]][["map"]], 32633)
+      map <- helseatlas::make_map(map = map_to_plot, data = selection$data())
       return(map)
     })
 
     output$plot_histogram <- shiny::renderPlot({
-      shiny::req(filtered_data)
+      shiny::req(selection)
       plot <- helseatlas::plot_variation(
-        input_data = filtered_data$data(),
+        input_data = selection$data(),
         xlab = config$plot$xlab[[input$language]],
         ylab = "TBA"
       )
@@ -103,8 +88,8 @@ app_server <- function(input, output, session) {
     , height = 800, width = 600)
 
     output$make_table <- shiny::renderTable({
-      shiny::req(filtered_data)
-      data_to_tabulate <- filtered_data$data()
+      shiny::req(selection)
+      data_to_tabulate <- selection$data()
 
       # Return null if data in invalid
       if (is.null(nrow(data_to_tabulate)) || nrow(data_to_tabulate) == 0) {
