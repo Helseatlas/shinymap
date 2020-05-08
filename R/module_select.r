@@ -9,7 +9,7 @@ select_ui <- function(id) {
 }
 
 select_server <- function(id, language, healthatlas_data, config) {
-  stopifnot(is.reactive(language))
+  stopifnot(shiny::is.reactive(language))
   shiny::moduleServer(id, function(input, output, session) {
 
     output$pick_atlas <- shiny::renderUI({
@@ -36,7 +36,7 @@ select_server <- function(id, language, healthatlas_data, config) {
       }
     })
 
-    atlas_data <- reactive({
+    atlas_data <- shiny::reactive({
       shiny::req(language())
       shiny::req(input$atlas)
       if (language() == "nb") {

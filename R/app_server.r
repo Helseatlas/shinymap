@@ -10,8 +10,11 @@ app_server <- function(input, output, session) {
     healthatlas_data <- get_data() # nolint
     config <- get_config() # nolint
 
+    # Run the select_server shiny module
+    # User pick atlas and sample
+    # Module returns name of choosen atlas and data from choosen sample
     filtered_data <- select_server("test1",
-                  language = reactive(input$language),
+                  language = shiny::reactive(input$language),
                   healthatlas_data = healthatlas_data,
                   config = config
                   )
