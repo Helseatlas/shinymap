@@ -8,24 +8,24 @@ select_ui <- function(id) {
   )
 }
 
-select_server <- function(id, language, healthatlas_data, config) {
+select_server <- function(id, language, data, config) {
   stopifnot(shiny::is.reactive(language))
   shiny::moduleServer(id, function(input, output, session) {
 
     output$pick_atlas <- shiny::renderUI({
       shiny::req(language())
-      if (!is.data.frame(healthatlas_data)) {
+      if (!is.data.frame(data)) {
         mytitle <- c()
-        atlasnames <- names(healthatlas_data)
+        atlasnames <- names(data)
         for (i in atlasnames) {
           if (language() == "nb") {
-            mytitle <- c(mytitle, paste(healthatlas_data[[i]]$title_no, healthatlas_data[[i]]$year, sep = " "))
+            mytitle <- c(mytitle, paste(data[[i]]$title_no, data[[i]]$year, sep = " "))
           } else if (language() == "en") {
-            mytitle <- c(mytitle, paste(healthatlas_data[[i]]$title_en, healthatlas_data[[i]]$year, sep = " "))
+            mytitle <- c(mytitle, paste(data[[i]]$title_en, data[[i]]$year, sep = " "))
           }
         }
         names(atlasnames) <- mytitle
-        
+
         shiny::selectInput(
           selectize = FALSE,
           inputId = session$ns("atlas"),
@@ -40,9 +40,9 @@ select_server <- function(id, language, healthatlas_data, config) {
       shiny::req(language())
       shiny::req(input$atlas)
       if (language() == "nb") {
-        healthatlas_data[[input$atlas]][[1]]
+        data[[input$atlas]][[1]]
       } else if (language() == "en") {
-        healthatlas_data[[input$atlas]][[2]]
+        data[[input$atlas]][[2]]
       }
     })
 
@@ -62,10 +62,10 @@ select_server <- function(id, language, healthatlas_data, config) {
         selected = pickable_level1[1]
       )
     })
-    
+
     output$pick_level2 <- shiny::renderUI({
       shiny::req(input$menu_level1)
-      
+
       if ("level2_name" %in% colnames(atlas_data())) {
         # Filter out data according to what is choosen for level 1
         tmpdata <- dplyr::filter(atlas_data(), atlas_data()$level1_name == input$menu_level1)
@@ -100,7 +100,7 @@ select_server <- function(id, language, healthatlas_data, config) {
         }
       }
     })
-    
+
     output$pick_level3 <- shiny::renderUI({
       shiny::req(input$menu_level2)
       if ("level3_name" %in% colnames(atlas_data())) {
@@ -120,17 +120,15 @@ select_server <- function(id, language, healthatlas_data, config) {
         )
       }
     })
-    
+
     filtered_data <- shiny::reactive({
       helseatlas::filter_out(atlas_data(),
                              filter1 = input$menu_level1,
                              filter2 = input$menu_level2,
                              filter3 = input$menu_level3)
-      
     })
+
     return(list(atlas = shiny::reactive(input$atlas), data = filtered_data))
-#    return(filtered_data)
-#    return(shiny::reactive(input$atlas))
-    #    return(list(input$atlas, filtered_data))
+
   })
 }

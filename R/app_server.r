@@ -13,9 +13,9 @@ app_server <- function(input, output, session) {
     # Run the select_server shiny module
     # User pick atlas and sample
     # Module returns name of choosen atlas and data from choosen sample
-    filtered_data <- select_server("test1",
+    filtered_data <- select_server("atlas",
                   language = shiny::reactive(input$language),
-                  healthatlas_data = healthatlas_data,
+                  data = healthatlas_data,
                   config = config
                   )
 
