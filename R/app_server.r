@@ -69,7 +69,12 @@ app_server <- function(input, output, session) {
       return(shiny::HTML(paste0("<h1>", webpage_title, "</h1>")))
     })
 
-    tab_server("plots")
+    tab_server("plots",
+               data = selection$data(), 
+               map = healthatlas_data[[selection$atlas()]]$map,
+               config = config,
+               language = shiny::reactive(input$language)
+               )
 
   output$app_info <- shiny::renderUI({
     shiny::actionButton(
