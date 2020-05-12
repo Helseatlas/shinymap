@@ -24,8 +24,8 @@ tab_server <- function(id, data, map, config, language) {
                    
                                 output$plot_map <- leaflet::renderLeaflet({
                                
-                                  map_to_plot <- sf::st_transform(map, 32633)
-                                  map <- helseatlas::make_map(map = map_to_plot, data = data)
+                                  map_to_plot <- sf::st_transform(map(), 32633)
+                                  map <- helseatlas::make_map(map = map_to_plot, data = data())
                                   return(map)
                                   
                                 }
@@ -37,9 +37,9 @@ tab_server <- function(id, data, map, config, language) {
                                 output$plot_histogram <- shiny::renderPlot({
                                  
                                   plot <- helseatlas::plot_variation(
-                                    input_data = data,
+                                    input_data = data(),
                                     xlab = config$plot$xlab[[language()]],
-                                    ylab = input$menu_level1
+                                    ylab = "input$menu_level1"
                                   )
                                   return(plot)
                                 }
@@ -52,14 +52,14 @@ tab_server <- function(id, data, map, config, language) {
                                 output$make_table <- shiny::renderTable({
                                
                     
-                                tabular_data <- data.frame(data$area_name)
+                                tabular_data <- data.frame(data()$area_name)
                                 colnames(tabular_data) <- c(config$plot$xlab[[input$language]])
-                                value_name <- as.character(unique(data$type))
-                                tabular_data[value_name] <- data$value
-                                numerator_name <- as.character(unique(data$numerator_name))
-                                tabular_data[numerator_name] <- data$numerator
-                                denominator_name <- as.character(unique(data$denominator_name))
-                                tabular_data[denominator_name] <- data$denominator
+                                value_name <- as.character(unique(data()$type))
+                                tabular_data[value_name] <- data()$value
+                                numerator_name <- as.character(unique(data()$numerator_name))
+                                tabular_data[numerator_name] <- data()$numerator
+                                denominator_name <- as.character(unique(data()$denominator_name))
+                                tabular_data[denominator_name] <- data()$denominator
                                 # Sort data
                                 tabular_data <- tabular_data[order(tabular_data[, 2], na.last = TRUE, decreasing = TRUE), ]
                                 # Format numbers

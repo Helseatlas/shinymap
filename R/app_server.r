@@ -70,8 +70,8 @@ app_server <- function(input, output, session) {
     })
 
     tab_server("plots",
-               data = selection$data(), 
-               map = healthatlas_data[[selection$atlas()]]$map,
+               data = selection$data, 
+               map = shiny::reactive(healthatlas_data[[selection$atlas()]]$map),
                config = config,
                language = shiny::reactive(input$language)
                )
