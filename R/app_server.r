@@ -232,7 +232,7 @@ app_server <- function(input, output, session) {
     }
     , height = 800, width = 600)
 
-    output$make_table <- shiny::renderTable({
+    output$make_table <- DT::renderDT({ 
       if (is.null(input$menu_level1)) {
         return(NULL)
       }
@@ -262,11 +262,16 @@ app_server <- function(input, output, session) {
                                                             digits = 2,
                                                             decimal.mark = config$num$decimal[[input$language]],
                                                             big.mark = config$num$big[[input$language]]
-                                                            )
+                                                                                )
                                    )
       return(tabular_data)
+     
     }
-    , align = "lrrr")
+    ,rownames=FALSE
+    ,options=list(columnDefs=list(list(class="dt-right", targets=1:3)), info=FALSE, lengthMenu=list(c(-1,15),c("All","15")))
+      
+    )
+  
 
   output$app_info <- shiny::renderUI({
     shiny::actionButton(
