@@ -118,6 +118,14 @@ select_server <- function(id, language, data, config) {
     })
 
     filtered_data <- shiny::reactive({
+      shiny::req(input$menu_level1)
+      if ("level2_name" %in% colnames(atlas_data())) {
+        shiny::req(input$menu_level2)
+        if ("level3_name" %in% colnames(atlas_data())) {
+          shiny::req(input$menu_level3)
+        }
+      }
+
       helseatlas::filter_out(atlas_data(),
                              filter1 = input$menu_level1,
                              filter2 = input$menu_level2,
