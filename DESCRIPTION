@@ -43,7 +43,8 @@ Imports:
   leaflet,
   htmltools,
   leaflet.extras,
-  methods
+  methods,
+  dt
 Suggests: 
     purrr,
     testthat
