@@ -2,16 +2,16 @@
 
 tab_ui1 <-  function(id){
           ns <- shiny::NS(id)
-            tagList(leaflet::leafletOutput(ns("plot_map"), height = 800))}
+            shiny::tagList(leaflet::leafletOutput(ns("plot_map"), height = 800))}
 
 tab_ui2 <-  function(id){
           ns <- shiny::NS(id)
-            tagList(shiny::plotOutput(ns("plot_histogram")))}
+            shiny::tagList(shiny::plotOutput(ns("plot_histogram")))}
 
 
 tab_ui3 <-  function(id){
           ns <- shiny::NS(id)
-            tagList(shiny::tableOutput(ns("make_table")))}
+            shiny::tagList(shiny::tableOutput(ns("make_table")))}
 
 
 
