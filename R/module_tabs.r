@@ -2,7 +2,7 @@
 
 tab_ui1 <-  function(id){
           ns <- shiny::NS(id)
-            tagList(leaflet::leafletOutput(ns("plot_map")))}
+            tagList(leaflet::leafletOutput(ns("plot_map"), height = 800))}
 
 tab_ui2 <-  function(id){
           ns <- shiny::NS(id)
