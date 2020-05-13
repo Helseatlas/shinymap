@@ -115,11 +115,11 @@ app_server <- function(input, output, session) {
                                                             )
                                    )
       return(tabular_data)
-     
+
     }
     , rownames = FALSE
-    , options = list(columnDefs=list(list(class = "dt-right", targets = 1:3)), 
-                                info = FALSE, lengthMenu = list(c(-1,15), c("All","15"))))
+    , options = list(columnDefs = list(list(class = "dt-right", targets = 1:3)),
+                                info = FALSE, lengthMenu = list(c(-1, 15), c("All", "15"))))
 
   output$app_info <- shiny::renderUI({
     shiny::actionButton(
