@@ -53,7 +53,7 @@ tab_server <- function(id, data, map, config, language) {
                                
                     
                                 tabular_data <- data.frame(data()$area_name)
-                                colnames(tabular_data) <- c(config$plot$xlab[[input$language]])
+                                colnames(tabular_data) <- c(config$plot$xlab[[language()]])
                                 value_name <- as.character(unique(data()$type))
                                 tabular_data[value_name] <- data()$value
                                 numerator_name <- as.character(unique(data()$numerator_name))
@@ -66,8 +66,8 @@ tab_server <- function(id, data, map, config, language) {
                                 tabular_data[, -1] <- sapply(tabular_data[, -1],
                                                  FUN = function(x) format(x,
                                                                           digits = 2,
-                                                                          decimal.mark = config$num$decimal[[input$language]],
-                                                                          big.mark = config$num$big[[input$language]]
+                                                                          decimal.mark = config$num$decimal[[language()]],
+                                                                          big.mark = config$num$big[[language()]]
                                                  )
                                 )
                                 return(tabular_data)
