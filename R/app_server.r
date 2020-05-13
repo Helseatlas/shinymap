@@ -87,7 +87,7 @@ app_server <- function(input, output, session) {
     }
     , height = 800, width = 600)
 
-    output$make_table <- shiny::renderTable({
+    output$make_table <- DT::renderDT({
       shiny::req(selection)
       data_to_tabulate <- selection$data()
 
@@ -116,7 +116,9 @@ app_server <- function(input, output, session) {
                                    )
       return(tabular_data)
     }
-    , align = "lrrr")
+    , rownames = FALSE
+    , options = list(columnDefs=list(list(class = "dt-right", targets = 1:3)), 
+                                info = FALSE, lengthMenu = list(c(-1,15), c("All","15"))))
 
   output$app_info <- shiny::renderUI({
     shiny::actionButton(

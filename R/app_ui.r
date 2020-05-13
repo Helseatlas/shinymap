@@ -31,7 +31,7 @@ app_ui <- function() {
                                                                                                          )
                                                     ),
                                     shiny::tabPanel(shiny::icon("chart-bar"), shiny::plotOutput("plot_histogram")),
-                                    shiny::tabPanel(shiny::icon("table"), shiny::tableOutput("make_table"))
+                                    shiny::tabPanel(shiny::icon("table"), DT::DTOutput("make_table"))
                            ))
                     ))
 }
