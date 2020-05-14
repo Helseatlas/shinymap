@@ -22,8 +22,8 @@ tab_server <- function(id, data, map, config, language) {
   shiny::moduleServer(id, function(input, output, session) {
     # MAP
     output$plot_map <- leaflet::renderLeaflet({
-      map_to_plot <- sf::st_transform(map(), 32633)
-      map <- helseatlas::make_map(map = map_to_plot, data = data())
+      #map_to_plot <- sf::st_transform(map(), 32633) #unødvendig kode
+      map <- helseatlas::make_map(map = map(), data = data())
       return(map)
      }
     )
