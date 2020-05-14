@@ -2,7 +2,7 @@ test_that("tab_server", {
   
   # filtrert data
   filtered_data <- readRDS("data/filtered_data_3.rds")
-  kart <- sf::st_read("data/kart_barn.shp")
+  kart <- sf::st_read("data/kart_dagkir.shp")
   
   #class(map_to_plot)
   #sf::st_crs(kart)
@@ -23,7 +23,8 @@ test_that("tab_server", {
                   map = shiny::reactive(kart),
                   config = readRDS("data/get_config.rds"),
                   language = shiny::reactive("nb")
-                  )
+  )
+                
   )
   
 }
