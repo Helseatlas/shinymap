@@ -41,14 +41,15 @@ test_that("select_server", {
   shiny::testServer(select_server, {
 
     session$setInputs(atlas = "kols")
-    session$setInputs(menu_level1 = "Poliklinikk")
-    session$setInputs(menu_level2 = "Spirometri paa poliklinikk (andeler)")
+    # Same selection as in test_filter_out
+    session$setInputs(menu_level1 = "Akuttinnleggelser")
+    session$setInputs(menu_level2 = "Akuttinnlagte personer")
 
     expect_equal_to_reference(output$pick_atlas, "data/pick_atlas_1.rds")
     expect_equal_to_reference(output$pick_level1, "data/pick_level1_1.rds")
     expect_equal_to_reference(output$pick_level2, "data/pick_level2_1.rds")
     expect_null(output$pick_level3)
-    expect_equal_to_reference(filtered_data(), "data/filtered_data_1.rds")
+    expect_equal_to_reference(filtered_data(), "data/filter_3.rds")
 
   }, args = list(language = shiny::reactive("nb"),
                  data = atlas_data,
@@ -59,8 +60,8 @@ test_that("select_server", {
   # Test three level atlas, english language
   shiny::testServer(select_server, {
 
-    session$setInputs(menu_level1 = "Kirurgiske tilstander, spesialisthelsetjenesten")
-    session$setInputs(menu_level2 = "Utvalgte prosedyrer")
+    session$setInputs(menu_level1 = "Medisinske tilstander, spesialisthelsetjenesten")
+    session$setInputs(menu_level2 = "Kontakttype")
 
     expect_equal_to_reference(output$pick_atlas, "data/pick_atlas_2.rds")
     session$setInputs(atlas = "barn")
@@ -69,7 +70,8 @@ test_that("select_server", {
     expect_equal_to_reference(output$pick_level3, "data/pick_level3_2.rds")
     expect_error(filtered_data())
     session$setInputs(menu_level3 = "Fjerning av mandler")
-    expect_equal_to_reference(filtered_data(), "data/filtered_data_3.rds")
+    session$setInputs(menu_level3 = "Utvalgte akutte diagnoser")
+    expect_equal_to_reference(filtered_data(), "data/filter_4.rds")
 
   }, args = list(language = shiny::reactive("en"),
                  data = atlas_data,
