@@ -14,7 +14,7 @@ test_that("dagkir can be filtered correctly", {
   expect_equal(length(tmp$area), 0)
 
   tmp <- filter_out(file,
-                   filter2 = "Menisk")
+                   filter1 = "Menisk")
   expect_equal_to_reference(tmp, "data/filter_2.rds")
 })
 
