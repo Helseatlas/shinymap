@@ -20,7 +20,8 @@ test_that("tab_server", {
 
     histogram <- output$plot_histogram
     # Check y values (name of health trusts)
-    expect_equal_to_reference(histogram[["coordmap"]][["panels"]][[1]][["domain"]][["discrete_limits"]][["y"]], "data/plot_histogram_y.rds")
+    expect_equal_to_reference(histogram[["coordmap"]][["panels"]][[1]][["domain"]][["discrete_limits"]][["y"]],
+                              "data/plot_histogram_y.rds")
     expect_equal(histogram[["coordmap"]][["panels"]][[1]][["mapping"]][["x"]], "get(\"value\")")
     expect_equal(histogram[["coordmap"]][["panels"]][[1]][["mapping"]][["y"]], "get(\"area_name\")")
     expect_equal(histogram[["coordmap"]][["panels"]][[1]][["mapping"]][["fill"]], "get(\"brks\")")
