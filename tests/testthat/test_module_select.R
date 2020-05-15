@@ -68,8 +68,8 @@ test_that("select_server", {
     expect_equal_to_reference(output$pick_level1, "data/pick_level1_2.rds")
     expect_equal_to_reference(output$pick_level2, "data/pick_level2_2.rds")
     expect_equal_to_reference(output$pick_level3, "data/pick_level3_2.rds")
+    # Expect error if level 3 is not defined.
     expect_error(filtered_data())
-    session$setInputs(menu_level3 = "Fjerning av mandler")
     session$setInputs(menu_level3 = "Utvalgte akutte diagnoser")
     expect_equal_to_reference(filtered_data(), "data/filter_4.rds")
 
