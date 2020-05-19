@@ -8,7 +8,7 @@ tab_ui1 <-  function(id) {
 
 tab_ui2 <- function(id) {
   ns <- shiny::NS(id)
-  shiny::tagList(shiny::plotOutput(ns("plot_histogram"))
+  shiny::tagList(plotly::plotlyOutput(ns("plot_histogram"))
    )
   }
 
@@ -27,15 +27,15 @@ tab_server <- function(id, data, map, config, language) {
      }
     )
     # BARCHART
-    output$plot_histogram <- shiny::renderPlot({
+    output$plot_histogram <- plotly::renderPlotly({
       plot <- helseatlas::plot_variation(
         input_data = data(),
         xlab = config$plot$xlab[[language()]],
-        ylab = "input$menu_level1"
+        ylab = as.character(data()$type)
         )
       return(plot)
       }
-      , height = 800, width = 600)
+     )
     # TABLE
     output$make_table <- DT::renderDT({
       tabular_data <- data.frame(data()$area_name)

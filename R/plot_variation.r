@@ -27,10 +27,13 @@ plot_variation <- function(input_data = NULL, xlab = "Area", ylab = "Rate", type
 
     # norwegian average
     norway_avg <- dplyr::filter(input_data, input_data[["area"]] == 8888)
-
+    
     the_plot <-
       ggplot2::ggplot(data = input_data,
-      ggplot2::aes(x = get("area_name"), y = get("value"), fill = get("brks"))) +
+      ggplot2::aes(x = get("area_name"), y = get("value"), fill = get("brks"),
+                   text = paste(get("area_name"), "<br>", 
+                                get("type"), ":", get("value"), "<br>",
+                                get("numerator_name"), ":", get("numerator")))) +
 
       ggplot2::geom_bar(stat = "identity") +
       ggplot2::geom_bar(data = norway_avg, fill = "grey", stat = "identity") +
@@ -39,15 +42,18 @@ plot_variation <- function(input_data = NULL, xlab = "Area", ylab = "Rate", type
                                  values = SKDEr::skde_colors(num = num_groups),
                                  guide = ggplot2::guide_colorsteps(ticks = FALSE,
                                                                   show.limits = TRUE)) +
-      ggplot2::labs(x = NULL, y = NULL, fill = "breaks", caption = "Kilde: NPR/SSB") +
+      ggplot2::labs(x = NULL, y = ylab) +
       ggplot2::coord_flip() +
 
       ggthemes::theme_tufte() +
       ggplot2::theme(text = ggplot2::element_text(size = 14),
                      axis.line = ggplot2::element_line(color = "black"),
                      axis.ticks.y = ggplot2::element_blank(),
-                     plot.caption = ggplot2::element_text(hjust = 1)) +
+                     plot.caption = ggplot2::element_text(hjust = 1),
+                     legend.position = "none") +
       ggplot2::scale_y_continuous(expand = c(0, 0))
+    
+      the_plotly <- plotly::ggplotly(the_plot, tooltip = "text")
   }
-  return(the_plot)
+  return(the_plotly)
 }
