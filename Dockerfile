@@ -8,6 +8,8 @@ ARG GITHUB_PAT
 RUN R -e "remotes::install_github('helseatlas/kart')"
 RUN R -e "remotes::install_github('helseatlas/data')"
 
+# Install package not yet in helseatlas-base-r
+RUN R -e "install.packages('plotly')"
 # Install the current local version of helseatlas
 COPY *.tar.gz .
 RUN R CMD INSTALL --clean *.tar.gz
