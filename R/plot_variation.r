@@ -54,6 +54,6 @@ plot_variation <- function(input_data = NULL, xlab = "Area", ylab = "Rate", type
       ggplot2::scale_y_continuous(expand = c(0, 0))
     
       the_plotly <- plotly::ggplotly(the_plot, tooltip = "text")
+      return(the_plotly)
   }
-  return(the_plotly)
 }
