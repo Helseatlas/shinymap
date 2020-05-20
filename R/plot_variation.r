@@ -27,11 +27,11 @@ plot_variation <- function(input_data = NULL, xlab = "Area", ylab = "Rate", type
 
     # norwegian average
     norway_avg <- dplyr::filter(input_data, input_data[["area"]] == 8888)
-    
+
     the_plot <-
       ggplot2::ggplot(data = input_data,
       ggplot2::aes(x = get("area_name"), y = get("value"), fill = get("brks"),
-                   text = paste(get("area_name"), "<br>", 
+                   text = paste(get("area_name"), "<br>",
                                 get("type"), ":", get("value"), "<br>",
                                 get("numerator_name"), ":", get("numerator")))) +
 
@@ -52,7 +52,7 @@ plot_variation <- function(input_data = NULL, xlab = "Area", ylab = "Rate", type
                      plot.caption = ggplot2::element_text(hjust = 1),
                      legend.position = "none") +
       ggplot2::scale_y_continuous(expand = c(0, 0))
-    
+
       the_plotly <- plotly::ggplotly(the_plot, tooltip = "text")
       return(the_plotly)
   }
