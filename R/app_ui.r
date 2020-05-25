@@ -24,7 +24,6 @@ app_ui <- function() {
                                   shiny::htmlOutput("desc_text"),
                                   shiny::uiOutput("app_info"),
                                   shiny::uiOutput("git_version")
-                                  
                     ),
                     shiny::column(9,
                                   shiny::tabsetPanel(
