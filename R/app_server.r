@@ -93,4 +93,12 @@ app_server <- function(input, output, session) {
                            confirmButtonText =
                              sample(config$info$action_button$no_opt_out_ok[[input$language]], 1))
   })
+
+  output$desc_text <- shiny::renderUI({
+    if ("description" %in% colnames(selection$data())) {
+      selected_theme <- selection$data()
+      desc <- selected_theme$description
+      shiny::HTML(as.character(desc[1]))
+    }
+  })
 }
