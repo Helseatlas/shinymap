@@ -8,7 +8,8 @@
 #' @param num_groups Number of natural break groups
 #'
 #' @export
-plot_variation <- function(input_data = NULL, xlab = "Area", ylab = "Rate", type = "histogram", num_groups = 5) {
+plot_variation <- function(input_data = NULL, xlab = "Area", ylab = "Rate", type = "histogram", num_groups = 5,
+                           decimal_mark = ",", big_mark = " ") {
 
   options(encoding = "UTF-8")
 
@@ -28,6 +29,17 @@ plot_variation <- function(input_data = NULL, xlab = "Area", ylab = "Rate", type
     # norwegian average
     norway_avg <- dplyr::filter(input_data, input_data[["area"]] == 8888)
 
+    
+    # Format numbers
+    input_data["value"] <- sapply(input_data["value"],
+                                 FUN = function(x) format(x,
+                                                          digits = 2,
+                                                          decimal.mark = decimal_mark,
+                                                          big.mark = big_mark
+                                 )
+    )
+    
+    
     the_plot <-
       ggplot2::ggplot(data = input_data,
       ggplot2::aes(x = get("area_name"), y = get("value"), fill = get("brks"),

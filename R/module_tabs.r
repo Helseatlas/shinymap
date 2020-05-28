@@ -31,7 +31,9 @@ tab_server <- function(id, data, map, config, language) {
       plot <- helseatlas::plot_variation(
         input_data = data(),
         xlab = config$plot$xlab[[language()]],
-        ylab = as.character(data()$type)
+        ylab = as.character(data()$type),
+        decimal_mark = config$num$decimal[[language()]],
+        big_mark = config$num$big[[language()]]
         )
       return(plot)
       }
