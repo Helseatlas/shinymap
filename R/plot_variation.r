@@ -29,35 +29,13 @@ plot_variation <- function(input_data = NULL, xlab = "Area", ylab = "Rate", type
     # norwegian average
     norway_avg <- dplyr::filter(input_data, input_data[["area"]] == 8888)
 
-
-    # Format numbers
-    input_data$value_fmt <- sapply(input_data[["value"]],
-                                  FUN = function(x) format(x,
-                                                           digits = 2,
-                                                           nsmall = 1,
-                                                           decimal.mark = decimal_mark,
-                                                           big.mark = big_mark
-                                                          )
-                                  )
-    input_data$numerator_fmt <- sapply(input_data[["numerator"]],
-                                   FUN = function(x) format(x,
-                                                            digits = 2,
-                                                            decimal.mark = decimal_mark,
-                                                            big.mark = big_mark
-                                                            )
-                                  )
-    
-    print(input_data$value_fmt)
-    print(input_data)
-    str(input_data)
-
     the_plot <-
       ggplot2::ggplot(data = input_data,
       ggplot2::aes(x = get("area_name"), y = get("value"), fill = get("brks"),
-                   text = paste(get("area_name"), "<br>",
-                                get("type"), ":", get("value_fmt"), "<br>",
-                                get("numerator_name"), ":", get("numerator_fmt")))) +
-
+                   text = paste("<b>", get("area_name"), "</b><br>",
+                                get("type"), ":", format(get("value"), decimal.mark = decimal_mark, digits = 2), "<br>",
+                                get("numerator_name"), ":", format(get("numerator"), big.mark = big_mark)))) +
+   
       ggplot2::geom_bar(stat = "identity") +
       ggplot2::geom_bar(data = norway_avg, fill = "grey", stat = "identity") +
 
@@ -76,11 +54,6 @@ plot_variation <- function(input_data = NULL, xlab = "Area", ylab = "Rate", type
                      legend.position = "none") +
       ggplot2::scale_y_continuous(expand = c(0, 0))
 
-    
-    
-
-    
-    
       the_plotly <- plotly::ggplotly(the_plot, tooltip = "text")
       return(the_plotly)
   }

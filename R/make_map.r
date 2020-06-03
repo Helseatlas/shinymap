@@ -7,7 +7,7 @@
 #' @export
 #' @importFrom magrittr "%>%"
 #'
-make_map <- function(data = NULL, map = NULL) {
+make_map <- function(data = NULL, map = NULL, decimal_mark = ",", big_mark = " ") {
 
   # convert from utm33 to leaflet
   map_data <- kart::utm33_to_leaflet(map = map, sf = TRUE)
@@ -15,7 +15,7 @@ make_map <- function(data = NULL, map = NULL) {
    # remove area_name from map, since we will get it from `data`
   map_data@data$area_name <- NULL
   # Only keep columns that we want to use
-  simple_data <- data[c("area", "value", "area_name", "type")]
+  simple_data <- data[c("area", "value", "area_name", "type", "numerator_name", "numerator")]
   # Join data with map
   map_data@data <- dplyr::left_join(map_data@data, simple_data, by = c("area_num" = "area"))
   pal <- leaflet::colorBin(palette = SKDEr::skde_colors(num = 5),
@@ -33,7 +33,11 @@ make_map <- function(data = NULL, map = NULL) {
                                         "</strong><br>",
                                         map_data@data$type,
                                         ": ",
-                                        map_data@data$value
+                                        format(map_data@data$value, decimal.mark = decimal_mark, digits = 2),
+                                        "<br>",
+                                        map_data@data$numerator_name,
+                                        ": ",
+                                        format(map_data@data$numerator, big.mark = big_mark)
                                         ) %>%
                                  lapply(htmltools::HTML),
                          popupOptions = leaflet::popupOptions(closeButton = TRUE),

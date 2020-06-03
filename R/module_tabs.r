@@ -22,7 +22,9 @@ tab_server <- function(id, data, map, config, language) {
   shiny::moduleServer(id, function(input, output, session) {
     # MAP
     output$plot_map <- leaflet::renderLeaflet({
-      map <- helseatlas::make_map(map = map(), data = data())
+      map <- helseatlas::make_map(map = map(), data = data(),
+                                  decimal_mark = config$num$decimal[[language()]],
+                                  big_mark = config$num$big[[language()]])
       return(map)
      }
     )
