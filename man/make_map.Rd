@@ -4,12 +4,16 @@
 \alias{make_map}
 \title{Function to make a map}
 \usage{
-make_map(data = NULL, map = NULL)
+make_map(data = NULL, map = NULL, decimal_mark = ",", big_mark = " ")
 }
 \arguments{
 \item{data}{Data to be plotted in the map}
 
 \item{map}{The map itself}
+
+\item{decimal_mark}{sign to use for decimal}
+
+\item{big_mark}{sign to use for numbers over a thousand}
 }
 \value{
 a map

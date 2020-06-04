@@ -2,6 +2,8 @@
 #'
 #' @param data Data to be plotted in the map
 #' @param map The map itself
+#' @param decimal_mark sign to use for decimal 
+#' @param big_mark sign to use for numbers over a thousand 
 #'
 #' @return a map
 #' @export

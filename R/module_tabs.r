@@ -8,7 +8,7 @@ tab_ui1 <-  function(id) {
 
 tab_ui2 <- function(id) {
   ns <- shiny::NS(id)
-  shiny::tagList(plotly::plotlyOutput(ns("plot_histogram"))
+  shiny::tagList(plotly::plotlyOutput(ns("plot_histogram"), height = 800)
    )
   }
 

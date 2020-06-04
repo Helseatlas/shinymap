@@ -9,7 +9,9 @@ plot_variation(
   xlab = "Area",
   ylab = "Rate",
   type = "histogram",
-  num_groups = 5
+  num_groups = 5,
+  decimal_mark = ",",
+  big_mark = " "
 )
 }
 \arguments{
@@ -23,6 +25,10 @@ plot_variation(
 "histogram"}
 
 \item{num_groups}{Number of natural break groups}
+
+\item{decimal_mark}{sign to use for decimal}
+
+\item{big_mark}{sign to use for numbers over a thousand}
 }
 \description{
 Make a plot based on a data frame

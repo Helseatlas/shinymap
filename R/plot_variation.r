@@ -6,6 +6,8 @@
 #' @param xlab Label on x-axis
 #' @param ylab Label on y-axis
 #' @param num_groups Number of natural break groups
+#' @param decimal_mark sign to use for decimal 
+#' @param big_mark sign to use for numbers over a thousand 
 #'
 #' @export
 plot_variation <- function(input_data = NULL, xlab = "Area", ylab = "Rate", type = "histogram", num_groups = 5,
