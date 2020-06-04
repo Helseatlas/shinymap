@@ -35,11 +35,11 @@ make_map <- function(data = NULL, map = NULL, decimal_mark = ",", big_mark = " "
                                         "</strong><br>",
                                         map_data@data$type,
                                         ": ",
-                                        format(map_data@data$value, decimal.mark = decimal_mark, digits = 2),
+                                        format(map_data@data$value, big.mark = big_mark, decimal.mark = decimal_mark, digits = 2),
                                         "<br>",
                                         map_data@data$numerator_name,
                                         ": ",
-                                        format(map_data@data$numerator, big.mark = big_mark)
+                                        format(map_data@data$numerator, big.mark = big_mark, decimal.mark = decimal_mark, digits = 2)
                                         ) %>%
                                  lapply(htmltools::HTML),
                          popupOptions = leaflet::popupOptions(closeButton = TRUE),

@@ -14,7 +14,7 @@ tab_ui2 <- function(id) {
 
 tab_ui3 <-  function(id) {
   ns <- shiny::NS(id)
-  shiny::tagList(DT::DTOutput(ns("make_table"))
+  shiny::tagList(DT::DTOutput(ns("make_table"), height = 800)
    )
   }
 
@@ -64,6 +64,6 @@ tab_server <- function(id, data, map, config, language) {
       }
       , rownames = FALSE
       , options = list(columnDefs = list(list(class = "dt-right", targets = 1:3)),
-                                  info = FALSE, lengthMenu = list(c(-1, 15), c("All", "15"))))
+                                  info = FALSE, lengthMenu = list(c(-1, 15), c("All", "15")), dom = 't'))
    })
 }
