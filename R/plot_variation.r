@@ -35,9 +35,9 @@ plot_variation <- function(input_data = NULL, xlab = "Area", ylab = "Rate", type
       ggplot2::ggplot(data = input_data,
       ggplot2::aes(x = get("area_name"), y = get("value"), fill = get("brks"),
                    text = paste("<b>", get("area_name"), "</b><br>",
-                                get("type"), ":", format(get("value"), 
+                                get("type"), ":", format(get("value"),
                                 big.mark = big_mark, decimal.mark = decimal_mark, digits = 2), "<br>",
-                                get("numerator_name"), ":", format(get("numerator"), 
+                                get("numerator_name"), ":", format(get("numerator"),
                                 big.mark = big_mark, decimal.mark = decimal_mark, digits = 2)))) +
 
       ggplot2::geom_bar(stat = "identity") +
