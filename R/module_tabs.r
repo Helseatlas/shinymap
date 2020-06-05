@@ -64,6 +64,6 @@ tab_server <- function(id, data, map, config, language) {
       }
       , rownames = FALSE
       , options = list(columnDefs = list(list(class = "dt-right", targets = 1:3)),
-                                  info = FALSE, lengthMenu = list(c(-1, 15), c("All", "15")), dom = 't'))
+                                  info = FALSE, lengthMenu = list(c(-1, 15), c("All", "15")), dom = "t"))
    })
 }
